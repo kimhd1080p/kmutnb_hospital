@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\CasePatient;
+use app\models\Casemedicine;
 
 /**
- * CasePatientSearch represents the model behind the search form about `app\models\CasePatient`.
+ * CasemedicineSearch represents the model behind the search form about `app\models\Casemedicine`.
  */
-class CasePatientSearch extends CasePatient
+class CasemedicineSearch extends Casemedicine
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class CasePatientSearch extends CasePatient
     public function rules()
     {
         return [
-            [['idcase', 'dispense', 'casetype_idcasetype', 'idservices', 'iddoctor', 'p_pid', 'p_sid', 'user_id'], 'integer'],
-            [['case_detail', 'timestam'], 'safe'],
+            [['ID', 'idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'integer'],
+            [['note'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CasePatientSearch extends CasePatient
      */
     public function search($params)
     {
-        $query = CasePatient::find();
+        $query = Casemedicine::find();
 
         // add conditions that should always apply here
 
@@ -58,20 +58,12 @@ class CasePatientSearch extends CasePatient
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'idcase' => $this->idcase,
-            'timestam' => $this->timestam,
-            'dispense' => $this->dispense,
-            'casetype_idcasetype' => $this->casetype_idcasetype,
-            'idservices' => $this->idservices,
-            'iddoctor' => $this->iddoctor,
-            'p_pid' => $this->p_pid,
-            'p_sid' => $this->p_sid,
-            'user_id' => $this->user_id,
-        ]);
-
-        $query->andFilterWhere(['like', 'case_detail', $this->case_detail]);
-
+       $query->joinWith([
+    'casepatient' => function (\yii\db\ActiveQuery $query) {
+            $session = Yii::$app->session;
+        $query->where( ['p_pid' => $session['pid']]);
+    }
+])->joinWith('medicinepackage')->joinWith('medicine');
         return $dataProvider;
     }
 }

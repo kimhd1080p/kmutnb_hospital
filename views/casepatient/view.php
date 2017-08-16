@@ -2,21 +2,24 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+$session = Yii::$app->session;
 /* @var $this yii\web\View */
-/* @var $model app\models\CasePatient */
+/* @var $model app\models\Casepatient */
 
-$this->title = $model->idcase;
-$this->params['breadcrumbs'][] = ['label' => 'Case Patients', 'url' => ['index']];
+$this->title = 'ดูประวัติ คุณ'.$session['pname']." ".$session['psurname'];
+$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
+$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid']]];
+$this->params['breadcrumbs'][] = ['label' => 'ประวัติ', 'url' => ['casepatient/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="case-patient-view">
+<div class="casepatient-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+  
 
     <p>
-        <?= Html::a('Update', ['update', 'idcase' => $model->idcase, 'casetype_idcasetype' => $model->casetype_idcasetype, 'idservices' => $model->idservices, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idcase' => $model->idcase, 'casetype_idcasetype' => $model->casetype_idcasetype, 'idservices' => $model->idservices, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], [
+        <?= Html::a('Update', ['update', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,15 +32,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'idcase',
+            'p_pid',
+            [  
+        'label' => 'ชื่อ-นามสกุล',
+        'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
+    ],
+            'casetype.casetype',
             'case_detail',
             'timestam',
-            'dispense',
-            'casetype_idcasetype',
-            'idservices',
-            'iddoctor',
-            'p_pid',
-            'p_sid',
-            'user_id',
+            'services.services',
+          'dispense',
+            'doctor.doctor',
+ 
+            [  
+        'label' => 'ผู้ให้บริการ',
+        'value' => $model->user->u_name.' '.$model->user->u_surname ,
+    ],
         ],
     ]) ?>
 

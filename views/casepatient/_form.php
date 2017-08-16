@@ -1,8 +1,11 @@
 <?php
-
+$session = Yii::$app->session;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\helpers\ArrayHelper;
+use app\models\Casetype;
+use app\models\Services;
+use app\models\Doctor;
 /* @var $this yii\web\View */
 /* @var $model app\models\CasePatient */
 /* @var $form yii\widgets\ActiveForm */
@@ -11,27 +14,34 @@ use yii\widgets\ActiveForm;
 <div class="case-patient-form">
 
     <?php $form = ActiveForm::begin(); ?>
+      <?= $form->field($model, 'p_pid')->hiddenInput(['maxlength' => true,'value' => $session['pid'],])->label(false); ?>
 
-    <?= $form->field($model, 'case_detail')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'p_sid')->hiddenInput(['maxlength' => true,'value' => $session['sid'],])->label(false); ?>
 
-    <?= $form->field($model, 'timestam')->textInput() ?>
+<?= $form->field($model, 'casetype_idcasetype')
+     ->dropDownList(
+            ArrayHelper::map(Casetype::find()->asArray()->all(), 'idcasetype', 'casetype'),['prompt'=>'เลือกประเภทอาการ']
+            ) ?>
+       
 
-    <?= $form->field($model, 'dispense')->textInput() ?>
+    <?= $form->field($model, 'case_detail')->textArea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'casetype_idcasetype')->textInput() ?>
+<?= $form->field($model, 'idservices')->dropDownList(
+            ArrayHelper::map(Services::find()->asArray()->all(), 'idservices', 'services'),['prompt'=>'เลือกประเภทอาการ']
+            ) ?>
 
-    <?= $form->field($model, 'idservices')->textInput() ?>
+ <?= $form->field($model, 'iddoctor')->dropDownList(
+            ArrayHelper::map(Doctor::find()->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
+            ) ?>
+<br />
+    <?php //$model->dispense = 0; ?>
+<?php //$form->field($model, 'dispense')->checkbox(); ?>
 
-    <?= $form->field($model, 'iddoctor')->textInput() ?>
 
-    <?= $form->field($model, 'p_pid')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'p_sid')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
+    <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
+<br />
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'บักทึกข้อมูล' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

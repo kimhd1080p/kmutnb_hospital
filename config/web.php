@@ -21,7 +21,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                // ''=>'home/index',
+                 ''=>'home/index',
                 // 'home/login'=>'home/login',
                 // '<action:(index|login|logout)>'=>'site/<action>',
                 // '<controller:\w+>/<id:\d+>' => '<controller>/view',
@@ -45,9 +45,9 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\User',
             //'enableAutoLogin' => true,
-            //'identityClass' => 'mdm\admin\models\User',
+            'identityClass' => 'mdm\admin\models\User',
             'loginUrl' => ['home/login'],
             
         ],
@@ -103,17 +103,22 @@ $config = [
             'route' => null, // disable menu route
         ]
             
-        ]
+        ],
+      
+   'gridview' =>  [
+        'class' => '\kartik\grid\Module'
+    ]
+
 	],
      'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            'home/*',
-            'nurseservice/*',
+//            'home/*',
+//            'nurseservice/*',
             'admin/*',
-            'debug/*',
-            'gii/*',
-            'casepatient/*',
+//            'debug/*',
+//            'gii/*',
+          
 
             // The actions listed here will be allowed to everyone including guests.
             // So, 'admin/*' should not appear here in the production, of course.

@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CasePatientSearch */
+/* @var $model app\models\CasepatientSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="case-patient-search">
+<div class="casepatient-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -23,9 +23,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dispense') ?>
 
-    <?= $form->field($model, 'casetype_idcasetype') ?>
+    <?= $form->field($model, 'idservices') ?>
 
-    <?php // echo $form->field($model, 'idservices') ?>
+    <?php // echo $form->field($model, 'casetype_idcasetype') ?>
 
     <?php // echo $form->field($model, 'iddoctor') ?>
 

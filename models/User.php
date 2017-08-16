@@ -42,35 +42,35 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'accessToken', 'password_hash', 'email', 'created_at', 'updated_at', 'u_name', 'u_surname'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'password_hash', 'email', 'u_name', 'u_surname', 'userType_ut_id'], 'required'],
+            [['status', 'created_at', 'updated_at', 'userType_ut_id'], 'integer'],
             [['username', 'auth_key'], 'string', 'max' => 32],
-            [['accessToken', 'password_hash', 'password_reset_token', 'email'], 'string', 'max' => 256],
-            [['u_name', 'u_surname'], 'string', 'max' => 50],
+            [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 256],
+            [['u_name', 'u_surname'], 'string', 'max' => 45],
+            [['userType_ut_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usertype::className(), 'targetAttribute' => ['userType_ut_id' => 'ut_id']],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function attributeLabels()
+   public function attributeLabels()
     {
         return [
             'id' => 'ID',
             'username' => 'บัญชีผู้ใช้',
-            'auth_key' => 'รหัสผ่าน',
-            'accessToken' => 'Access Token',
-            'password_hash' => 'ชื่อ',
-            'password_reset_token' => 'นามสกุล',
-            'email' => 'เบอร์โทร',
-            'status' => 'accessToken',
-            'created_at' => 'authKey',
+            'auth_key' => 'Auth Key',
+            'password_hash' => 'รหัสผ่าน',
+            'password_reset_token' => 'Password Reset Token',
+            'email' => 'อีเมล',
+            'status' => 'Status',
+            'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'u_name' => 'ชื่อ',
-            'u_surname' => 'นามสกุล',
+            'u_surname' => 'นามสุล',
+            'userType_ut_id' => 'ตำแหน่ง',
         ];
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -82,9 +82,17 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasePatients()
+    public function getCasepatients()
     {
-        return $this->hasMany(CasePatient::className(), ['user_id' => 'id']);
+        return $this->hasMany(Casepatient::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserTypeUt()
+    {
+        return $this->hasOne(Usertype::className(), ['ut_id' => 'userType_ut_id']);
     }
 
     public static function findIdentity($id) {

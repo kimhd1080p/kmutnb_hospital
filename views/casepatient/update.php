@@ -1,18 +1,20 @@
 <?php
-
+$session = Yii::$app->session;
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\CasePatient */
+/* @var $model app\models\Casepatient */
 
-$this->title = 'Update Case Patient: ' . $model->idcase;
-$this->params['breadcrumbs'][] = ['label' => 'Case Patients', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->idcase, 'url' => ['view', 'idcase' => $model->idcase, 'casetype_idcasetype' => $model->casetype_idcasetype, 'idservices' => $model->idservices, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'แก้ไขประวัติ คุณ'.$session['pname']." ".$session['psurname'];
+$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
+$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid']]];
+$this->params['breadcrumbs'][] = ['label' => 'ประวัติ', 'url' => ['casepatient/index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="case-patient-update">
+<div class="casepatient-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+   
 
     <?= $this->render('_form', [
         'model' => $model,

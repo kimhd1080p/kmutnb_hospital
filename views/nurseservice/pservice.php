@@ -7,44 +7,32 @@ use yii\helpers\Url;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\ContactForm */
 
-$this->title = 'งานพยาบาล';
+$this->title = 'บริการผู้ป่วย คุณ'.$name. " " .$surname;
+$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
+$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
+
 $this->params['breadcrumbs'][''] = $this->title;
 
 ?>
 
 <div class="site-contact">
- <!-- Small boxes (Stat box) -->
-      <div class="row">
-          
-            <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>บริการ</h3>
 
-              <p>ผู้ป่วย</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
-            </div>
-            <a href="<?=Url::to(['nurseservice/psearch'])?>" class="small-box-footer">
-              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
-          
+  
+     <!-- Small boxes (Stat box) -->
+      <div class="row">
+         
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>บันทึกประวัติ</h3>
+              <h3>ประวัติ</h3>
 
-              <p>ผู้ป่วย</p>
+              <p>บริการผู้ป่วย</p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
             </div>
-            <a href="<?=Url::to(['nurseservice/history'])?>" class="small-box-footer">
+            <a href="<?=Url::to(['nurseservice/casepatient','pid'=>$pid])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -54,15 +42,15 @@ $this->params['breadcrumbs'][''] = $this->title;
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>นัดพบแพทย์<sup style="font-size: 20px"></sup></h3>
 
-              <p>Bounce Rate</p>
+              <p>บริการผู้ป่วย</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
+            <a href="<?=Url::to(['nurseservice/appointment','pid'=>$pid])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
@@ -71,32 +59,32 @@ $this->params['breadcrumbs'][''] = $this->title;
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3>จ่ายยา</h3>
 
-              <p>User Registrations</p>
+              <p>บริการผู้ป่วย</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
+            <a href="<?=Url::to(['nurseservice/casemedicine','pid'=>$pid])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+          <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>บักทึกอุบัติเหตุ</h3>
 
-              <p>Unique Visitors</p>
+              <p>บริการผู้ป่วย</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
+            <a href="<?=Url::to(['nurseservice/casemedicine','pid'=>$pid])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>

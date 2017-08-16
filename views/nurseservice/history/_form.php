@@ -1,5 +1,5 @@
 <?php
-
+$session = Yii::$app->session;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
@@ -14,9 +14,9 @@ use app\models\Doctor;
 <div class="case-patient-form">
 
     <?php $form = ActiveForm::begin(); ?>
-      <?= $form->field($model, 'p_pid')->hiddenInput(['maxlength' => true,'value' => $_GET['p_pid'],])->label(false); ?>
+      <?= $form->field($model, 'p_pid')->hiddenInput(['maxlength' => true,'value' => $pid,])->label(false); ?>
 
-    <?= $form->field($model, 'p_sid')->hiddenInput(['maxlength' => true,'value' => $_GET['p_sid'],])->label(false); ?>
+    <?= $form->field($model, 'p_sid')->hiddenInput(['maxlength' => true,'value' => $sid,])->label(false); ?>
 
 <?= $form->field($model, 'casetype_idcasetype')
      ->dropDownList(
