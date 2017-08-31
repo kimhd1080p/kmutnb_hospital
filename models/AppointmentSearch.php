@@ -18,7 +18,7 @@ class AppointmentSearch extends Appointment
     public function rules()
     {
         return [
-            [['ID', 'medical_certificate', 'todoctor', 'user_id', 'user_id2', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'integer'],
+            [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor','todoctor'], 'integer'],
             [['appointment_time', 'timestam', 'detial'], 'safe'],
         ];
     }

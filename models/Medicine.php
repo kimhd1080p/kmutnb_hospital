@@ -10,10 +10,9 @@ use Yii;
  * @property string $idmedicine
  * @property string $medicine
  * @property integer $idmedicinetype
- * @property integer $medicinesize_id
+ * @property string $medicinesize
  *
- * @property CaseHasMedicine[] $caseHasMedicines
- * @property Medicinesize $medicinesize
+ * @property Casemedicine[] $casemedicines
  * @property Medicinetype $idmedicinetype0
  * @property Medicinestock[] $medicinestocks
  */
@@ -33,10 +32,10 @@ class Medicine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idmedicine', 'idmedicinetype', 'medicinesize_id'], 'required'],
-            [['idmedicine', 'idmedicinetype', 'medicinesize_id'], 'integer'],
+            [['idmedicine', 'idmedicinetype'], 'required'],
+            [['idmedicine', 'idmedicinetype'], 'integer'],
             [['medicine'], 'string', 'max' => 100],
-            [['medicinesize_id'], 'exist', 'skipOnError' => true, 'targetClass' => Medicinesize::className(), 'targetAttribute' => ['medicinesize_id' => 'id']],
+            [['medicinesize'], 'string', 'max' => 10],
             [['idmedicinetype'], 'exist', 'skipOnError' => true, 'targetClass' => Medicinetype::className(), 'targetAttribute' => ['idmedicinetype' => 'idmedicinetype']],
         ];
     }
@@ -50,7 +49,7 @@ class Medicine extends \yii\db\ActiveRecord
             'idmedicine' => 'รหัสยา',
             'medicine' => 'ชื่อยา',
             'idmedicinetype' => 'ประเภทยา',
-            'medicinesize_id' => 'ขนาด',
+            'medicinesize' => 'ขนาด',
         ];
     }
 
@@ -59,15 +58,7 @@ class Medicine extends \yii\db\ActiveRecord
      */
     public function getCasemedicines()
     {
-        return $this->hasMany(CaseHasMedicine::className(), ['idmedicine' => 'idmedicine']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getMedicinesize()
-    {
-        return $this->hasOne(Medicinesize::className(), ['id' => 'medicinesize_id']);
+        return $this->hasMany(Casemedicine::className(), ['idmedicine' => 'idmedicine']);
     }
 
     /**

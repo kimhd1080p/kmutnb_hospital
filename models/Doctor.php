@@ -9,8 +9,11 @@ use Yii;
  *
  * @property integer $iddoctor
  * @property string $doctor
+ * @property integer $doctortype_id
  *
- * @property CasePatient[] $casePatients
+ * @property Appointment[] $appointments
+ * @property Casepatient[] $casepatients
+ * @property Doctortype $doctortype
  */
 class Doctor extends \yii\db\ActiveRecord
 {
@@ -28,7 +31,10 @@ class Doctor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['doctortype_id'], 'required'],
+            [['doctortype_id'], 'integer'],
             [['doctor'], 'string', 'max' => 45],
+            [['doctortype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Doctortype::className(), 'targetAttribute' => ['doctortype_id' => 'id']],
         ];
     }
 
@@ -40,14 +46,31 @@ class Doctor extends \yii\db\ActiveRecord
         return [
             'iddoctor' => 'ID',
             'doctor' => 'แพทย์ผู้ตรวจ',
+            'doctortype_id' => 'ประเภท',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasePatients()
+    public function getAppointments()
     {
-        return $this->hasMany(CasePatient::className(), ['iddoctor' => 'iddoctor']);
+        return $this->hasMany(Appointment::className(), ['doctor_iddoctor' => 'iddoctor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCasepatients()
+    {
+        return $this->hasMany(Casepatient::className(), ['iddoctor' => 'iddoctor']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDoctortype()
+    {
+        return $this->hasOne(Doctortype::className(), ['id' => 'doctortype_id']);
     }
 }

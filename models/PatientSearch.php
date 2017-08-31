@@ -19,7 +19,7 @@ class PatientSearch extends Patient
     {
         return [
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'integer'],
-            [['p_name','sex', 'p_surname', 'p_birthday', 'p_address', 'p_tel', 'p_allegy', 'p_disease'], 'safe'],
+            [['p_name', 'p_surname', 'sex', 'p_birthday', 'p_address', 'p_tel', 'p_allegy', 'p_disease', 'documentindex'], 'safe'],
         ];
     }
 
@@ -58,16 +58,27 @@ class PatientSearch extends Patient
         }
 
         // grid filtering conditions
-        $query->joinWith('status')
-        ->Where(['p_pid' => $this->p_pid,])
-        ->orWhere([ 'p_sid' => $this->p_pid]); //ค้นหา 2 ฟิว
-
-       /* $query->andFilterWhere(['like', 'p_name', $this->p_name])
-            ->andFilterWhere(['like', 'p_surname', $this->p_surname])
+        // 
+          //$query->joinWith('status')
+//        ->Where(['p_pid' => $this->p_pid,])
+//        ->orWhere([ 'p_sid' => $this->p_pid]); //ค้นหา 2 ฟิว
+        $query->andFilterWhere([
+            'p_pid' => $this->p_pid,
+          'p_sid' => $this->p_sid,
+           'p_birthday' => $this->p_birthday,
+           'status_id' => $this->status_id,
+         'department_id' => $this->department_id,
+           'studentclass_id' => $this->studentclass_id,
+     ]);
+//
+    $query->andFilterWhere(['like', 'p_name', $this->p_name])
+        ->andFilterWhere(['like', 'p_surname', $this->p_surname])
+            ->andFilterWhere(['like', 'sex', $this->sex])
             ->andFilterWhere(['like', 'p_address', $this->p_address])
-            ->andFilterWhere(['like', 'p_tel', $this->p_tel])
-            ->andFilterWhere(['like', 'p_allegy', $this->p_allegy])
-            ->andFilterWhere(['like', 'p_disease', $this->p_disease]); */
+           ->andFilterWhere(['like', 'p_tel', $this->p_tel])
+           ->andFilterWhere(['like', 'p_allegy', $this->p_allegy])
+         ->andFilterWhere(['like', 'p_disease', $this->p_disease])
+          ->andFilterWhere(['like', 'documentindex', $this->documentindex]);
 
         return $dataProvider;
     }

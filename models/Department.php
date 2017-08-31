@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "department".
  *
  * @property integer $iddepartment
- * @property string $department_id
+ * @property string $department_name
  * @property string $department_name2
  * @property integer $idfaculty
  *
@@ -31,9 +31,9 @@ class Department extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idfaculty'], 'required'],
+            [['department_name', 'idfaculty'], 'required'],
             [['idfaculty'], 'integer'],
-            [['department_id'], 'string', 'max' => 45],
+            [['department_name'], 'string', 'max' => 45],
             [['department_name2'], 'string', 'max' => 10],
             [['idfaculty'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['idfaculty' => 'idfaculty']],
         ];
@@ -46,16 +46,16 @@ class Department extends \yii\db\ActiveRecord
     {
         return [
             'iddepartment' => 'ID',
-            'department_id' => 'ภาควิชา',
-            'department_name2' => 'Department Name2',
-            'idfaculty' => 'Idfaculty',
+            'department_name' => 'ภาควิชา',
+            'department_name2' => 'ภาควิชา(ชื่อย่อ)',
+            'idfaculty' => 'คณะ',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdfaculty0()
+    public function getFaculty()
     {
         return $this->hasOne(Faculty::className(), ['idfaculty' => 'idfaculty']);
     }

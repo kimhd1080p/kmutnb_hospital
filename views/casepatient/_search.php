@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'p_sid') ?>
 
-    <?php // echo $form->field($model, 'user_id') ?>
+    <?php // echo $form->field($model, 'nurse_id') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

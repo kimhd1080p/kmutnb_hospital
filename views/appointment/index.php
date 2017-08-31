@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-          'casetype.casetype',
+          'casetypevalue',
            //'detial:ntext',
             'appointment_time',
             'medical_certificate',

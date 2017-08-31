@@ -2,33 +2,30 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use app\models\Patient;
-use app\models\PatientSearch;
-use yii\grid\GridView;
-use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\PatientSearch */
 /* @var $form yii\widgets\ActiveForm */
- $model = new PatientSearch();
 ?>
 
 <div class="patient-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => [''],
-        'method' => 'post',
+        'action' => ['index'],
+        'method' => 'get',
     ]); ?>
 
     <?= $form->field($model, 'p_pid') ?>
 
-    <?php // $form->field($model, 'p_sid') ?>
+    <?= $form->field($model, 'p_sid') ?>
 
-    <?php //$form->field($model, 'p_name') ?>
+    <?= $form->field($model, 'p_name') ?>
 
-    <?php //$form->field($model, 'p_surname') ?>
+    <?= $form->field($model, 'p_surname') ?>
 
-    <?php //$form->field($model, 'p_birthday') ?>
+    <?= $form->field($model, 'sex') ?>
+
+    <?php // echo $form->field($model, 'p_birthday') ?>
 
     <?php // echo $form->field($model, 'p_address') ?>
 
@@ -38,6 +35,8 @@ use yii\widgets\Pjax;
 
     <?php // echo $form->field($model, 'p_disease') ?>
 
+    <?php // echo $form->field($model, 'documentindex') ?>
+
     <?php // echo $form->field($model, 'status_id') ?>
 
     <?php // echo $form->field($model, 'department_id') ?>
@@ -45,11 +44,10 @@ use yii\widgets\Pjax;
     <?php // echo $form->field($model, 'studentclass_id') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
-   
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
-

@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'idcase',
-            'casetype.casetype',
+          'casetypevalue',
             'case_detail',
             'timestam',
             //'dispense',

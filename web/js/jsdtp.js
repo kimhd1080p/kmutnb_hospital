@@ -19,15 +19,45 @@ startDate:	'1986/01/05'
 });
 $('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
 
-$('.some_class').datetimepicker();
+$('.datepicker').datetimepicker({
+	timepicker:false,
+        format:'Y/m/d',
+	formatDate:'Y/m/d'
+});
 
 $('#default_datetimepicker').datetimepicker({
+	//formatTime:'H:i',
+	//formatDate:'d.m.Y',
+	//defaultDate:'8.12.1986', // it's my birthday
+	//defaultDate:'+03.01.1970', // it's my birthday
+	//defaultTime:'10:00',
+	//timepickerScrollbar:false
+});
+
+$('#default_datetimepicker1').datetimepicker({
 	formatTime:'H:i',
 	formatDate:'d.m.Y',
 	//defaultDate:'8.12.1986', // it's my birthday
 	defaultDate:'+03.01.1970', // it's my birthday
 	defaultTime:'10:00',
 	timepickerScrollbar:false
+});
+
+$('#datepicker1').datetimepicker({
+	timepicker:false,
+        format:'Y/m/d',
+	formatDate:'Y/m/d'
+});
+
+$('#startdate').datetimepicker({
+	timepicker:false,
+        format:'Y/m/d',
+	formatDate:'Y/m/d'
+});
+$('#enddate').datetimepicker({
+	timepicker:false,
+        format:'Y/m/d',
+	formatDate:'Y/m/d'
 });
 
 $('#datetimepicker10').datetimepicker({

@@ -30,7 +30,7 @@ $this->registerJsFile(
 $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
 ?>
     <?= $form->field($model, 'idcase') ->dropDownList(
-            ArrayHelper::map(Casepatient::findBySql($sql)->asArray()->all(), 'idcase', 'case_detail','timestam'),['prompt'=>'เลือก']
+            ArrayHelper::map(Casepatient::findBySql($sql)->all(), 'idcase', 'casetypevalue','timestam'),['prompt'=>'เลือก']
             ) ?>
     
     <?= $form->field($model, 'idmedicine') ->dropDownList(
@@ -42,7 +42,7 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
     <?= $form->field($model, 'medicinepackage_id')->radioList(
             ArrayHelper::map(Medicinepackage::find()->asArray()->all(), 'id', 'package'),['prompt'=>'เลือกยา']
             )  ?>
- <?= $form->field($model, 'expired_date')->textInput(['id' => 'datetimepicker_mask'])
+ <?= $form->field($model, 'expired_date')->textInput(['id' => 'default_datetimepicker'])
 
  ?>
    

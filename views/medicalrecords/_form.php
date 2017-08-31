@@ -1,0 +1,32 @@
+<?php
+
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Appointment */
+/* @var $form yii\widgets\ActiveForm */
+
+?>
+
+<div class="appointment-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    
+
+   <?= $form->field($model, 'user_id2')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
+
+
+    <?php $model->todoctor = 1; ?>
+    <?= $form->field($model, 'todoctor')->checkbox() ?>
+    
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'ยืนยัน', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

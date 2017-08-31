@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
             </div>
-            <a href="<?=Url::to(['nurseservice/casepatient','pid'=>$pid])?>" class="small-box-footer">
+            <a href="<?=Url::to(['nurseservice/casepatient'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="<?=Url::to(['nurseservice/appointment','pid'=>$pid])?>" class="small-box-footer">
+            <a href="<?=Url::to(['nurseservice/appointment'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?=Url::to(['nurseservice/casemedicine','pid'=>$pid])?>" class="small-box-footer">
+            <a href="<?=Url::to(['nurseservice/casemedicine'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="<?=Url::to(['nurseservice/casemedicine','pid'=>$pid])?>" class="small-box-footer">
+            <a href="<?=Url::to(['nurseservice/accident'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>

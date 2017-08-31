@@ -17,12 +17,14 @@ use Yii;
  * @property string $p_tel
  * @property string $p_allegy
  * @property string $p_disease
+ * @property string $documentindex
  * @property integer $status_id
  * @property integer $department_id
  * @property integer $studentclass_id
  *
+ * @property Accident[] $accidents
  * @property Appointment[] $appointments
- * @property CasePatient[] $casePatients
+ * @property Casepatient[] $casepatients
  * @property Studentclass $studentclass
  * @property Department $department
  * @property Status $status
@@ -46,7 +48,7 @@ class Patient extends \yii\db\ActiveRecord
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'required'],
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'integer'],
             [['p_birthday'], 'safe'],
-            [['p_name', 'p_surname'], 'string', 'max' => 45],
+            [['p_name', 'p_surname', 'documentindex'], 'string', 'max' => 45],
             [['sex'], 'string', 'max' => 10],
             [['p_address', 'p_allegy', 'p_disease'], 'string', 'max' => 100],
             [['p_tel'], 'string', 'max' => 15],
@@ -72,10 +74,19 @@ class Patient extends \yii\db\ActiveRecord
             'p_tel' => 'เบอร์โทร',
             'p_allegy' => 'ประวัติแพ้ยา',
             'p_disease' => 'โรคประจำตัว',
+            'documentindex' => 'ที่เก็บเอกสาร',
             'status_id' => 'สถานภาพ',
             'department_id' => 'ภาควิชา/ส่วนงาน',
             'studentclass_id' => 'ระดับชั้น',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccidents()
+    {
+        return $this->hasMany(Accident::className(), ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']);
     }
 
     /**
@@ -89,9 +100,9 @@ class Patient extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasePatients()
+    public function getCasepatients()
     {
-        return $this->hasMany(CasePatient::className(), ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']);
+        return $this->hasMany(Casepatient::className(), ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']);
     }
 
     /**

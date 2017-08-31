@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
   
 
     <p>
-        <?= Html::a('Update', ['update', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id], [
+        <?= Html::a('Update', ['update', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -31,23 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idcase',
+            //'idcase',
             'p_pid',
             [  
         'label' => 'ชื่อ-นามสกุล',
         'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
     ],
-            'casetype.casetype',
+            'casetypevalue',
+           
             'case_detail',
             'timestam',
-            'services.services',
+            [  
+        'label' => 'บริการที่ได้รับ',
+        'value' => $model->servicesvalue ,
+    ],
+            //'servicesvalue',
           'dispense',
             'doctor.doctor',
- 
-            [  
-        'label' => 'ผู้ให้บริการ',
-        'value' => $model->user->u_name.' '.$model->user->u_surname ,
+    [  
+        'label' => 'ผู้บันทึก',
+        'value' => $model->nurse->name." สายงาน".$model->nurse->nursetype->type ,
     ],
+            //'nurse.name',
         ],
     ]) ?>
 

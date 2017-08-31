@@ -22,7 +22,8 @@ public function actionPsearch()
     {
     //$model = new Patient();
    $model = new PatientSearch();
-return $this->render('psearch',['model' => $model,'dataProvider' =>$model->search(Yii::$app->request->post())]);
+   $dataProvider = $model->search(Yii::$app->request->queryParams);
+return $this->render('psearch',['model' => $model,'dataProvider' =>$dataProvider,'searchModel' => $model]);
     }
     
       public function actionPservice($pid)
@@ -39,41 +40,24 @@ return $this->render('psearch',['model' => $model,'dataProvider' =>$model->searc
             ]);
 
     }
-      public function actionCasepatient($pid)
+      public function actionCasepatient()
     {return $this->redirect( array('//casepatient/index'));}
     
-    public function actionAppointment($pid)
+    public function actionAppointment()
     {return $this->redirect( array('//appointment/index'));}
     
-    Public function actionCasemedicine($pid)
+    Public function actionCasemedicine()
     {return $this->redirect( array('//casemedicine/index'));}
-     
+      Public function actionAccident()
+    {return $this->redirect( array('//accident/index'));}
+    
      public function actionHistory()
     {
    $model = new Patient();
    $model2 = new PatientSearch();
         return $this->render('history/patientsearch' ,['model' => $model,'dataProvider' =>$model2->search(Yii::$app->request->post())]);
     }
-     public function actionSavehistory($pid)
-    {
-        $model = new CasePatient();
-        $modelpat = new Patient();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-          Yii::$app->getSession()->setFlash('alert',[
-        'body'=>'ลงทะเบียนงานวิจัยเสร็จเรียบร้อย! เจ้าหน้าที่จะติดต่อกลับไปเร็วที่สุด..',
-        'options'=>['class'=>'alert-success']
-     ]);
-
-return $this->redirect(['nurseservice/index']);
-        } else {
-             $modelpat = new Patient();
-              $patient1=$modelpat::findOne(["p_pid"=>$pid]);
-            return $this->render('history/savehistory', [
-                'model' => $model,'pid' => $patient1->p_pid,'sid' => $patient1->p_sid,'name' => $patient1->p_name,'surname' => $patient1->p_surname,
-            ]);
-        }
-    }
+    
 
     public function actionLogout()
     {

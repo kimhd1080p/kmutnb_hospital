@@ -1,10 +1,11 @@
 <?php
 
+
 use yii\helpers\Html;
-use yii\widgets\Menu;
+//use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
-use app\themes\adminLTE\components\ThemeNav;
-use yii\helpers\Url;
+//use app\themes\adminLTE\components\ThemeNav;
+//use yii\helpers\Url;
 use mdm\admin\components\MenuHelper;
 use yii\bootstrap\Nav;
 
@@ -17,18 +18,34 @@ use yii\bootstrap\Nav;
        <section class="sidebar">
 
     <?php
+$callback = function($menu){
+    $data = eval($menu['data']); 
+    //$label = eval($menu['name']); 
+    //if have syntax error, unexpected 'fa' (T_STRING)  Errorexception,can use
+   //$data = $menu['data'];
+    return [
+        'label' => $menu['name'], 
+        'url' => [$menu['route']],
+        'options' => [$data],
+        'icon' => 'fa fa-user', 
+        'items' => $menu['children']
+    ];
+};
 
-
-
+$items = MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback, true);
 
 echo Nav::widget([
-    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id)
+     'encodeLabels' => false,
+     'options' => ['class' => 'sidebar-menu','data-widget'=>'tree'],
+       'items' => $items
 ]);
+//print_r($items);
+
 
 ?>
 
-
-      <!-- sidebar menu: : style can be found in sidebar.less -->
+<!--
+       sidebar menu: : style can be found in sidebar.less 
       <ul class="sidebar-menu" data-widget="tree">
        <li class="">
           <a href="home">
@@ -36,20 +53,20 @@ echo Nav::widget([
           </a>
         </li>
         <li class="">
-        <?= Html::a('<i class="fa fa-plus"></i> <span>งานพยาบาล</span>', ['nurseservice/index']) ?>
+        <? Html::a('<i class="fa fa-plus"></i> <span>งานพยาบาล</span>', ['nurseservice/index']) ?>
     
         </li>
            <li class="">
           <a href="widgets.html">
             <i class="fa fa-heartbeat"></i> <span>งานเวชระเบียน</span>
             <span class="pull-right-container">
-           <!--   <small class="label pull-right bg-green">new</small> -->
+              <small class="label pull-right bg-green">new</small> 
             </span>
           </a>
         </li>
-      </ul>
+      </ul>-->
     </section>
-  <!-- /.sidebar -->
+  
 </aside>
 
 <!-- Right side column. Contains the navbar and content of the page -->

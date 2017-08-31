@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'note',
             [  
            'label' => 'ผู้ให้บริการ',
-        'value' => $model->casepatient->user->u_name.' '.$model->casepatient->user->u_surname ,
+        'value' => $model->casepatient->nurse->name.' '.$model->casepatient->nurse->nursetype->type ,
         ],
             'casepatient.doctor.doctor',
             ],

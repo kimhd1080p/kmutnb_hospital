@@ -3,7 +3,8 @@
 namespace app\models;
 
 use Yii;
-
+use app\models\Casetype;
+use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "appointment".
  *
@@ -41,15 +42,15 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['appointment_time', 'timestam'], 'safe'],
-            [['medical_certificate', 'todoctor', 'user_id', 'user_id2', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'integer'],
+            [['appointment_time', 'timestam', 'casetype_idcasetype'], 'safe'],
+            [['medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor'], 'integer'],
             [['detial'], 'string'],
-            [['user_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'required'],
+            [['nurse_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'required'],
             [['casetype_idcasetype'], 'exist', 'skipOnError' => true, 'targetClass' => Casetype::className(), 'targetAttribute' => ['casetype_idcasetype' => 'idcasetype']],
             [['doctor_iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['doctor_iddoctor' => 'iddoctor']],
             [['patient_p_pid', 'patient_p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['patient_p_pid' => 'p_pid', 'patient_p_sid' => 'p_sid']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['user_id2'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id2' => 'id']],
+            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
+            [['nurse_id2'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
         ];
     }
 
@@ -65,15 +66,40 @@ class Appointment extends \yii\db\ActiveRecord
             'todoctor' => 'สถานะการพบแพทย์',
             'timestam' => 'วันที่บันทึก',
             'detial' => 'รายละเอียด',
-            'user_id' => 'พยาบาล',
-            'user_id2' => 'เวชระเบียน',
+            'nurse_id' => 'พยาบาล',
+            'nurse_id2' => 'เวชระเบียน',
             'patient_p_pid' => 'รหัสบัตรประจำตัวประชาชน',
             'patient_p_sid' => 'รหัสนักศึกษา',
             'casetype_idcasetype' => 'ประเภทอาการป่วย',
             'doctor_iddoctor' => 'ชื่อแพทย์',
+            'casetypevalue' => 'ประเภทอาการเจ็บป่วย',
         ];
     }
 
+    
+    public function casetypeToArray()
+{
+  return $this->casetype_idcasetype = explode(',', $this->casetype_idcasetype);
+}
+   
+    /**
+     * @inheritdoc
+     */
+    public function getCasetypevalue(){
+    $casetype = ArrayHelper::map(Casetype::find()->all(),'idcasetype','casetype');
+    $casetypeSelected = explode(',', $this->casetype_idcasetype);
+    $casetypeSelectedName = [];
+    foreach ($casetype as $key => $casetypeName) {
+      foreach ($casetypeSelected as $casetypeKey) {
+
+        if($key === (int)$casetypeKey){
+          $casetypeSelectedName[] = $casetypeName;
+        }
+      }
+    }
+
+    return implode(', ', $casetypeSelectedName);
+}
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -101,12 +127,12 @@ class Appointment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser()
+    public function getNurse()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(Nurse::className(), ['id' => 'nurse_id']);
     }
-     public function getUser1()
+     public function getNurse1()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id2']);
+        return $this->hasOne(Nurse::className(), ['id' => 'nurse_id2']);
     }
 }

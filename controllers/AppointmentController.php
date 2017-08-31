@@ -54,10 +54,10 @@ class AppointmentController extends Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionView($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    public function actionView($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
     {
         return $this->render('view', [
-            'model' => $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor),
+            'model' => $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor),
         ]);
     }
 
@@ -70,9 +70,12 @@ class AppointmentController extends Controller
     {
         $model = new Appointment();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+             $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
+            if($model->save()){
             
-            Yii::$app->getSession()->setFlash('success', [
+               
+            Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
      'icon' => 'fa fa-users',
@@ -81,9 +84,17 @@ class AppointmentController extends Controller
      'positonY' => 'top',
      'positonX' => 'right'
  ]);
-            
-            return $this->redirect(['view', 'ID' => $model->ID, 'user_id' => $model->user_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor]);
-        } else {
+            Yii::$app->getSession()->setFlash('appointments', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => "ของคุณ".$model->patient->p_name." ".$model->patient->p_surname,
+     'title' => 'มีรายการนัดใหม่',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+            return $this->redirect(['index']);
+            }} else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -101,13 +112,16 @@ class AppointmentController extends Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionUpdate($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    public function actionUpdate($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
     {
-        $model = $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        
+        $model = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor);
+$model->casetypeToArray();
+         if ($model->load(Yii::$app->request->post())) {
+             $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
+            if($model->save()){
             
-                      Yii::$app->getSession()->setFlash('success', [
+             Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
      'icon' => 'fa fa-users',
@@ -117,8 +131,9 @@ class AppointmentController extends Controller
      'positonX' => 'right'
  ]);
             
-            return $this->redirect(['view', 'ID' => $model->ID, 'user_id' => $model->user_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor]);
-        } else {
+            
+            return $this->redirect(['index']);
+            }} else {
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -136,11 +151,12 @@ class AppointmentController extends Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionDelete($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    public function actionDelete($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
     {
-        $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)->delete();
+        $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)->delete();
 
-        Yii::$app->getSession()->setFlash('success', [
+        
+        Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
      'icon' => 'fa fa-users',
@@ -149,6 +165,7 @@ class AppointmentController extends Controller
      'positonY' => 'top',
      'positonX' => 'right'
  ]);
+        
         return $this->redirect(['index']);
     }
 
@@ -164,9 +181,9 @@ class AppointmentController extends Controller
      * @return Appointment the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    protected function findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
-        if (($model = Appointment::findOne(['ID' => $ID, 'user_id' => $user_id, 'patient_p_pid' => $patient_p_pid, 'patient_p_sid' => $patient_p_sid, 'casetype_idcasetype' => $casetype_idcasetype, 'doctor_iddoctor' => $doctor_iddoctor])) !== null) {
+        if (($model = Appointment::findOne(['ID' => $ID, 'nurse_id' => $nurse_id, 'patient_p_pid' => $patient_p_pid, 'patient_p_sid' => $patient_p_sid,  'doctor_iddoctor' => $doctor_iddoctor])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

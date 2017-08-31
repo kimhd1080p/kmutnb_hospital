@@ -5,9 +5,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Casetype;
-use app\models\Services;
 use app\models\Doctor;
-
+use app\models\Nurse;
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
 /* @var $form yii\widgets\ActiveForm */
@@ -27,14 +26,14 @@ $this->registerJsFile(
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'casetype_idcasetype')
-     ->dropDownList(
-            ArrayHelper::map(Casetype::find()->asArray()->all(), 'idcasetype', 'casetype'),['prompt'=>'เลือกประเภทอาการ']
+<?= $form->field($model, 'casetype_idcasetype')
+     ->checkboxList(
+            ArrayHelper::map(Casetype::find()->all(), 'idcasetype', 'casetype'),['prompt'=>'เลือกประเภทอาการ']
             ) ?>
         <?= $form->field($model, 'detial')->textarea(['rows' => 6]) ?>
     
 
-    <?= $form->field($model, 'appointment_time')->textInput(['id' => 'datetimepicker_mask'])
+    <?= $form->field($model, 'appointment_time')->textInput(['id' => 'default_datetimepicker'])
 
  ?>
 
@@ -43,7 +42,7 @@ $this->registerJsFile(
 
 
 
-   <?= $form->field($model, 'user_id')->hiddenInput(['value'=> Yii::$app->user->id])->label(false); ?>
+  
 
 <?= $form->field($model, 'patient_p_pid')->hiddenInput(['maxlength' => true,'value' => $session['pid'],])->label(false); ?>
 
@@ -51,6 +50,9 @@ $this->registerJsFile(
    
     <?= $form->field($model, 'doctor_iddoctor')->textInput()  ->dropDownList(
             ArrayHelper::map(Doctor::find()->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
+            ) ?>
+    <?= $form->field($model, 'nurse_id')->dropDownList(
+            ArrayHelper::map(Nurse::find()->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
             ) ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
