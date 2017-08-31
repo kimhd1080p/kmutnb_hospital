@@ -52,10 +52,10 @@ class MedicalrecordsController extends \yii\web\Controller
             //'model' => $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor),
         ]);
     }
-     public function actionView($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+     public function actionView($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
         return $this->render('view', [
-            'model' => $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor),
+            'model' => $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor),
         ]);
     }
 
@@ -79,7 +79,7 @@ class MedicalrecordsController extends \yii\web\Controller
      'positonY' => 'top',
      'positonX' => 'right'
  ]);
-            return $this->redirect(['view', 'ID' => $model->ID, 'user_id' => $model->user_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor]);
+            return $this->redirect(['view', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'doctor_iddoctor' => $model->doctor_iddoctor]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -98,9 +98,9 @@ class MedicalrecordsController extends \yii\web\Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionUpdate($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    public function actionUpdate($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
-        $model = $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor);
+        $model = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             
@@ -115,7 +115,7 @@ class MedicalrecordsController extends \yii\web\Controller
  ]);
             
             
-            return $this->redirect(['view', 'ID' => $model->ID, 'user_id' => $model->user_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor]);
+            return $this->redirect(['view', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid,  'doctor_iddoctor' => $model->doctor_iddoctor]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -134,9 +134,9 @@ class MedicalrecordsController extends \yii\web\Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionDelete($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    public function actionDelete($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
-        $this->findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)->delete();
+        $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)->delete();
 
         
         Yii::$app->getSession()->setFlash('success', [
@@ -164,9 +164,9 @@ class MedicalrecordsController extends \yii\web\Controller
      * @return Appointment the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($ID, $user_id, $patient_p_pid, $patient_p_sid, $casetype_idcasetype, $doctor_iddoctor)
+    protected function findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
-        if (($model = Appointment::findOne(['ID' => $ID, 'user_id' => $user_id, 'patient_p_pid' => $patient_p_pid, 'patient_p_sid' => $patient_p_sid, 'casetype_idcasetype' => $casetype_idcasetype, 'doctor_iddoctor' => $doctor_iddoctor])) !== null) {
+        if (($model = Appointment::findOne(['ID' => $ID, 'nurse_id' => $nurse_id, 'patient_p_pid' => $patient_p_pid, 'patient_p_sid' => $patient_p_sid, 'doctor_iddoctor' => $doctor_iddoctor])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

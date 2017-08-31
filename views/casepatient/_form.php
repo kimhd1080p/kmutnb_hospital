@@ -32,7 +32,7 @@ use app\models\Nurse;
             ) ?>
 
  <?= $form->field($model, 'iddoctor')->dropDownList(
-            ArrayHelper::map(Doctor::find()->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
+            ArrayHelper::map(Doctor::find()->where(['d_status' => 1])->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
             ) ?>
 <br />
     <?php //$model->dispense = 0; ?>
@@ -40,7 +40,7 @@ use app\models\Nurse;
 
 
     <?= $form->field($model, 'nurse_id')->dropDownList(
-            ArrayHelper::map(Nurse::find()->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 1,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
             ) ?>
 <br />
     <div class="form-group">

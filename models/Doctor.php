@@ -9,6 +9,7 @@ use Yii;
  *
  * @property integer $iddoctor
  * @property string $doctor
+ * @property integer $d_status
  * @property integer $doctortype_id
  *
  * @property Appointment[] $appointments
@@ -31,8 +32,8 @@ class Doctor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['d_status', 'doctortype_id'], 'integer'],
             [['doctortype_id'], 'required'],
-            [['doctortype_id'], 'integer'],
             [['doctor'], 'string', 'max' => 45],
             [['doctortype_id'], 'exist', 'skipOnError' => true, 'targetClass' => Doctortype::className(), 'targetAttribute' => ['doctortype_id' => 'id']],
         ];
@@ -46,6 +47,7 @@ class Doctor extends \yii\db\ActiveRecord
         return [
             'iddoctor' => 'ID',
             'doctor' => 'แพทย์ผู้ตรวจ',
+            'd_status' => 'สถานะ',
             'doctortype_id' => 'ประเภท',
         ];
     }

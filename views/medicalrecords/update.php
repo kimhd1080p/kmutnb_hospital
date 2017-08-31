@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'todoctor',
              
-            [  
-        'label' => 'พยาบาล',
-        'value' => $model->user->u_name.' '.$model->user->u_surname ,
+           [  
+        'label' => 'ผู้ให้บริการ',
+        'value' => $model->nurse->name." ".$model->nurse->nursetype->type ,
     ],
             [  
-        'label' => 'เวชระเบียน',
-        'value' => @$model->user1->u_name.' '.@$model->user1->u_surname ,
+        'label' => 'ผู้ยืนยันนัด',
+        'value' => @$model->nurse1->name." ".@$model->nurse1->nursetype->type ,
     ],
             
               'patient.documentindex',

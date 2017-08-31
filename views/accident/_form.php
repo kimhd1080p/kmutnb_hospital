@@ -48,7 +48,7 @@ $this->registerJsFile(
     <?= $form->field($model, 'p_sid')->hiddenInput(['maxlength' => true,'value' => $session['sid'],])->label(false);  ?>
 
    <?= $form->field($model, 'nurse_id')->dropDownList(
-            ArrayHelper::map(Nurse::find()->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 1,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
             ) ?>
 
         <?= $form->field($model, 'note')->textInput(['maxlength' => true]) ?>

@@ -32,6 +32,40 @@ $this->params['breadcrumbs'][''] = $this->title;
           </div>
         </div>
           
+           <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>พนักงาน</h3>
+
+              <p>เพิ่ม ลบ แก้ไข</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="<?=Url::to(['//nurse/index'])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+          
+           <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>แพทย์</h3>
+
+              <p>เพิ่ม ลบ แก้ไข</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-shopping-cart"></i>
+            </div>
+            <a href="<?=Url::to(['//doctor/index'])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+          
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
