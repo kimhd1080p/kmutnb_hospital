@@ -19,7 +19,7 @@ class CasemedicineSearch extends Casemedicine
     {
         return [
             [['ID', 'idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'integer'],
-            [['note'], 'safe'],
+            [['note', 'expired_date'], 'safe'],
         ];
     }
 
@@ -58,12 +58,13 @@ class CasemedicineSearch extends Casemedicine
         }
 
         // grid filtering conditions
-       $query->joinWith([
+        $query->joinWith([
     'casepatient' => function (\yii\db\ActiveQuery $query) {
             $session = Yii::$app->session;
         $query->where( ['p_pid' => $session['pid']]);
     }
 ])->joinWith('medicinepackage')->joinWith('medicine');
+
         return $dataProvider;
     }
 }

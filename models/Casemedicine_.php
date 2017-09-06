@@ -13,6 +13,7 @@ use Yii;
  * @property integer $medicinepackage_id
  * @property integer $qty
  * @property string $note
+ * @property string $expired_date
  *
  * @property Casepatient $idcase0
  * @property Medicine $idmedicine0
@@ -34,8 +35,9 @@ class Casemedicine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'required'],
+            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty', 'expired_date'], 'required'],
             [['idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'integer'],
+            [['expired_date'], 'safe'],
             [['note'], 'string', 'max' => 45],
             [['idcase'], 'exist', 'skipOnError' => true, 'targetClass' => Casepatient::className(), 'targetAttribute' => ['idcase' => 'idcase']],
             [['idmedicine'], 'exist', 'skipOnError' => true, 'targetClass' => Medicine::className(), 'targetAttribute' => ['idmedicine' => 'idmedicine']],
@@ -55,13 +57,14 @@ class Casemedicine extends \yii\db\ActiveRecord
             'medicinepackage_id' => 'บรรจุภัณฑ์',
             'qty' => 'จำนวน',
             'note' => 'หมายเหตุ',
+            'expired_date' => 'วันหมดอายุ',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasepatient()
+     public function getCasepatient()
     {
         return $this->hasOne(Casepatient::className(), ['idcase' => 'idcase']);
     }
@@ -82,5 +85,4 @@ class Casemedicine extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Medicinepackage::className(), ['id' => 'medicinepackage_id']);
     }
-   
 }

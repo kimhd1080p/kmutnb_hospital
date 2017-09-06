@@ -7,6 +7,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\PasswordForm;
+use app\models\User;
 class HomeController extends Controller 
 {
 
@@ -18,8 +20,9 @@ class HomeController extends Controller
                 'class' => AccessControl::className(),
                 'only' => ['logout'],
                 'rules' => [
+                    
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','changepassword'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -103,6 +106,53 @@ class HomeController extends Controller
   return $this->render('index');
 
         
+    }
+    
+     public function actionChangepassword(){
+        $model = new PasswordForm;
+        $modeluser = User::find()->where([
+            'username'=>Yii::$app->user->identity->username
+        ])->one();
+      
+        if($model->load(Yii::$app->request->post())){
+            if($model->validate()){
+                try{
+                    $modeluser->password_hash = $_POST['PasswordForm']['newpass'];
+                    if($modeluser->save()){
+                      Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'เปลี่ยนรหัสผ่านเรียบร้อย',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+                        return $this->redirect(['index']);
+                    }else{
+                        Yii::$app->getSession()->setFlash(
+                            'error','Password not changed'
+                        );
+                        return $this->redirect(['index']);
+                    }
+                }catch(Exception $e){
+                    Yii::$app->getSession()->setFlash(
+                        'error',"{$e->getMessage()}"
+                    );
+                    return $this->render('changepassword',[
+                        'model'=>$model
+                    ]);
+                }
+            }else{
+                return $this->render('changepassword',[
+                    'model'=>$model
+                ]);
+            }
+        }else{
+            return $this->render('changepassword',[
+                'model'=>$model
+            ]);
+        }
     }
      
 

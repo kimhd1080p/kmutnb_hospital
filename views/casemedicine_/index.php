@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('จ่ายยา', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('เพิ่ม', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,9 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'qty',
             'medicinepackage.package',
            
-          
+            'note',
             ['class' => 'yii\grid\ActionColumn'],
-        
         ],
     ]); ?>
 </div>

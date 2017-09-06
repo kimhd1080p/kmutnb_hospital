@@ -40,7 +40,9 @@ $this->registerJsFile(
 //echo Url::to(['patientsearch']);
  //echo Yii::$app->NurseserviceController->action->id;
 echo date("Y-m-d H:i:s");
+echo Url::to(['home/logout']);
 ?>
 
 <input type="text" value="" id="datetimepicker_mask"/><br><br>
+
 

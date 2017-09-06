@@ -15,9 +15,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="casemedicine-create">
 
-   
+    
 
-    <?= $this->render('_form', [
+    <?= $this->render('_form_1', [
         'model' => $model,
     ]) ?>
 

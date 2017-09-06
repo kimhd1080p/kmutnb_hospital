@@ -1,14 +1,15 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
 //use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\themes\adminLTE\assets\AdminlteAsset;
 /* @var $this \yii\web\View */
 /* @var $content string */
 use kartik\growl\Growl;
-
+use yii\helpers\Url;
+use mdm\admin\components\MenuHelper;
+use yii\bootstrap\Nav;
 AdminlteAsset::register($this);
 AppAsset::register($this);
 ?>
@@ -49,15 +50,23 @@ AppAsset::register($this);
                         <?php
                         echo Nav::widget([
                             'options' => ['class' => 'nav navbar-nav'],
-                            'items' => [
+                            'items' => 
+                            [
+                                 [
+				'label' => 'เปลี่ยนรหัสผ่าน', 
+				'url' => ['/home/changepassword']
+            ],
                                 Yii::$app->user->isGuest ?
                                         ['label' => 'Login', 'url' => ['login']] :
                                         ['label' => 'Logout (' . Yii::$app->user->identity->u_name . " " . Yii::$app->user->identity->u_surname . ')',
                                     'url' => ['logout'],
                                     'linkOptions' => ['data-method' => 'post']],
+                                
+                                
                             ],
                         ]);
                         ?>
+                       
                     </div>
                 </nav>
 
@@ -87,6 +96,7 @@ AppAsset::register($this);
                 <?php endif; ?>
             <?php //endforeach; ?>
 
+            
 
             <?= $content ?>
 

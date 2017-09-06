@@ -8,7 +8,7 @@ use app\models\CasemedicineSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Casepatient;
 /**
  * CasemedicineController implements the CRUD actions for Casemedicine model.
  */
@@ -67,13 +67,13 @@ class CasemedicineController extends Controller
     public function actionCreate()
     {
         $model = new Casemedicine();
-  if ($model->load(Yii::$app->request->post())) {
-             $model->take5 = implode(",", $model->take5);
-$model->take8 = implode(",", $model->take8);
-            if($model->save()){
-      
-            return $this->redirect(['view', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
-  } } else {
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $dispense = Casepatient::findOne($model->idcase); //อัพเดปสถานะการจ่ายยา
+            $dispense->dispense = 1;
+            $dispense->update();
+            return $this->redirect(['print', 'eat1' => '1', 'eat2' => '2',]);
+        } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -92,15 +92,10 @@ $model->take8 = implode(",", $model->take8);
     public function actionUpdate($ID, $idcase, $idmedicine, $medicinepackage_id)
     {
         $model = $this->findModel($ID, $idcase, $idmedicine, $medicinepackage_id);
-                $model->take5ToArray();
-                 $model->take8ToArray();
-        if ($model->load(Yii::$app->request->post())) {
-             $model->take5 = implode(",", $model->take5);
-$model->take8 = implode(",", $model->take8);
-            if($model->save()){
-      
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
-  } } else {
+        } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -140,5 +135,12 @@ $model->take8 = implode(",", $model->take8);
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionPrint($eat1, $eat2)
+    {
+        
+
+        return $this->render('print',['eat1'=>$eat1,'eat2'=>$eat2]);
     }
 }

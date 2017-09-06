@@ -42,12 +42,12 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'email', 'u_name', 'u_surname', 'userType_ut_id'], 'required'],
-            [['status', 'created_at', 'updated_at', 'userType_ut_id'], 'integer'],
+            [['username', 'password_hash', 'email', 'u_name', 'u_surname'], 'required'],
+            [['status', 'created_at', 'updated_at',], 'integer'],
             [['username', 'auth_key'], 'string', 'max' => 32],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 256],
             [['u_name', 'u_surname'], 'string', 'max' => 45],
-            [['userType_ut_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usertype::className(), 'targetAttribute' => ['userType_ut_id' => 'ut_id']],
+            
         ];
     }
 
@@ -68,7 +68,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             'updated_at' => 'Updated At',
             'u_name' => 'ชื่อ',
             'u_surname' => 'นามสุล',
-            'userType_ut_id' => 'ตำแหน่ง',
+            
         ];
     }
     /**
@@ -90,10 +90,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUserTypeUt()
-    {
-        return $this->hasOne(Usertype::className(), ['ut_id' => 'userType_ut_id']);
-    }
+    
 
     public static function findIdentity($id) {
   
