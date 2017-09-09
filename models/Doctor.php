@@ -47,7 +47,7 @@ class Doctor extends \yii\db\ActiveRecord
         return [
             'iddoctor' => 'ID',
             'doctor' => 'แพทย์ผู้ตรวจ',
-            'd_status' => 'สถานะ',
+            'd_status' => 'ใช้งาน',
             'doctortype_id' => 'ประเภท',
         ];
     }

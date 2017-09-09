@@ -20,9 +20,24 @@ $this->registerJsFile(
 $this->registerJsFile(
     '@web/js/jsdtp.js'
 );
+
+
 ?>
 
+<div class="medicine-search">
+
+    
+    
+      <?= Html::activeTextInput($model, 'medicinesearch',['class'=>'form-control','placeholder'=>'ใส่รหัสยา','id'=>'medicinesearch']) ?>
+      <br/>
+   
+  
+
+</div>
+
 <div class="casemedicine-form">
+    
+    
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -32,10 +47,8 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
     <?= $form->field($model, 'idcase') ->dropDownList(
             ArrayHelper::map(Casepatient::findBySql($sql)->all(), 'idcase', 'casetypevalue','timestam'),['prompt'=>'เลือก']
             ) ?>
-
-     <?= $form->field($model, 'idmedicine') ->dropDownList(
-            ArrayHelper::map(Medicine::find()->joinWith('medicinetype')->asArray()->all(), 'idmedicine', 'medicine'),['prompt'=>'เลือกยา',]
-            )  ?>
+<?= $form->field($model, 'medicinename')->textInput(['maxlength' => true,'id' => 'medicinename','disabled'=>'disabled']) ?>
+     <?= $form->field($model, 'idmedicine') ->hiddenInput(['maxlength' => true,'id' => 'idmedicine',])->label(false); ?>
       <?= $form->field($model, 'qty')->textInput() ?>
 
     <?= $form->field($model, 'medicinepackage_id')->radioList(
@@ -47,11 +60,11 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
 
  ?>
 
-    <?= $form->field($model, 'properties')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'properties')->textInput(['maxlength' => true,'id' =>'properties']) ?>
 
-    <?= $form->field($model, 'howto')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'howto')->textInput(['maxlength' => true,'id' =>'howto']) ?>
 
-    <?= $form->field($model, 'note')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'note')->textInput(['maxlength' => true,'id' =>'note']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -60,3 +73,33 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
     <?php ActiveForm::end(); ?>
 
 </div>
+
+
+<?php
+$this->registerJs( <<< EOT_JS
+     
+     // using GET method
+$('#medicinesearch').change(function(){
+    
+    var medicine=$(this).val();
+   
+    var url1=window.location.host+'/project/web';
+    var url2='http://'+url1+'/casemedicine/getmedicine';
+      
+         //alert(url2);
+    $.get(url2,{medicine : medicine },function(data){
+        var data = $.parseJSON(data);
+           $('#properties').attr('value',data.properties);
+    $('#properties').attr('value',data.properties);
+        $('#howto').attr('value',data.howto);
+        $('#note').attr('value',data.note);
+        $('#idmedicine').attr('value',data.idmedicine);
+         $('#medicinename').attr('value',data.medicine);
+
+    });
+
+});
+
+EOT_JS
+);
+?>

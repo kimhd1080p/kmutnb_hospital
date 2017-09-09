@@ -14,6 +14,7 @@ $this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่ว�
 $this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid']]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="casemedicine-index">
 
    
@@ -29,13 +30,28 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'casepatient.timestam',
-            'casepatient.casetype.casetype',
+            'casepatient.casetypevalue',
             'medicine.medicine',
             'qty',
             'medicinepackage.package',
            
           
-            ['class' => 'yii\grid\ActionColumn'],
+            
+             ['class' => 'yii\grid\ActionColumn',
+            'buttons' => [
+                'print' => function ($url, $dataProvider, $key) {
+                    return Html::a ( '<span class="fa fa-print" aria-hidden="true"></span> ', ['printmedicine', 'ID' => $dataProvider->ID, 'idcase' => $dataProvider->idcase, 'idmedicine' => $dataProvider->idmedicine,'medicinepackage_id' => $dataProvider->medicinepackage_id],
+                            [                                 // link options
+             'title'=>'ปริ้นซองยา' ,
+             'target'=>'_blank'
+           ]
+                            );
+                },
+            ],
+            'template' => '{update} {view} {delete} {print}'
+
+
+        ],
         
         ],
     ]); ?>

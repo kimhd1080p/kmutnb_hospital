@@ -49,7 +49,7 @@ class Nurse extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'ชื่อ-สกุล',
             'usertype_ut_id' => 'สายงาน',
-            'n_status' => 'การใช้งาน',
+            'n_status' => 'ใช้งาน',
         ];
     }
 

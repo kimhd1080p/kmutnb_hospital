@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="medicine-index">
 
-   
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -21,16 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-          'panel'=>['before'=>"รายการยา"],
+         'panel'=>['before'=>"รายการยา"],
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'idmedicine',
+           
             'medicine',
-            'medicinesize',
-            'medicinetype.medicinetype',
-            
+            'properties',
+            'howto',
+             'medicinetype.medicinetype',
+            // 'note',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

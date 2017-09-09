@@ -48,11 +48,11 @@ class Casepatient extends \yii\db\ActiveRecord
             [['dispense',  'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'integer'],
             [['idservices', 'casetype_idcasetype', 'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'required'],
             [['case_detail'], 'string',],
-            [['casetype_idcasetype'], 'exist', 'skipOnError' => true, 'targetClass' => Casetype::className(), 'targetAttribute' => ['casetype_idcasetype' => 'idcasetype']],
+           
             [['iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['iddoctor' => 'iddoctor']],
             [['p_pid', 'p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']],
             [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
-            [['idservices'], 'exist', 'skipOnError' => true, 'targetClass' => Services::className(), 'targetAttribute' => ['idservices' => 'idservices']],
+            
               
         ];
     }
@@ -74,7 +74,7 @@ class Casepatient extends \yii\db\ActiveRecord
     foreach ($casetype as $key => $casetypeName) {
       foreach ($casetypeSelected as $casetypeKey) {
 
-        if($key === (int)$casetypeKey){
+        if($key === $casetypeKey){
           $casetypeSelectedName[] = $casetypeName;
         }
       }
@@ -98,7 +98,7 @@ public function servicesToArray()
     foreach ($services as $key => $servicesName) {
       foreach ($servicesSelected as $servicesKey) {
 
-        if($key === (int)$servicesKey){
+        if($key === $servicesKey){
           $servicesSelectedName[] = $servicesName;
         }
       }
@@ -142,10 +142,7 @@ public function servicesToArray()
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasetype()
-    {
-        return $this->hasOne(Casetype::className(), ['idcasetype' => 'casetype_idcasetype']);
-    }
+   
 
     /**
      * @return \yii\db\ActiveQuery
@@ -175,8 +172,5 @@ public function servicesToArray()
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getServices()
-    {
-        return $this->hasOne(Services::className(), ['idservices' => 'idservices']);
-    }
+    
 }

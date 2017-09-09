@@ -27,21 +27,11 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'expired_date') ?>
 
-    <?php // echo $form->field($model, 'take1') ?>
+    <?php // echo $form->field($model, 'properties') ?>
 
-    <?php // echo $form->field($model, 'take2') ?>
+    <?php // echo $form->field($model, 'howto') ?>
 
-    <?php // echo $form->field($model, 'take3') ?>
-
-    <?php // echo $form->field($model, 'take4') ?>
-
-    <?php // echo $form->field($model, 'take5') ?>
-
-    <?php // echo $form->field($model, 'take6') ?>
-
-    <?php // echo $form->field($model, 'take7') ?>
-
-    <?php // echo $form->field($model, 'take8') ?>
+    <?php // echo $form->field($model, 'note') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

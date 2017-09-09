@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="inner">
               <h3>พนักงาน</h3>
 
-              <p>เพิ่ม ลบ แก้ไข</p>
+              <p>เพิ่ม ลบ แก้ไข พยาบาล เวชระเบียน</p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>

@@ -13,11 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="medicine-view">
 
- 
+  
 
     <p>
-        <?= Html::a('Update', ['update', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], [
+        <?= Html::a('แก้ไข', ['update', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,11 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+       
             'idmedicine',
+           
             'medicine',
-            'medicinesize',
-            'medicinetype.medicinetype',
-            
+            'properties',
+            'howto',
+            'note',
+                  'medicinetype.medicinetype',
         ],
     ]) ?>
 

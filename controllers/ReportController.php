@@ -9,6 +9,7 @@ class ReportController extends \yii\web\Controller
         return $this->render('index');
     }
     
+    //report 1 ในเวลาราชการ
     public function actionReport1()
     {
   
@@ -40,21 +41,21 @@ and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEE
         
       //report 2
               $sql2="SELECT  
-            count(case when `casetype_idcasetype` like '%1%' then 1 else null end) as ปวดศรีษะ
-            ,count(case when `casetype_idcasetype` like '%2%' then 1 else null end) as ไข้
-            ,count(case when `casetype_idcasetype` like '%3%' then 1 else null end) as ไอ
-            ,count(case when `casetype_idcasetype` like '%4%' then 1 else null end) as เจ็บคอ
-            ,count(case when `casetype_idcasetype` like '%5%' then 1 else null end) as มีน้ำมูก
-            ,count(case when `casetype_idcasetype` like '%6%' then 1 else null end) as ท้องเสีย
-            ,count(case when `casetype_idcasetype` like '%7%' then 1 else null end) as ปวดกล้ามเนื้อ
-            ,count(case when `casetype_idcasetype` like '%8%' then 1 else null end) as กระเพาะ
-,count(case when `casetype_idcasetype` like '%9%' then 1 else null end) as ปวดท้องประจำเดือน
-,count(case when `casetype_idcasetype` like '%10%' then 1 else null end) as ผื่นแพ้
-,count(case when `casetype_idcasetype` like '%11%' then 1 else null end) as เจ็บตาคันตา
-,count(case when `casetype_idcasetype` like '%12%' then 1 else null end) as ปวดฟันเหงือก
-,count(case when `casetype_idcasetype` like '%13%' then 1 else null end) as ปวดหู
-,count(case when `casetype_idcasetype` like '%14%' then 1 else null end) as stress
-,count(case when `casetype_idcasetype` like '%15%' then 1 else null end) as อื่นๆ
+            count(case when `casetype_idcasetype` like '%A%' then 1 else null end) as ปวดศรีษะ
+            ,count(case when `casetype_idcasetype` like '%B%' then 1 else null end) as ไข้
+            ,count(case when `casetype_idcasetype` like '%C%' then 1 else null end) as ไอ
+            ,count(case when `casetype_idcasetype` like '%D%' then 1 else null end) as เจ็บคอ
+            ,count(case when `casetype_idcasetype` like '%E%' then 1 else null end) as มีน้ำมูก
+            ,count(case when `casetype_idcasetype` like '%F%' then 1 else null end) as ท้องเสีย
+            ,count(case when `casetype_idcasetype` like '%G%' then 1 else null end) as ปวดกล้ามเนื้อ
+            ,count(case when `casetype_idcasetype` like '%H%' then 1 else null end) as กระเพาะ
+,count(case when `casetype_idcasetype` like '%I%' then 1 else null end) as ปวดท้องประจำเดือน
+,count(case when `casetype_idcasetype` like '%J%' then 1 else null end) as ผื่นแพ้
+,count(case when `casetype_idcasetype` like '%K%' then 1 else null end) as เจ็บตาคันตา
+,count(case when `casetype_idcasetype` like '%L%' then 1 else null end) as ปวดฟันเหงือก
+,count(case when `casetype_idcasetype` like '%M%' then 1 else null end) as ปวดหู
+,count(case when `casetype_idcasetype` like '%N%' then 1 else null end) as stress
+,count(case when `casetype_idcasetype` like '%O%' then 1 else null end) as อื่นๆ
 FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and TIME(timestam) BETWEEN '00:00' AND '16:00'";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
@@ -70,17 +71,17 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
         
         //report 3
               $sql3="SELECT  
-count(case when `idservices` like '%1%' then 1 else null end) as เบิกยา
-,count(case when `idservices` like '%2%' then 1 else null end) as ทำแผล
-,count(case when `idservices` like '%3%' then 1 else null end) as แนะนำ
-,count(case when `idservices` like '%4%' then 1 else null end) as ส่งโรงพยาบาล
-,count(case when `idservices` like '%5%' then 1 else null end) as หยอดตาล้างตา
-,count(case when `idservices` like '%6%' then 1 else null end) as สังเกตอาการ
-,count(case when `idservices` like '%7%' then 1 else null end) as นอนพัก
-,count(case when `idservices` like '%8%' then 1 else null end) as ประคบร้อนเย็น
-,count(case when `idservices` like '%9%' then 1 else null end) as เศษเหล็ก
-,count(case when `idservices` like '%10%' then 1 else null end) as Mask
-,count(case when `idservices` like '%11%' then 1 else null end) as อื่นๆ
+count(case when `idservices` like '%A%' then 1 else null end) as เบิกยา
+,count(case when `idservices` like '%B%' then 1 else null end) as ทำแผล
+,count(case when `idservices` like '%C%' then 1 else null end) as แนะนำ
+,count(case when `idservices` like '%D%' then 1 else null end) as ส่งโรงพยาบาล
+,count(case when `idservices` like '%E%' then 1 else null end) as หยอดตาล้างตา
+,count(case when `idservices` like '%F%' then 1 else null end) as สังเกตอาการ
+,count(case when `idservices` like '%G%' then 1 else null end) as นอนพัก
+,count(case when `idservices` like '%H%' then 1 else null end) as ประคบร้อนเย็น
+,count(case when `idservices` like '%I%' then 1 else null end) as เศษเหล็ก
+,count(case when `idservices` like '%J%' then 1 else null end) as Mask
+,count(case when `idservices` like '%K%' then 1 else null end) as อื่นๆ
 FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and TIME(timestam) BETWEEN '00:00' AND '16:00'";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
@@ -136,21 +137,21 @@ and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam)
         
       //report 2
               $sql2="SELECT  
-            count(case when `casetype_idcasetype` like '%1%' then 1 else null end) as ปวดศรีษะ
-            ,count(case when `casetype_idcasetype` like '%2%' then 1 else null end) as ไข้
-            ,count(case when `casetype_idcasetype` like '%3%' then 1 else null end) as ไอ
-            ,count(case when `casetype_idcasetype` like '%4%' then 1 else null end) as เจ็บคอ
-            ,count(case when `casetype_idcasetype` like '%5%' then 1 else null end) as มีน้ำมูก
-            ,count(case when `casetype_idcasetype` like '%6%' then 1 else null end) as ท้องเสีย
-            ,count(case when `casetype_idcasetype` like '%7%' then 1 else null end) as ปวดกล้ามเนื้อ
-            ,count(case when `casetype_idcasetype` like '%8%' then 1 else null end) as กระเพาะ
-,count(case when `casetype_idcasetype` like '%9%' then 1 else null end) as ปวดท้องประจำเดือน
-,count(case when `casetype_idcasetype` like '%10%' then 1 else null end) as ผื่นแพ้
-,count(case when `casetype_idcasetype` like '%11%' then 1 else null end) as เจ็บตาคันตา
-,count(case when `casetype_idcasetype` like '%12%' then 1 else null end) as ปวดฟันเหงือก
-,count(case when `casetype_idcasetype` like '%13%' then 1 else null end) as ปวดหู
-,count(case when `casetype_idcasetype` like '%14%' then 1 else null end) as stress
-,count(case when `casetype_idcasetype` like '%15%' then 1 else null end) as อื่นๆ
+         count(case when `casetype_idcasetype` like '%A%' then 1 else null end) as ปวดศรีษะ
+            ,count(case when `casetype_idcasetype` like '%B%' then 1 else null end) as ไข้
+            ,count(case when `casetype_idcasetype` like '%C%' then 1 else null end) as ไอ
+            ,count(case when `casetype_idcasetype` like '%D%' then 1 else null end) as เจ็บคอ
+            ,count(case when `casetype_idcasetype` like '%E%' then 1 else null end) as มีน้ำมูก
+            ,count(case when `casetype_idcasetype` like '%F%' then 1 else null end) as ท้องเสีย
+            ,count(case when `casetype_idcasetype` like '%G%' then 1 else null end) as ปวดกล้ามเนื้อ
+            ,count(case when `casetype_idcasetype` like '%H%' then 1 else null end) as กระเพาะ
+,count(case when `casetype_idcasetype` like '%I%' then 1 else null end) as ปวดท้องประจำเดือน
+,count(case when `casetype_idcasetype` like '%J%' then 1 else null end) as ผื่นแพ้
+,count(case when `casetype_idcasetype` like '%K%' then 1 else null end) as เจ็บตาคันตา
+,count(case when `casetype_idcasetype` like '%L%' then 1 else null end) as ปวดฟันเหงือก
+,count(case when `casetype_idcasetype` like '%M%' then 1 else null end) as ปวดหู
+,count(case when `casetype_idcasetype` like '%N%' then 1 else null end) as stress
+,count(case when `casetype_idcasetype` like '%O%' then 1 else null end) as อื่นๆ
 FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend' AND ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
@@ -166,17 +167,17 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
         
         //report 3
               $sql3="SELECT  
-count(case when `idservices` like '%1%' then 1 else null end) as เบิกยา
-,count(case when `idservices` like '%2%' then 1 else null end) as ทำแผล
-,count(case when `idservices` like '%3%' then 1 else null end) as แนะนำ
-,count(case when `idservices` like '%4%' then 1 else null end) as ส่งโรงพยาบาล
-,count(case when `idservices` like '%5%' then 1 else null end) as หยอดตาล้างตา
-,count(case when `idservices` like '%6%' then 1 else null end) as สังเกตอาการ
-,count(case when `idservices` like '%7%' then 1 else null end) as นอนพัก
-,count(case when `idservices` like '%8%' then 1 else null end) as ประคบร้อนเย็น
-,count(case when `idservices` like '%9%' then 1 else null end) as เศษเหล็ก
-,count(case when `idservices` like '%10%' then 1 else null end) as Mask
-,count(case when `idservices` like '%11%' then 1 else null end) as อื่นๆ
+count(case when `idservices` like '%A%' then 1 else null end) as เบิกยา
+,count(case when `idservices` like '%B%' then 1 else null end) as ทำแผล
+,count(case when `idservices` like '%C%' then 1 else null end) as แนะนำ
+,count(case when `idservices` like '%D%' then 1 else null end) as ส่งโรงพยาบาล
+,count(case when `idservices` like '%E%' then 1 else null end) as หยอดตาล้างตา
+,count(case when `idservices` like '%F%' then 1 else null end) as สังเกตอาการ
+,count(case when `idservices` like '%G%' then 1 else null end) as นอนพัก
+,count(case when `idservices` like '%H%' then 1 else null end) as ประคบร้อนเย็น
+,count(case when `idservices` like '%I%' then 1 else null end) as เศษเหล็ก
+,count(case when `idservices` like '%J%' then 1 else null end) as Mask
+,count(case when `idservices` like '%K%' then 1 else null end) as อื่นๆ
 FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
@@ -190,7 +191,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
         ]);
             
             
-           return $this->render('report2',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'d'=>$sql1]);  
+           return $this->render('report2',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,]);  
             
             
             
@@ -222,17 +223,17 @@ s.J as Mask,
 s.K as อื่นๆ,
 sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
  FROM(SELECT nurse_id,name,timestam
-,count(case when `idservices` like '%1%' then 1 else null end) as A
-,count(case when `idservices` like '%2%' then 1 else null end) as B
-,count(case when `idservices` like '%3%' then 1 else null end) as C
-,count(case when `idservices` like '%4%' then 1 else null end) as D
-,count(case when `idservices` like '%5%' then 1 else null end) as E
-,count(case when `idservices` like '%6%' then 1 else null end) as F
-,count(case when `idservices` like '%7%' then 1 else null end) as G
-,count(case when `idservices` like '%8%' then 1 else null end) as H
-,count(case when `idservices` like '%9%' then 1 else null end) as I
-,count(case when `idservices` like '%10%' then 1 else null end) as J
-,count(case when `idservices` like '%11%' then 1 else null end) as K
+,count(case when `idservices` like '%A%' then 1 else null end) as A
+,count(case when `idservices` like '%B%' then 1 else null end) as B
+,count(case when `idservices` like '%C%' then 1 else null end) as C
+,count(case when `idservices` like '%D%' then 1 else null end) as D
+,count(case when `idservices` like '%E%' then 1 else null end) as E
+,count(case when `idservices` like '%F%' then 1 else null end) as F
+,count(case when `idservices` like '%G%' then 1 else null end) as G
+,count(case when `idservices` like '%H%' then 1 else null end) as H
+,count(case when `idservices` like '%I%' then 1 else null end) as I
+,count(case when `idservices` like '%J%' then 1 else null end) as J
+,count(case when `idservices` like '%K%' then 1 else null end) as K
 FROM casepatient c, nurse n WHERE c.nurse_id=n.id GROUP BY c.nurse_id) s  
  where DATE(s.timestam) BETWEEN '$datestart' AND '$dateend' GROUP BY s.nurse_id";
                 
@@ -278,17 +279,17 @@ s.J as Mask,
 s.K as อื่นๆ,
 sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
  FROM(SELECT nurse_id,name,timestam
-,count(case when `idservices` like '%1%' then 1 else null end) as A
-,count(case when `idservices` like '%2%' then 1 else null end) as B
-,count(case when `idservices` like '%3%' then 1 else null end) as C
-,count(case when `idservices` like '%4%' then 1 else null end) as D
-,count(case when `idservices` like '%5%' then 1 else null end) as E
-,count(case when `idservices` like '%6%' then 1 else null end) as F
-,count(case when `idservices` like '%7%' then 1 else null end) as G
-,count(case when `idservices` like '%8%' then 1 else null end) as H
-,count(case when `idservices` like '%9%' then 1 else null end) as I
-,count(case when `idservices` like '%10%' then 1 else null end) as J
-,count(case when `idservices` like '%11%' then 1 else null end) as K
+,count(case when `idservices` like '%A%' then 1 else null end) as A
+,count(case when `idservices` like '%B%' then 1 else null end) as B
+,count(case when `idservices` like '%C%' then 1 else null end) as C
+,count(case when `idservices` like '%D%' then 1 else null end) as D
+,count(case when `idservices` like '%E%' then 1 else null end) as E
+,count(case when `idservices` like '%F%' then 1 else null end) as F
+,count(case when `idservices` like '%G%' then 1 else null end) as G
+,count(case when `idservices` like '%H%' then 1 else null end) as H
+,count(case when `idservices` like '%I%' then 1 else null end) as I
+,count(case when `idservices` like '%J%' then 1 else null end) as J
+,count(case when `idservices` like '%K%' then 1 else null end) as K
 FROM casepatient c, nurse n WHERE c.nurse_id=n.id and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and WEEKDAY(timestam) BETWEEN 0 AND 4 GROUP BY c.nurse_id) s  
   GROUP BY s.nurse_id";
                 

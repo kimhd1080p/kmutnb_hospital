@@ -18,8 +18,8 @@ class CasepatientSearch extends Casepatient
     public function rules()
     {
         return [
-            [['idcase', 'dispense', 'idservices', 'casetype_idcasetype', 'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'integer'],
-            [['case_detail', 'timestam'], 'safe'],
+            [['idcase', 'dispense', 'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'integer'],
+            [['case_detail', 'timestam', 'idservices', 'casetype_idcasetype'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class CasepatientSearch extends Casepatient
         }
         $session = Yii::$app->session; //open session
         // grid filtering conditions
-        $query->joinWith('doctor')->joinWith('services')->joinWith('casetype')->Where([
+        $query->joinWith('doctor')->Where([
             //'idcase' => $this->idcase,
             //'timestam' => $this->timestam,
            // 'dispense' => $this->dispense,

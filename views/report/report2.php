@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
      <?= GridView::widget([
         'dataProvider' => $dataProvider3,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานบริการที่ได้รับ".$d],
+        'panel'=>['before'=>"รายงานบริการที่ได้รับ"],
        
     ]); ?>
     

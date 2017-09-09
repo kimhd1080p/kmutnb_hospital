@@ -18,8 +18,8 @@ class CasemedicineSearch extends Casemedicine
     public function rules()
     {
         return [
-            [['ID', 'idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'integer'],
-            [['note', 'expired_date'], 'safe'],
+            [['ID', 'idcase', 'idmedicine', 'medicinepackage_id', 'qty', 'take1', 'take4', 'take6'], 'integer'],
+            [['expired_date', 'take2', 'take3', 'take5', 'take7', 'take8'], 'safe'],
         ];
     }
 
@@ -58,12 +58,23 @@ class CasemedicineSearch extends Casemedicine
         }
 
         // grid filtering conditions
-        $query->joinWith([
-    'casepatient' => function (\yii\db\ActiveQuery $query) {
-            $session = Yii::$app->session;
-        $query->where( ['p_pid' => $session['pid']]);
-    }
-])->joinWith('medicinepackage')->joinWith('medicine');
+        $query->andFilterWhere([
+            'ID' => $this->ID,
+            'idcase' => $this->idcase,
+            'idmedicine' => $this->idmedicine,
+            'medicinepackage_id' => $this->medicinepackage_id,
+            'qty' => $this->qty,
+            'expired_date' => $this->expired_date,
+            'take1' => $this->take1,
+            'take4' => $this->take4,
+            'take6' => $this->take6,
+        ]);
+
+        $query->andFilterWhere(['like', 'take2', $this->take2])
+            ->andFilterWhere(['like', 'take3', $this->take3])
+            ->andFilterWhere(['like', 'take5', $this->take5])
+            ->andFilterWhere(['like', 'take7', $this->take7])
+            ->andFilterWhere(['like', 'take8', $this->take8]);
 
         return $dataProvider;
     }

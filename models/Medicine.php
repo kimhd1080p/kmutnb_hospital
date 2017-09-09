@@ -8,9 +8,11 @@ use Yii;
  * This is the model class for table "medicine".
  *
  * @property string $idmedicine
- * @property string $medicine
  * @property integer $idmedicinetype
- * @property string $medicinesize
+ * @property string $medicine
+ * @property string $properties
+ * @property string $howto
+ * @property string $note
  *
  * @property Casemedicine[] $casemedicines
  * @property Medicinetype $idmedicinetype0
@@ -35,7 +37,8 @@ class Medicine extends \yii\db\ActiveRecord
             [['idmedicine', 'idmedicinetype'], 'required'],
             [['idmedicine', 'idmedicinetype'], 'integer'],
             [['medicine'], 'string', 'max' => 100],
-            [['medicinesize'], 'string', 'max' => 10],
+            [['properties'], 'string', 'max' => 70],
+            [['howto', 'note'], 'string', 'max' => 45],
             [['idmedicinetype'], 'exist', 'skipOnError' => true, 'targetClass' => Medicinetype::className(), 'targetAttribute' => ['idmedicinetype' => 'idmedicinetype']],
         ];
     }
@@ -47,9 +50,11 @@ class Medicine extends \yii\db\ActiveRecord
     {
         return [
             'idmedicine' => 'รหัสยา',
-            'medicine' => 'ชื่อยา',
             'idmedicinetype' => 'ประเภทยา',
-            'medicinesize' => 'ขนาด',
+            'medicine' => 'ชื่อยา',
+            'properties' => 'สรรพคุณยา',
+            'howto' => 'วิธีใช้/วิธีรับประทาน',
+            'note' => 'หมายเหตุ',
         ];
     }
 

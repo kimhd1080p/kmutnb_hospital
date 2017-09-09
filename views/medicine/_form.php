@@ -12,19 +12,22 @@ use app\models\Medicinetype;
 <div class="medicine-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
         <?= $form->field($model, 'idmedicinetype')->textInput()
             ->dropDownList(
             ArrayHelper::map(Medicinetype::find()->asArray()->all(), 'idmedicinetype', 'medicinetype'),['prompt'=>'เลือก']
             ) ?>
+
     <?= $form->field($model, 'idmedicine')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'medicine')->textInput(['maxlength' => true]) ?>
-     <?= $form->field($model, 'medicinesize')->textInput(['maxlength' => true]) ?>
-
-
-
    
+
+    <?= $form->field($model, 'medicine')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'properties')->textArea(['maxlength' => true])?>
+
+    <?= $form->field($model, 'howto')->textArea(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'note')->textArea(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

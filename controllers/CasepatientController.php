@@ -86,6 +86,7 @@ protected function Patient(){
         if ($model->load(Yii::$app->request->post())) {
              $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
 $model->idservices = implode(",", $model->idservices);
+
             if($model->save()){
            
              
