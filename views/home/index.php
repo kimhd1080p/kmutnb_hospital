@@ -22,9 +22,9 @@ use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 //echo Yii::$app->user->isGuest;
-print_r (@Yii::$app->user->identity->u_name);
+//print_r (@Yii::$app->user->identity->u_name);
 
-echo "5555";
+
 $this->registerJsFile(
     '@web/js/jquery.js'
 );
@@ -39,10 +39,17 @@ $this->registerJsFile(
 //print_r (Yii::$app->user);
 //echo Url::to(['patientsearch']);
  //echo Yii::$app->NurseserviceController->action->id;
-echo date("Y-m-d H:i:s");
-echo Url::to(['home/logout']);
+//echo date("Y-m-d H:i:s");
+//echo Url::to(['home/logout']);
 ?>
 
-<input type="text" value="" id="datetimepicker_mask"/><br><br>
+ <div id="page-wrapper">
+			<br /><br /><br />
+			<h1 class="text-center">ระบบสารสนเทศเพื่องานพยาบาล มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h1><br />
+<div class="text-center"><img src="images/kmutnb_logo1.png" width="300"></div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
 
 

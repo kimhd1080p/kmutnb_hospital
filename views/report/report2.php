@@ -5,7 +5,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\CasepatientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายงานการให้บริการ-ในเวลาราชการ จ-ศ 16.01-21.00 ส-อา 8.00-16.30';
+$this->title = 'รายงานการให้บริการ-นอกเวลาราชการ จ-ศ 16.01-21.00 ส-อา 8.00-16.30';
 //$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
 //$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
 //$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice']];

@@ -15,14 +15,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'ID',
+            //'ID',
             'patient_p_pid',
             'patient_p_sid',
               [  
         'label' => 'ชื่อ-นามสกุล',
         'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
     ],
-            'casetype.casetype',
+            'casetypevalue',
             'detial:ntext',
             'appointment_time',
             'medical_certificate',

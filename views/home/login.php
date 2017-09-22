@@ -8,13 +8,20 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
 ?>
+<div class="container" >
+  <div id="page-wrapper">
+			<br /><br /><br />
+			<h1 class="text-center">ระบบสารสนเทศเพื่องานพยาบาล</h1>
+                        <h3 class="text-center">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h3><br />
 
+        </div>
+	<hr />
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>Admin</b>LTE</a>
+        
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sign in to start your session</p>
+        <p class="login-box-msg">กรุณาเข้าสู่ระบบ</p>
 
          <?php $form = ActiveForm::begin([
              'id' => 'login-form',
@@ -36,10 +43,10 @@ $this->title = 'Login';
 
          <div class="row">
              <div class="col-xs-8">
-                <a href="#"><?php echo Yii::t('app', 'I forgot my password'); ?></a>
+                <a href="#"><?php //echo Yii::t('app', 'I forgot my password'); ?></a>
             </div><!-- /.col -->
              <div class="col-xs-4">
-                 <?= Html::submitButton('Login', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+                 <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
              </div>
          </div>
 
@@ -47,3 +54,4 @@ $this->title = 'Login';
 
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
+</div>

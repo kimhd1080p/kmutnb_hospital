@@ -42,11 +42,10 @@ class Appointment extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['appointment_time', 'timestam', 'casetype_idcasetype'], 'safe'],
+            [['appointment_time', 'timestam'], 'safe'],
             [['medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor'], 'integer'],
-            [['detial'], 'string'],
+            [['detial','casetype_idcasetype'], 'string'],
             [['nurse_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'required'],
-            [['casetype_idcasetype'], 'exist', 'skipOnError' => true, 'targetClass' => Casetype::className(), 'targetAttribute' => ['casetype_idcasetype' => 'idcasetype']],
             [['doctor_iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['doctor_iddoctor' => 'iddoctor']],
             [['patient_p_pid', 'patient_p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['patient_p_pid' => 'p_pid', 'patient_p_sid' => 'p_sid']],
             [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
@@ -70,7 +69,7 @@ class Appointment extends \yii\db\ActiveRecord
             'nurse_id2' => 'เวชระเบียน',
             'patient_p_pid' => 'รหัสบัตรประจำตัวประชาชน',
             'patient_p_sid' => 'รหัสนักศึกษา',
-            'casetype_idcasetype' => 'ประเภทอาการป่วย',
+          'casetype_idcasetype' => 'ประเภทอาการเจ็บป่วย',
             'doctor_iddoctor' => 'ชื่อแพทย์',
             'casetypevalue' => 'ประเภทอาการเจ็บป่วย',
         ];
@@ -92,7 +91,7 @@ class Appointment extends \yii\db\ActiveRecord
     foreach ($casetype as $key => $casetypeName) {
       foreach ($casetypeSelected as $casetypeKey) {
 
-        if($key === (int)$casetypeKey){
+        if($key === $casetypeKey){
           $casetypeSelectedName[] = $casetypeName;
         }
       }
@@ -103,10 +102,7 @@ class Appointment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCasetype()
-    {
-        return $this->hasOne(Casetype::className(), ['idcasetype' => 'casetype_idcasetype']);
-    }
+   
 
     /**
      * @return \yii\db\ActiveQuery

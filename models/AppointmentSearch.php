@@ -18,8 +18,8 @@ class AppointmentSearch extends Appointment
     public function rules()
     {
         return [
-            [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor','todoctor'], 'integer'],
-            [['appointment_time', 'timestam', 'detial'], 'safe'],
+            [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor','todoctor'], 'integer'],
+            [['appointment_time', 'timestam', 'detial', 'casetype_idcasetype'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class AppointmentSearch extends Appointment
         }
  $session = Yii::$app->session; //open session
         // grid filtering conditions
-        $query->joinWith('doctor')->joinWith('casetype')->Where([
+        $query->joinWith('doctor')->Where([
             //'ID' => $this->ID,
             //'appointment_time' => $this->appointment_time,
             //'medical_certificate' => $this->medical_certificate,

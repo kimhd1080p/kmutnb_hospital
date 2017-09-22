@@ -2,7 +2,7 @@
 <?php
 use yii\helpers\Html;
 use yii\helpers\Url;
-
+ $session = Yii::$app->session;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\ContactForm */
@@ -25,9 +25,9 @@ $this->params['breadcrumbs'][''] = $this->title;
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>ประวัติ</h3>
+              <h3>ประวัติการรักษา</h3>
 
-              <p>บริการผู้ป่วย</p>
+              <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="inner">
               <h3>นัดพบแพทย์<sup style="font-size: 20px"></sup></h3>
 
-              <p>บริการผู้ป่วย</p>
+              <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][''] = $this->title;
             <div class="inner">
               <h3>จ่ายยา</h3>
 
-              <p>บริการผู้ป่วย</p>
+              <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -76,9 +76,9 @@ $this->params['breadcrumbs'][''] = $this->title;
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>บักทึกอุบัติเหตุ</h3>
+              <h3>บันทึกอุบัติเหตุ</h3>
 
-              <p>บริการผู้ป่วย</p>
+              <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>

@@ -18,7 +18,9 @@ use app\models\Nurse;
     
 
    <?= $form->field($model, 'nurse_id2')->dropDownList(
-            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 2,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 2,'n_status' => 1])->asArray()->all(), 'id', 'name'),[
+                
+                ]
             ) ?>
 
 

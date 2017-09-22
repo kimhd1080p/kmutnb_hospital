@@ -37,7 +37,7 @@ $js = 'function refresh() {
   'patient.p_name',
   'patient.p_surname',
             
-          'casetype.casetype',
+          'casetypevalue',
            //'detial:ntext',
             'appointment_time',
             //'medical_certificate',

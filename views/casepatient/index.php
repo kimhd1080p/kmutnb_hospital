@@ -27,8 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         //'filterModel' => $searchModel,
         'panel'=>['before'=>"ประวัติ คุณ".$session['pname']." ".$session['psurname']],
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
+            ['class' => 'yii\grid\Column'],
             'idcase',
           'casetypevalue',
             'case_detail',

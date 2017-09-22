@@ -18,8 +18,8 @@ class AppointmentSearch2 extends Appointment
     public function rules()
     {
         return [
-            [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor','todoctor'], 'integer'],
-            [['appointment_time', 'timestam', 'detial'], 'safe'],
+            [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor','todoctor'], 'integer'],
+            [['appointment_time', 'timestam', 'detial', 'casetype_idcasetype'], 'safe'],
         ];
     }
 
@@ -58,7 +58,7 @@ class AppointmentSearch2 extends Appointment
         }
 
         // grid filtering conditions
-        $query->joinWith('doctor')->joinWith('casetype')->Where(['DATE(appointment_time)' =>date("Y-m-d")])
+        $query->joinWith('doctor')->Where(['DATE(appointment_time)' =>date("Y-m-d")])
                 //->orderBy(['appointment_time' => SORT_DESC])
                 ->OrderBy(['todoctor' => SORT_ASC])->orderBy(['ID' => SORT_DESC])
                 ////->orderBy(['todoctor' => SORT_ASC])
@@ -95,7 +95,7 @@ class AppointmentSearch2 extends Appointment
         }
 
         // grid filtering conditions
-        $query->joinWith('doctor')->joinWith('casetype')->Where(['DATE(appointment_time)' =>$this->appointment_time])
+        $query->joinWith('doctor')->Where(['DATE(appointment_time)' =>$this->appointment_time])
                 //->orderBy(['appointment_time' => SORT_DESC])
                 ->OrderBy(['todoctor' => SORT_ASC])->orderBy(['ID' => SORT_DESC])
            ;
