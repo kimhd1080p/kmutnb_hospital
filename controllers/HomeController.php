@@ -130,15 +130,28 @@ class HomeController extends Controller
  ]);
                         return $this->redirect(['index']);
                     }else{
-                        Yii::$app->getSession()->setFlash(
-                            'error','Password not changed'
-                        );
+                       
+                          Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'เปลี่ยนรหัสผ่านผิดพลาด',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
                         return $this->redirect(['index']);
                     }
                 }catch(Exception $e){
-                    Yii::$app->getSession()->setFlash(
-                        'error',"{$e->getMessage()}"
-                    );
+                   Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'เปลี่ยนรหัสผ่านผิดพลาด '.$e,
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
                     return $this->render('changepassword',[
                         'model'=>$model
                     ]);

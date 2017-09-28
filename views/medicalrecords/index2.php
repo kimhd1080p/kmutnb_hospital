@@ -31,10 +31,12 @@ $js = 'function refresh() {
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
+         'rowOptions'=>function ($model, $key, $index, $grid){if($model->todoctor === 0){ return ['class' => 'danger'];}else{return ['class' => 'success'];}},
         'panel'=>['before'=>"รายการนัดพบแพทย์"],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'patient_p_pid',
+           
   'patient.p_name',
   'patient.p_surname',
             

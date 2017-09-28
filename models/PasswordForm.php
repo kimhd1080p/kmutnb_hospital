@@ -29,9 +29,9 @@
         
         public function attributeLabels(){
             return [
-                'oldpass'=>'Old Password',
-                'newpass'=>'New Password',
-                'repeatnewpass'=>'Repeat New Password',
+                'oldpass'=>'รหัสผ่านเดิม',
+                'newpass'=>'รหัสผ่านใหม่',
+                'repeatnewpass'=>'ยืนยันรหัสผ่านใหม่',
             ];
         }
     }

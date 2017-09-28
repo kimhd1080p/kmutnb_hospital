@@ -35,9 +35,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
              'ID',
             'casepatient.timestam',
-            'casepatient.casetype.casetype',
+            'casepatient.casetypevalue',
             'casepatient.case_detail',
-             'casepatient.services.services',
+             'casepatient.servicesvalue',
             'medicine.medicine',
             'qty',
             'medicinepackage.package',

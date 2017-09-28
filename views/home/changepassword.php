@@ -2,43 +2,34 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Change Password';
+$this->title = 'เปลี่ยนรหัสผ่าน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="site-changepassword">
-    <h1><?= Html::encode($this->title) ?></h1>
+  
     
-    <p>Please fill out the following fields to change password :</p>
+   
     
-    <?php $form = ActiveForm::begin([
-        'id'=>'changepassword-form',
-        'options'=>['class'=>'form-horizontal'],
-        'fieldConfig'=>[
-            'template'=>"{label}\n<div class=\"col-lg-3\">
-                        {input}</div>\n<div class=\"col-lg-5\">
-                        {error}</div>",
-            'labelOptions'=>['class'=>'col-lg-2 control-label'],
-        ],
-    ]); ?>
+    <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model,'oldpass',['inputOptions'=>[
-            'placeholder'=>'Old Password'
+            'placeholder'=>'รหัสผ่านเดิม'
         ]])->passwordInput() ?>
         
         <?= $form->field($model,'newpass',['inputOptions'=>[
-            'placeholder'=>'New Password'
+            'placeholder'=>'รหัสผ่านใหม่'
         ]])->passwordInput() ?>
         
         <?= $form->field($model,'repeatnewpass',['inputOptions'=>[
-            'placeholder'=>'Repeat New Password'
+            'placeholder'=>'ยืนยันรหัสผ่านใหม่'
         ]])->passwordInput() ?>
         
         <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-11">
-                <?= Html::submitButton('Change password',[
+            
+                <?= Html::submitButton('เปลี่ยนรหัสผ่าน',[
                     'class'=>'btn btn-primary'
                 ]) ?>
-            </div>
+        
         </div>
     <?php ActiveForm::end(); ?>
 </div>

@@ -60,7 +60,7 @@ class AppointmentSearch2 extends Appointment
         // grid filtering conditions
         $query->joinWith('doctor')->Where(['DATE(appointment_time)' =>date("Y-m-d")])
                 //->orderBy(['appointment_time' => SORT_DESC])
-                ->OrderBy(['todoctor' => SORT_ASC])->orderBy(['ID' => SORT_DESC])
+                ->OrderBy(['todoctor' => SORT_ASC])
                 ////->orderBy(['todoctor' => SORT_ASC])
                 //->Where(['todoctor' =>0])
                 ;

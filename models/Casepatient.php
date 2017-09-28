@@ -120,6 +120,7 @@ public function servicesToArray()
             'p_sid' => 'รหัสนักศึกษา',
             'nurse_id' => 'ผู้ให้บริการ',
             'casetypevalue' => 'ประเภทอาการเจ็บป่วย',
+            'servicesvalue' => 'บริการที่ได้รับ',
         ];
     }
 
