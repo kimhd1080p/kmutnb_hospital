@@ -103,6 +103,8 @@ class MedicalrecordsController extends \yii\web\Controller
         $model = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            //ย้ายข้อมูลไปบันทึกประวัติ
+             Yii::$app->db->createCommand('REPLACE INTO casepatient (idservices,case_detail, timestam,casetype_idcasetype,p_pid, p_sid,iddoctor,nurse_id) SELECT "I",detial, timestam, casetype_idcasetype,patient_p_pid,patient_p_sid,doctor_iddoctor,nurse_id FROM appointment WHERE id='.$model->ID)->execute();
             
              Yii::$app->getSession()->setFlash('success', [
      'type' => 'success',

@@ -16,7 +16,7 @@ $this->registerCss("body { width: 80mm; height: 100mm; } table{text-align:center
    
   </tr>
    <tr>
-       <td colspan="2"><span style="font-weight:bold;">ชื่อยา <?= $model->medicine->medicine ?></span></td>
+       <td colspan="2"><span style="font-weight:bold;"> <?= $model->medicine->medicine ?></span></td>
    
   </tr>
    <tr>

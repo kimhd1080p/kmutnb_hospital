@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-use app\models\Casetype;
+use app\models\Casetypeall;
 use app\models\Services;
 use yii\helpers\ArrayHelper;
 use Yii;
@@ -68,7 +68,7 @@ class Casepatient extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function getCasetypevalue(){
-    $casetype = ArrayHelper::map(Casetype::find()->all(),'idcasetype','casetype');
+    $casetype = ArrayHelper::map(Casetypeall::find()->all(),'id','name');
     $casetypeSelected = explode(',', $this->casetype_idcasetype);
     $casetypeSelectedName = [];
     foreach ($casetype as $key => $casetypeName) {

@@ -49,7 +49,10 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
             ) ?>
 <?= $form->field($model, 'medicinename')->textInput(['maxlength' => true,'id' => 'medicinename','disabled'=>'disabled']) ?>
      <?= $form->field($model, 'idmedicine') ->hiddenInput(['maxlength' => true,'id' => 'idmedicine',])->label(false); ?>
-      <?= $form->field($model, 'qty')->textInput() ?>
+     <?php $model->qty=6;
+     $model->medicinepackage_id=1;
+     ?>
+ <?= $form->field($model, 'qty')->textInput() ?>
 
     <?= $form->field($model, 'medicinepackage_id')->radioList(
             ArrayHelper::map(Medicinepackage::find()->asArray()->all(), 'id', 'package'),['prompt'=>'เลือกยา']

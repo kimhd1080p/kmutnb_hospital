@@ -96,6 +96,8 @@ class CasemedicineController extends Controller
         $model = $this->findModel($ID, $idcase, $idmedicine, $medicinepackage_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+           
+            
             return $this->redirect(['view', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
         } else {
             return $this->render('update', [

@@ -4,7 +4,7 @@ $session = Yii::$app->session;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\Casetype;
+use app\models\Casedoctortype;
 use app\models\Doctor;
 use app\models\Nurse;
 /* @var $this yii\web\View */
@@ -28,7 +28,7 @@ $this->registerJsFile(
 
 <?= $form->field($model, 'casetype_idcasetype')
      ->checkboxList(
-            ArrayHelper::map(Casetype::find()->all(), 'idcasetype', 'casetype'),['prompt'=>'เลือกประเภทอาการ']
+            ArrayHelper::map(Casedoctortype::find()->all(), 'id', 'name'),['prompt'=>'เลือกประเภทอาการ']
             ) ?>
         <?= $form->field($model, 'detial')->textarea(['rows' => 6]) ?>
     

@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-use app\models\Casetype;
+use app\models\Casedoctortype;
 use yii\helpers\ArrayHelper;
 /**
  * This is the model class for table "appointment".
@@ -85,7 +85,7 @@ class Appointment extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function getCasetypevalue(){
-    $casetype = ArrayHelper::map(Casetype::find()->all(),'idcasetype','casetype');
+    $casetype = ArrayHelper::map(Casedoctortype::find()->all(),'id','name');
     $casetypeSelected = explode(',', $this->casetype_idcasetype);
     $casetypeSelectedName = [];
     foreach ($casetype as $key => $casetypeName) {

@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Nurse;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
 /* @var $form yii\widgets\ActiveForm */
@@ -24,11 +25,22 @@ use app\models\Nurse;
             ) ?>
 
 
-    <?php $model->todoctor = 1; ?>
+
     <?= $form->field($model, 'todoctor')->checkbox() ?>
     
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'ยืนยัน', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?php
+                
+
+        if($model->todoctor==1){   
+        echo Html::submitButton($model->isNewRecord ? 'บันทึก' : 'ยืนยัน', ['class' => $model->isNewRecord ? 'btn btn-primary ' : 'btn btn-primary ', 'disabled' => 'disabled']);}
+ else {
+     echo Html::submitButton($model->isNewRecord ? 'บันทึก' : 'ยืนยัน', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success']);
+ }
+        ?>
+      
+        
+    
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -15,24 +15,30 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="casepatient-index">
  <?php  echo $this->render('_search'); ?>
     
- <?php if(isset($dataProvider1)&&isset($dataProvider2)&&isset($dataProvider3)):?>
+<?php if(isset($dataProvider1)&&isset($dataProvider2)&&isset($dataProvider3)&&isset($dataProvider4)):?>
  
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานผู้ป่วย"],
+        'panel'=>['before'=>"รายงานผู้ป่วย ".$dates." - ".$datee],
        
     ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider2,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานอาการเจ็บป่วย"],
+        'panel'=>['before'=>"รายงานอาการเจ็บป่วย ".$dates." - ".$datee],
+       
+    ]); ?>
+     <?= GridView::widget([
+        'dataProvider' => $dataProvider4,
+        //'filterModel' => $searchModel,
+        'panel'=>['before'=>"รายงานอาการเจ็บป่วยพบแพทย์ ".$dates." - ".$datee],
        
     ]); ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider3,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานบริการที่ได้รับ"],
+        'panel'=>['before'=>"รายงานบริการที่ได้รับ ".$dates." - ".$datee],
        
     ]); ?>
     
