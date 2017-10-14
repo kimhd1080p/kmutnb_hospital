@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use Yii;
+
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Patient;
@@ -10,7 +10,7 @@ use app\models\Patient;
 /**
  * PatientSearch represents the model behind the search form about `app\models\Patient`.
  */
-class PatientSearch extends Patient
+class PatientSearch2 extends Patient
 {
     /**
      * @inheritdoc
@@ -59,26 +59,20 @@ class PatientSearch extends Patient
 
         // grid filtering conditions
         // 
-          //$query->joinWith('status')
-//        ->Where(['p_pid' => $this->p_pid,])
-//        ->orWhere([ 'p_sid' => $this->p_pid]); //ค้นหา 2 ฟิว
-        $query->andFilterWhere([
-            'p_pid' => $this->p_pid,
-          'p_sid' => $this->p_sid,
-           'p_birthday' => $this->p_birthday,
-           'status_id' => $this->status_id,
-         'department_id' => $this->department_id,
-           'studentclass_id' => $this->studentclass_id,
-     ]);
-//
-    $query->andFilterWhere(['like', 'p_name', $this->p_name])
-        ->andFilterWhere(['like', 'p_surname', $this->p_surname])
-            ->andFilterWhere(['like', 'sex', $this->sex])
-            ->andFilterWhere(['like', 'p_address', $this->p_address])
-           ->andFilterWhere(['like', 'p_tel', $this->p_tel])
-           ->andFilterWhere(['like', 'p_allegy', $this->p_allegy])
-         ->andFilterWhere(['like', 'p_disease', $this->p_disease])
-          ->andFilterWhere(['like', 'documentindex', $this->documentindex]);
+          $query->joinWith('status')
+        ->Where(['p_pid' => $this->ps,])
+        ->orWhere([ 'p_sid' => $this->ps]) 
+         ->orWhere([ 'p_name' => $this->ps])
+          ->orWhere([ 'p_surname' => $this->ps]); //ค้นหาหลายฟิว
+//        $query->andFilterWhere([
+//            'p_pid' => $this->ps,
+//          'p_sid' => $this->ps,
+//         
+//     ]);
+////
+//    $query->Whree(['like', 'p_name', $this->ps])
+//        ->orWhree(['like', 'p_surname', $this->ps]);
+            
 
         return $dataProvider;
     }

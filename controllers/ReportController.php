@@ -381,4 +381,156 @@ FROM casepatient c, nurse n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$
 
 }
 
+  //report 5 อุบัติเหตุในเวลาราชการ
+    public function actionReport5()
+    {
+  
+        $request = Yii::$app->request;
+        if($request->post('startdate')&&$request->post('enddate')&&$request->post('type')){
+            $datestart=$request->post('startdate');
+            $dateend=$request->post('enddate');
+            $type=$request->post('type');
+                  $sql1="SELECT  count(case when `sex` = 'ชาย' then 1 else null end) as ชาย
+            ,count(case when `sex` = 'หญิง' then 1 else null end) as หญิง
+            ,count(case when `status_id` = 1 then 1 else null end) as นักศึกษา
+            ,count(case when `status_id` = 2 then 1 else null end) as อาจารย์
+            ,count(case when `status_id` = 3 then 1 else null end) as เจ้าหน้าที่
+            ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
+            , count(sex) as รวม
+            
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type
+and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+                
+        try {
+            $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider1= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData1,
+            'pagination'=>FALSE
+        ]);
+        
+      //report 2
+              $sql2="SELECT  
+            count(case when `accidenttype_idaccidenttype` like '%1%' then 1 else null end) as 'ถูกตัด/บาด/ทิ่มแทง'
+            ,count(case when `accidenttype_idaccidenttype` like '%2%' then 1 else null end) as 'สิ่งของ/สารเคมีเข้าตา'
+            ,count(case when `accidenttype_idaccidenttype` like '%3%' then 1 else null end) as 'สัมผัสความร้อน/เย็น'
+            ,count(case when `accidenttype_idaccidenttype` like '%4%' then 1 else null end) as 'โดนสิ่งของกระแทก/ชน'
+            ,count(case when `accidenttype_idaccidenttype` like '%5%' then 1 else null end) as 'สัมผัสสารเคมี/สารผิษ'
+            ,count(case when `accidenttype_idaccidenttype` like '%6%' then 1 else null end) as 'ถูกหนีบ/ดึง'
+            ,count(case when `accidenttype_idaccidenttype` like '%7%' then 1 else null end) as 'หกล้ม/ลื่นล้ม'
+            ,count(case when `accidenttype_idaccidenttype` like '%8%' then 1 else null end) as 'ถูกไฟฟ้าช๊อต'
+             ,count(case when `accidenttype_idaccidenttype` like '%9%' then 1 else null end) as 'อื่นๆ'
+
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+        try {
+            $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider2= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData2,
+            'pagination'=>FALSE
+        ]);
+        
+        //report 3
+              $sql3="SELECT  
+            count(case when `medicaltreatment_idmedicaltreatment` like '%1%' then 1 else null end) as 'ปฐมพยาบาล'
+            ,count(case when `medicaltreatment_idmedicaltreatment` like '%2%' then 1 else null end) as 'พบแพทย์ / ส่งโรงพยาบาล'
+       
+
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+        try {
+            $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider3= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData3,
+            'pagination'=>FALSE
+        ]);   
+           return $this->render('report5',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dates'=>$datestart,'datee'=>$dateend]);  
+        }else { return $this->render('report5');}
+    }
+
+      //report 6 อุบัติเหตุนอกเวลาราชการ
+    public function actionReport6()
+    {
+  
+        $request = Yii::$app->request;
+        if($request->post('startdate')&&$request->post('enddate')&&$request->post('type')){
+            $datestart=$request->post('startdate');
+            $dateend=$request->post('enddate');
+            $type=$request->post('type');
+                  $sql1="SELECT  count(case when `sex` = 'ชาย' then 1 else null end) as ชาย
+            ,count(case when `sex` = 'หญิง' then 1 else null end) as หญิง
+            ,count(case when `status_id` = 1 then 1 else null end) as นักศึกษา
+            ,count(case when `status_id` = 2 then 1 else null end) as อาจารย์
+            ,count(case when `status_id` = 3 then 1 else null end) as เจ้าหน้าที่
+            ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
+            , count(sex) as รวม
+            
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type
+and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+                
+        try {
+            $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider1= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData1,
+            'pagination'=>FALSE
+        ]);
+        
+      //report 2
+              $sql2="SELECT  
+            count(case when `accidenttype_idaccidenttype` like '%1%' then 1 else null end) as 'ถูกตัด/บาด/ทิ่มแทง'
+            ,count(case when `accidenttype_idaccidenttype` like '%2%' then 1 else null end) as 'สิ่งของ/สารเคมีเข้าตา'
+            ,count(case when `accidenttype_idaccidenttype` like '%3%' then 1 else null end) as 'สัมผัสความร้อน/เย็น'
+            ,count(case when `accidenttype_idaccidenttype` like '%4%' then 1 else null end) as 'โดนสิ่งของกระแทก/ชน'
+            ,count(case when `accidenttype_idaccidenttype` like '%5%' then 1 else null end) as 'สัมผัสสารเคมี/สารผิษ'
+            ,count(case when `accidenttype_idaccidenttype` like '%6%' then 1 else null end) as 'ถูกหนีบ/ดึง'
+            ,count(case when `accidenttype_idaccidenttype` like '%7%' then 1 else null end) as 'หกล้ม/ลื่นล้ม'
+            ,count(case when `accidenttype_idaccidenttype` like '%8%' then 1 else null end) as 'ถูกไฟฟ้าช๊อต'
+             ,count(case when `accidenttype_idaccidenttype` like '%9%' then 1 else null end) as 'อื่นๆ'
+
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+        try {
+            $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider2= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData2,
+            'pagination'=>FALSE
+        ]);
+        
+        //report 3
+              $sql3="SELECT  
+            count(case when `medicaltreatment_idmedicaltreatment` like '%1%' then 1 else null end) as 'ปฐมพยาบาล'
+            ,count(case when `medicaltreatment_idmedicaltreatment` like '%2%' then 1 else null end) as 'พบแพทย์ / ส่งโรงพยาบาล'
+       
+
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+        try {
+            $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider3= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData3,
+            'pagination'=>FALSE
+        ]);   
+           return $this->render('report6',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dates'=>$datestart,'datee'=>$dateend]);  
+        }else { return $this->render('report6');}
+    }
+
 }

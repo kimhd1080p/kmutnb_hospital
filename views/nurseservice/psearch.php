@@ -17,12 +17,26 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- เรียก view _search.php -->
 <div class="patient-search">
 
- 
+   <?php $form = ActiveForm::begin([
+        'action' => ['psearch'],
+        'method' => 'get',
+    ]); ?>
+
+   <?php echo $form->field($model, 'ps')->textInput(['id' => 'ps'])->label('ค้นหาผู้ป่วย') ?>
+
+
+
+    <div class="form-group">
+        <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
+        <?php // echo Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
 
  <?= GridView::widget([
-               
                 'dataProvider' => $dataProvider,
-                'filterModel' => $searchModel,
+                //'filterModel' => $searchModel,
                 'panel'=>['before'=>'ค้นหาพบ'],
      'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],

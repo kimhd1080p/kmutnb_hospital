@@ -18,11 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     
 
     <p>
-        <?= Html::a('Update', ['update', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'user_id' => $model->user_id, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
+        <?= Html::a('แก้ไข', ['update', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'คุณต้องการลบรายการนี้หรือไม่ ?',
                 'method' => 'post',
             ],
         ]) ?>

@@ -18,16 +18,16 @@ use yii\bootstrap\Nav;
        <section class="sidebar">
 
     <?php
+
+
+
+
 $callback = function($menu){
-    $data = eval($menu['data']); 
-    //$label = eval($menu['name']); 
-    //if have syntax error, unexpected 'fa' (T_STRING)  Errorexception,can use
-   //$data = $menu['data'];
+    $data = eval($menu['data']);
     return [
         'label' => $menu['name'], 
         'url' => [$menu['route']],
         'options' => [$data],
-        'icon' => 'fa fa-user', 
         'items' => $menu['children']
     ];
 };
@@ -36,7 +36,7 @@ $items = MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback, true)
 
 echo Nav::widget([
      'encodeLabels' => false,
-     'options' => ['class' => 'sidebar-menu','data-widget'=>'tree'],
+     'options' => ['class' => 'sidebar-menu'],
        'items' => $items
 ]);
 //print_r($items);

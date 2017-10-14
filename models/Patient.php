@@ -31,6 +31,7 @@ use Yii;
  */
 class Patient extends \yii\db\ActiveRecord
 {
+    public  $ps;
     /**
      * @inheritdoc
      */
@@ -47,7 +48,7 @@ class Patient extends \yii\db\ActiveRecord
         return [
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'required'],
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'integer'],
-            [['p_birthday'], 'safe'],
+            [['p_birthday','ps'], 'safe'],
             [['p_name', 'p_surname', 'documentindex'], 'string', 'max' => 45],
             [['sex'], 'string', 'max' => 10],
             [['p_address', 'p_allegy', 'p_disease'], 'string', 'max' => 100],
@@ -78,6 +79,7 @@ class Patient extends \yii\db\ActiveRecord
             'status_id' => 'สถานภาพ',
             'department_id' => 'ภาควิชา/ส่วนงาน',
             'studentclass_id' => 'ระดับชั้น',
+            'ps'=>'ค้นหา'
         ];
     }
 

@@ -5,7 +5,8 @@ use Yii;
 use yii\web\Controller;
 use app\models\Patient;
 use app\models\PatientSearch;
-use app\models\CasePatient;
+use app\models\PatientSearch2;
+
 
 
 class NurseserviceController extends \yii\web\Controller
@@ -21,7 +22,7 @@ return $this->render('index');
 public function actionPsearch()
     {
     //$model = new Patient();
-   $model = new PatientSearch();
+   $model = new PatientSearch2();
    $dataProvider = $model->search(Yii::$app->request->queryParams);
 return $this->render('psearch',['model' => $model,'dataProvider' =>$dataProvider,'searchModel' => $model]);
     }
