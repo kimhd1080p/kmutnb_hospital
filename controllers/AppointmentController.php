@@ -35,6 +35,21 @@ class AppointmentController extends Controller
      */
     public function actionIndex()
     {
+                $sql1 = 'SELECT *  FROM appointment a ,doctor d  WHERE a.doctor_iddoctor=d.iddoctor and d.doctortype_id=2 and DATE(timestam)="'.date("Y-m-d").'"';
+                $p1 = Appointment::findBySql($sql1)->count();
+$sql2 = 'SELECT *  FROM appointment a ,doctor d  WHERE a.doctor_iddoctor=d.iddoctor and d.doctortype_id=3 and DATE(timestam)="'.date("Y-m-d").'"';
+                $p2 = Appointment::findBySql($sql2)->count();
+Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'แพทย์ทั่วไป '.$p1.' คน จิตแพทย์ '.$p2.' คน',
+     'title' => 'รายการนัดพบแพทย์วันนี้',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+        
+        
         $searchModel = new AppointmentSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -68,12 +83,14 @@ class AppointmentController extends Controller
      */
     public function actionCreate()
     {
+
         $model = new Appointment();
 
         if ($model->load(Yii::$app->request->post())) {
              $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
             if($model->save()){
             
+                
                
             Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',

@@ -1,6 +1,6 @@
 <?php
 
-use yii\helpers\Html;
+
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\growl\Growl;
@@ -12,13 +12,14 @@ $this->title = 'รายการนัดพบแพทย์';
 $this->params['breadcrumbs'][] = ['label' => 'งานเวชระเบียน', 'url' => ['medicalrecords/index']];
 //$this->params['breadcrumbs'][] = ['label' => 'รายการนัดพบแพทย์', 'url' => ['medicalrecords/index2']];
 $this->params['breadcrumbs'][] = $this->title;
-$js = 'function refresh() {
-     $.pjax.reload({container:"#appointment"});
-     setTimeout(refresh, 5000); // restart the function every 5 seconds
- }
- refresh();';
+ $js = '
+  setInterval(function () {
+ $.pjax.reload({container: "#medicine", timeout: 10000});
+}, 10000);   
+';
  $this->registerJs($js, $this::POS_READY);
 ?>
+
 <div class="appointment-index">
 
 
@@ -27,8 +28,8 @@ $js = 'function refresh() {
     <p>
         
     </p>
-    <?php Pjax::begin(['id' => 'appointment']) ?>
-    <?= GridView::widget([
+    <?php Pjax::begin(['id'=>'medicines']) ?>
+    <?= GridView::widget([ 'id'=>'medicine',
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
          'rowOptions'=>function ($model, $key, $index, $grid){if($model->todoctor === 0){ return ['class' => 'danger'];}else{return ['class' => 'success'];}},
@@ -85,31 +86,6 @@ $js = 'function refresh() {
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
-    
-  
-            <?php if($message = Yii::$app->session->getFlash('appointments') ):?>
-    
-    <?php
-             echo Growl::widget([
-                    'type' => (!empty($message['type'])) ? $message['type'] : 'danger',
-                    'title' => (!empty($message['title'])) ? Html::encode($message['title']) : 'Title Not Set!',
-                    'icon' => (!empty($message['icon'])) ? $message['icon'] : 'fa fa-info',
-                    'body' => (!empty($message['message'])) ? Html::encode($message['message']) : 'Message Not Set!',
-                    'showSeparator' => true,
-                    'delay' => 1, //This delay is how long before the message shows
-                    'pluginOptions' => [
-                        'delay' => (!empty($message['duration'])) ? $message['duration'] : 3000, //This delay is how long the message shows for
-                        'placement' => [
-                            'from' => (!empty($message['positonY'])) ? $message['positonY'] : 'top',
-                            'align' => (!empty($message['positonX'])) ? $message['positonX'] : 'right',
-                        ]
-                    ]
-                ]);
-                ?>
-                    
-                    
-                    ?>
-<?php endif; ?>
-    
+      
     <?php Pjax::end() ?>
 </div>

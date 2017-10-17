@@ -42,10 +42,10 @@ $this->registerJsFile(
     <?php $form = ActiveForm::begin(); ?>
 
     <?php //$sql = 'SELECT * FROM casepatient WHERE DATE(timestam) = CURDATE() and p_pid='.$session['pid'];
-$sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
+$sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'].' and DATE(timestam) = "'.date("Y-m-d").'"  order by time(timestam) desc';
 ?>
     <?= $form->field($model, 'idcase') ->dropDownList(
-            ArrayHelper::map(Casepatient::findBySql($sql)->all(), 'idcase', 'casetypevalue','timestam'),['prompt'=>'เลือก']
+            ArrayHelper::map(Casepatient::findBySql($sql)->all(), 'idcase', 'casetypevalue','timestam')
             ) ?>
 <?= $form->field($model, 'medicinename')->textInput(['maxlength' => true,'id' => 'medicinename','disabled'=>'disabled']) ?>
      <?= $form->field($model, 'idmedicine') ->hiddenInput(['maxlength' => true,'id' => 'idmedicine',])->label(false); ?>
@@ -70,7 +70,7 @@ $sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'];
     <?= $form->field($model, 'note')->textInput(['maxlength' => true,'id' =>'note']) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'เพิ่ม' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

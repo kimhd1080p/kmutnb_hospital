@@ -39,7 +39,7 @@ class Casemedicine extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty', 'expired_date'], 'required'],
+            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'required'],
             [['idcase', 'idmedicine', 'medicinepackage_id', 'qty','medicinesearch'], 'integer'],
             [['expired_date','medicinesearch','medicinename'], 'safe'],
             [['properties'], 'string', 'max' => 70],

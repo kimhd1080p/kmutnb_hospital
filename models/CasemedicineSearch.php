@@ -65,7 +65,7 @@ class CasemedicineSearch extends Casemedicine
             'medicinepackage_id' => $this->medicinepackage_id,
             'qty' => $this->qty,
             'expired_date' => $this->expired_date,
-        ]);
+        ])->orderBy(['idcase' => SORT_DESC]);
 
         $query->andFilterWhere(['like', 'properties', $this->properties])
             ->andFilterWhere(['like', 'howto', $this->howto])

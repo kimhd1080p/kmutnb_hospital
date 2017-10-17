@@ -46,7 +46,7 @@ class Patient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'required'],
+            [['p_pid', 'p_sid', 'status_id', 'department_id'], 'required'],
             [['p_pid', 'p_sid', 'status_id', 'department_id', 'studentclass_id'], 'integer'],
             [['p_birthday','ps'], 'safe'],
             [['p_name', 'p_surname', 'documentindex'], 'string', 'max' => 45],

@@ -31,8 +31,28 @@ $this->params['breadcrumbs'][] = $this->title;
           'casetypevalue',
            //'detial:ntext',
             'appointment_time',
-            'medical_certificate',
-            'todoctor',
+           [
+    'label' => 'ขอใบรับรองแพทย์',
+    'format' => 'raw',
+    'value' => function ($model) {
+        if ($model->medical_certificate === 1) {
+            return 'ใช่'; // "x" icon in red color
+        } else {
+            return 'ไม่ใช่'; // check icon 
+        }
+    },
+],
+            [
+    'label' => 'พบแพทย์แล้ว',
+    'format' => 'raw',
+    'value' => function ($model) {
+        if ($model->todoctor === 1) {
+            return '<i class="fa fa-check-square"></i>'; // "x" icon in red color
+        } else {
+            return '<i class="fa fa-times"></i>'; // check icon 
+        }
+    },
+],
             'timestam',
             // 'detial:ntext',
             // 'user_id',

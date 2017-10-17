@@ -53,10 +53,10 @@ class PatientController extends Controller
      * @param integer $studentclass_id
      * @return mixed
      */
-    public function actionView($p_pid, $p_sid, $status_id, $department_id, $studentclass_id)
+    public function actionView($p_pid, $p_sid)
     {
         return $this->render('view', [
-            'model' => $this->findModel($p_pid, $p_sid, $status_id, $department_id, $studentclass_id),
+            'model' => $this->findModel($p_pid, $p_sid),
         ]);
     }
 
@@ -70,7 +70,7 @@ class PatientController extends Controller
         $model = new Patient();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'status_id' => $model->status_id, 'department_id' => $model->department_id, 'studentclass_id' => $model->studentclass_id]);
+            return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -88,12 +88,12 @@ class PatientController extends Controller
      * @param integer $studentclass_id
      * @return mixed
      */
-    public function actionUpdate($p_pid, $p_sid, $status_id, $department_id, $studentclass_id)
+    public function actionUpdate($p_pid, $p_sid)
     {
-        $model = $this->findModel($p_pid, $p_sid, $status_id, $department_id, $studentclass_id);
+        $model = $this->findModel($p_pid, $p_sid);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'status_id' => $model->status_id, 'department_id' => $model->department_id, 'studentclass_id' => $model->studentclass_id]);
+            return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -111,9 +111,9 @@ class PatientController extends Controller
      * @param integer $studentclass_id
      * @return mixed
      */
-    public function actionDelete($p_pid, $p_sid, $status_id, $department_id, $studentclass_id)
+    public function actionDelete($p_pid, $p_sid)
     {
-        $this->findModel($p_pid, $p_sid, $status_id, $department_id, $studentclass_id)->delete();
+        $this->findModel($p_pid, $p_sid)->delete();
 
         return $this->redirect(['index']);
     }
@@ -129,9 +129,9 @@ class PatientController extends Controller
      * @return Patient the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($p_pid, $p_sid, $status_id, $department_id, $studentclass_id)
+    protected function findModel($p_pid, $p_sid)
     {
-        if (($model = Patient::findOne(['p_pid' => $p_pid, 'p_sid' => $p_sid, 'status_id' => $status_id, 'department_id' => $department_id, 'studentclass_id' => $studentclass_id])) !== null) {
+        if (($model = Patient::findOne(['p_pid' => $p_pid, 'p_sid' => $p_sid])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

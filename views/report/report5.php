@@ -5,7 +5,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\CasepatientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายงานอุบัติราชการเหตุ ในเวลาราชการ';
+$this->title = 'รายงานอุบัติเหตุ ในเวลาราชการ';
 //$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
 //$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
 //$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice']];

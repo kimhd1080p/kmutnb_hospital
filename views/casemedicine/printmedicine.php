@@ -23,10 +23,7 @@ $this->registerCss("body { width: 80mm; height: 100mm; } table{text-align:center
        <td colspan="2"><span>จำนวน <?= $model->qty ?> <?= $model->medicinepackage->package ?></span></td>
    
   </tr>
-   <tr>
-       <td colspan="2"><span style="font-weight:bold;">วันหมดอายุ <?= $model->expired_date ?><hr /> </span></td>
    
-  </tr>
   <tr>
        <td colspan="2" style=" text-align: left;"><span style="font-size:14px; font-weight: bold;">สรรพคุณยา </span><span style="font-size:14px; "><?= $model->medicine->properties ?> </span></td>
    

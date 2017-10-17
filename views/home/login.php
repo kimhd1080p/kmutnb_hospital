@@ -6,24 +6,17 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\LoginForm */
 
+$this->registerCssFile("@web/css/login.css");
 $this->title = 'Login';
+
 ?>
-<div class="container" >
-  <div id="page-wrapper">
-			<br /><br /><br />
-			<h1 class="text-center">ระบบสารสนเทศเพื่องานพยาบาล</h1>
-                        <h3 class="text-center">มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h3><br />
-
-        </div>
-	<hr />
-<div class="login-box">
-    <div class="login-logo">
-        
-    </div><!-- /.login-logo -->
-    <div class="login-box-body">
+<div class="a1" >
+<div class="login1">
+   
+  
+ <div class="login-box-body">
         <p class="login-box-msg">กรุณาเข้าสู่ระบบ</p>
-
-         <?php $form = ActiveForm::begin([
+     <?php $form = ActiveForm::begin([
              'id' => 'login-form',
              'options' => ['method' => 'post']
          ]); ?>
@@ -31,27 +24,22 @@ $this->title = 'Login';
         <?= $form->field($model, 'username', [
             "template"=>"<span class=\"glyphicon glyphicon-user form-control-feedback\"></span>\n{input}",
             'options'=>['class'=>'form-group has-feedback']])
-            ->textInput(['placeholder'=>Yii::t('app', $model->getAttributeLabel('username'))]);
+            ->textInput(['placeholder'=>Yii::t('app', $model->getAttributeLabel('ชื่อผู้ใช้'))]);
         ?>
 
         <?= $form->field($model, 'password', [
             "template"=>"<span class=\"glyphicon glyphicon-lock form-control-feedback\"></span>\n{input}",
             'options'=>['class'=>'form-group has-feedback']])
-            ->passwordInput(['placeholder'=>Yii::t('app', $model->getAttributeLabel('password'))]);
+            ->passwordInput(['placeholder'=>Yii::t('app', $model->getAttributeLabel('รหัสผ่าน'))]);
         ?>
 
 
-         <div class="row">
-             <div class="col-xs-8">
-                <a href="#"><?php //echo Yii::t('app', 'I forgot my password'); ?></a>
-            </div><!-- /.col -->
-             <div class="col-xs-4">
-                 <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
-             </div>
-         </div>
+        
+                 <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-primary btn-block btn-large', 'name' => 'login-button']) ?>
+          
 
           <?php ActiveForm::end(); ?>
+</div>
 
-    </div><!-- /.login-box-body -->
-</div><!-- /.login-box -->
+</div>
 </div>

@@ -115,7 +115,7 @@ $config = [
         'allowActions' => [
 //            'home/*',
 //            'nurseservice/*',
-            'admin/*',
+            //'admin/*',
 //            'debug/*',
 //            'gii/*',
           

@@ -11,12 +11,7 @@ $this->title = 'รายการนัดพบแพทย์';
 $this->params['breadcrumbs'][] = ['label' => 'งานเวชระเบียน', 'url' => ['medicalrecords/index']];
 //$this->params['breadcrumbs'][] = ['label' => 'รายการนัดพบแพทย์', 'url' => ['medicalrecords/index2']];
 $this->params['breadcrumbs'][] = $this->title;
-$js = 'function refresh() {
-     $.pjax.reload({container:"#appointment"});
-     setTimeout(refresh, 5000); // restart the function every 5 seconds
- }
- refresh();';
- $this->registerJs($js, $this::POS_READY);
+
 ?>
 <div class="appointment-index">
 

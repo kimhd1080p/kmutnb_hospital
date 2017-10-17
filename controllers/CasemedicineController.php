@@ -74,7 +74,8 @@ class CasemedicineController extends Controller
              $dispense = Casepatient::findOne($model->idcase); //อัพเดปสถานะการจ่ายยา
             $dispense->dispense = 1;
             $dispense->update();
-            return $this->redirect(['printmedicine', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
+            //return $this->redirect(['printmedicine', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
