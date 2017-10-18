@@ -14,7 +14,16 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="medicine-view">
 
   
-
+<div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <p>
         <?= Html::a('แก้ไข', ['update', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'idmedicine' => $model->idmedicine, 'idmedicinetype' => $model->idmedicinetype], [
@@ -41,3 +50,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+</div>
+</div>
+    </div>

@@ -13,18 +13,26 @@ $this->params['breadcrumbs'][''] = $this->title;
 
 <div class="site-contact">
  <!-- Small boxes (Stat box) -->
-      <div class="row">
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-th-list"></i>รายการ</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+          <div class="row">
           
             <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3>ผู้ป่วย</h3>
 
               <p>เพิ่ม ลบ แก้ไข</p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-wheelchair"></i>
             </div>
             <a href="<?=Url::to(['//patient/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -34,14 +42,14 @@ $this->params['breadcrumbs'][''] = $this->title;
           
            <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3>พนักงาน</h3>
 
               <p>เพิ่ม ลบ แก้ไข พยาบาล เวชระเบียน</p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-users"></i>
             </div>
             <a href="<?=Url::to(['//nurse/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -51,14 +59,14 @@ $this->params['breadcrumbs'][''] = $this->title;
           
            <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3>แพทย์</h3>
 
               <p>เพิ่ม ลบ แก้ไข</p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-user-md"></i>
             </div>
             <a href="<?=Url::to(['//doctor/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -68,14 +76,14 @@ $this->params['breadcrumbs'][''] = $this->title;
           
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3>ยา</h3>
 
               <p>เพิ่ม ลบ แก้ไข</p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-medkit"></i>
             </div>
             <a href="<?=Url::to(['//medicine/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -85,14 +93,14 @@ $this->params['breadcrumbs'][''] = $this->title;
           
            <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua">
+          <div class="small-box bg-green">
             <div class="inner">
               <h3>ประเภทยา</h3>
 
               <p>เพิ่ม ลบ แก้ไข</p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-cart-plus"></i>
             </div>
             <a href="<?=Url::to(['//medicinetype/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -105,3 +113,5 @@ $this->params['breadcrumbs'][''] = $this->title;
       </div>
       <!-- /.row -->
        </div>
+           </div>
+          </div>

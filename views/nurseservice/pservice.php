@@ -16,10 +16,16 @@ $this->params['breadcrumbs'][''] = $this->title;
 ?>
 
 <div class="site-contact">
-
-  
-     <!-- Small boxes (Stat box) -->
-      <div class="row">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-th-list"></i>รายการ</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+          <div class="row">
          
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -30,7 +36,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-folder-open"></i>
             </div>
             <a href="<?=Url::to(['nurseservice/casepatient'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -47,7 +53,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa fa-calendar-o"></i>
             </div>
             <a href="<?=Url::to(['nurseservice/appointment'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -64,7 +70,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-ambulance"></i>
             </div>
             <a href="<?=Url::to(['nurseservice/casemedicine'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -81,7 +87,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p><?= "คุณ".$session['pname']." ".$session['psurname']?></p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa fa-pencil-square-o"></i>
             </div>
             <a href="<?=Url::to(['nurseservice/accident'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -91,4 +97,6 @@ $this->params['breadcrumbs'][''] = $this->title;
         <!-- ./col -->
       </div>
       <!-- /.row -->
-       </div>
+      </div>
+           </div>
+          </div>

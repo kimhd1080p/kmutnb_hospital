@@ -14,7 +14,17 @@ $this->params['breadcrumbs'][] = ['label' => 'นัดพบแพทย์', '
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-view">
-
+<div class="case-patient-form">
+<div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <p>
         <?= Html::a('แก้ไข', ['update', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('ลบ', ['delete', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor], [
@@ -76,4 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div>
+</div>
+ </div>
 </div>

@@ -13,6 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <div class="casepatient-index">
+<div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
  <?php  echo $this->render('_search2'); ?>
     
 <?php if(isset($dataProvider1)&&isset($dataProvider2)&&isset($dataProvider3)):?>
@@ -37,3 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
      <?php endif; ?>
 </div>
+</div>
+</div>
+    </div>

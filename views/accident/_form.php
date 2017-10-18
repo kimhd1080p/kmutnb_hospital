@@ -24,7 +24,17 @@ $this->registerJsFile(
 
 
 <div class="accident-form">
-
+<div class="case-patient-form">
+<div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'inlocattype_idinlocattype')->dropDownList(
@@ -60,3 +70,6 @@ $this->registerJsFile(
     <?php ActiveForm::end(); ?>
 
 </div>
+</div>
+</div>
+    </div>

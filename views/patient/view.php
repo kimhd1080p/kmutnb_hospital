@@ -13,7 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="patient-view">
 
-    
+    <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
 
     <p>
         <?= Html::a('แก้ไข', ['update', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'status_id' => $model->status_id, 'department_id' => $model->department_id, 'studentclass_id' => $model->studentclass_id], ['class' => 'btn btn-primary']) ?>
@@ -46,4 +55,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div></div>
 </div>
+    </div>

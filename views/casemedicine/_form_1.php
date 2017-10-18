@@ -26,7 +26,7 @@ $this->registerJsFile(
 
 <div class="medicine-search">
 
-    
+
     
       <?= Html::activeTextInput($model, 'medicinesearch',['class'=>'form-control','placeholder'=>'ใส่รหัสยา','id'=>'medicinesearch']) ?>
       <br/>

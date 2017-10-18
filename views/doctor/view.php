@@ -12,7 +12,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="doctor-view">
 
-  
+  <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
 
     <p>
         <?= Html::a('แก้ไข', ['update', 'iddoctor' => $model->iddoctor, 'doctortype_id' => $model->doctortype_id], ['class' => 'btn btn-primary']) ?>
@@ -44,5 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ],
         ],
     ]) ?>
-
+</div>
+</div>
+    </div>
 </div>
