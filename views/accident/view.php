@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('ลบ', ['delete', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'คุณต้องการลบรายการนี้หรือไม่ ?',
+                'confirm' => 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?',
                 'method' => 'post',
             ],
         ]) ?>

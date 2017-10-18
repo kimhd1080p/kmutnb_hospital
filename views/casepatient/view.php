@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="box-body">
 
     <p>
-        <?= Html::a('Update', ['update', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], [
+        <?= Html::a('แก้ไข', ['update', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('ลบ', ['delete', 'idcase' => $model->idcase, 'idservices' => $model->idservices, 'casetype_idcasetype' => $model->casetype_idcasetype, 'iddoctor' => $model->iddoctor, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?',
                 'method' => 'post',
             ],
         ]) ?>
