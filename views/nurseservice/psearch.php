@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-
+<?php if(isset($dataProvider)): ?>
  <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
@@ -63,3 +63,4 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                  ]);
                 ?>
+ <?php endif; ?>

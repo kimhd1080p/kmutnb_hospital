@@ -21,10 +21,18 @@ return $this->render('index');
  
 public function actionPsearch()
     {
-    //$model = new Patient();
-   $model = new PatientSearch2();
-   $dataProvider = $model->search(Yii::$app->request->queryParams);
+     $model = new PatientSearch2();
+if(Yii::$app->request->get()){
+   
+   
+   $dataProvider = $model->search1(Yii::$app->request->queryParams);
 return $this->render('psearch',['model' => $model,'dataProvider' =>$dataProvider,'searchModel' => $model]);
+    
+}else{
+    return $this->render('psearch',['model' => $model,'dataProvider' =>null]);
+}
+    //$model = new Patient();
+   
     }
     
       public function actionPservice($pid)
