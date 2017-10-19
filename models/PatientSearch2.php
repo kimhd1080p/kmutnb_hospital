@@ -217,7 +217,8 @@ Yii::$app->getSession()->setFlash('alert', [
         $this->load($params);
         
 
-            $s = Patient::find()->where(['p_pid' => $this->ps])->orWhere(['p_sid' => $this->ps])->count();
+            $s = Patient::find()->where(['p_pid' => $this->ps])->orWhere(['p_sid' => $this->ps])->orWhere([ 'p_name' => $this->ps])
+          ->orWhere([ 'p_surname' => $this->ps])->count();
         //$s=0;
             if($s<1){
                //$data1= searchdatastu($this->ps);
