@@ -24,13 +24,46 @@ $this->params['breadcrumbs'][] = $this->title;
           <!-- เนื้อหา -->
           <div class="box-body">
  <?php  echo $this->render('_search2'); ?>
-    
-<?php if(isset($dataProvider1)&&isset($dataProvider2)&&isset($dataProvider3)):?>
+   <?php $pdfHeader = [
+  'L' => [
+    'content' => 'ห้องพยาบาล มจพ.',
+  ],
+  'C' => [
+    'content' => '',
+    'font-size' => 10,
+    'font-style' => 'B',
+    'font-family' => 'arial',
+    'color' => '#333333'
+  ],
+  'R' => [
+    'content' => $this->title." วันที่ ".$dates." - ".$datee,
+  ],
+  'line' => true,
+];
+
+?>
+   <?php if(isset($dataProvider1)&&isset($dataProvider2)&&isset($dataProvider3)):?>
  
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"สถานภาพ ".$dates." - ".$datee],
+        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"สถานภาพ ".$dates." - ".$datee],
+      'responsive'=>true,
+             'hover'=>true,
+             'exportConfig' => [
+                   GridView::CSV => ['label' => 'Export as CSV', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+                   GridView::HTML => ['label' => 'Export as HTML', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+                   GridView::PDF => ['label' => 'Export as PDF', 'filename' => "สถานภาพ ".$dates." - ".$datee, 'config' =>[ 'methods' => [
+                       'SetHeader' => [['odd' => $pdfHeader, 'even' => $pdfHeader]],
+          'SetFooter' => [['odd' => $pdfHeader, 'even' => $pdfHeader]]
+         ],],],
+                   GridView::EXCEL=> ['label' => 'Export as EXCEL', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+                   GridView::TEXT=> ['label' => 'Export as TEXT', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+                ],
+                'export' => [
+                   'fontAwesome' => true
+                ],  
+    
        
     ]); ?>
     <?= GridView::widget([

@@ -15,6 +15,10 @@ $config = [
     'layoutPath'=>'@app/themes/adminLTE/layouts',
     
     'components' => [
+         'kvgrid' => [
+                'class' => 'yii\i18n\PhpMessageSource',
+                'basePath' => '@app/messages',
+            ],
 
      'urlManager' => [
             'class' => 'yii\web\UrlManager',
