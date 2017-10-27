@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน</li>
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน  <?=@$dates." - ".@$datee?></li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"สถานภาพ ".$dates." - ".$datee,'footer'=>false,'after'=>false,'before'=>false],
+        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"สถานภาพ ",'footer'=>false,'after'=>false,'before'=>false],
       'responsive'=>true,
              'hover'=>true,
 //             'exportConfig' => [
@@ -67,17 +67,25 @@ $this->params['breadcrumbs'][] = $this->title;
     
        
     ]); ?>
+               <?= GridView::widget([
+        'dataProvider' => $dataProvider4,
+        //'filterModel' => $searchModel,
+                    'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"คณะ ",'footer'=>false,'after'=>false,'before'=>false],
+    
+       
+    ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider2,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"ลักษณะการบาดเจ็บ ".$dates." - ".$datee],
+        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"ลักษณะการบาดเจ็บ ",'footer'=>false,'after'=>false,'before'=>false],
+        
        
     ]); ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider3,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"การรักษาพยาบาล ".$dates." - ".$datee],
-       
+        
+       'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"การรักษาพยาบาล ",'footer'=>false,'after'=>false,'before'=>false],
     ]); ?>
      <?php endif; ?>
 </div>

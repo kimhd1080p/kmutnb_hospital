@@ -41,8 +41,10 @@ $this->registerJsFile(
  //echo Yii::$app->NurseserviceController->action->id;
 //echo date("Y-m-d H:i:s");
 //echo Url::to(['home/logout']);
-?>
+$this->title = 'หน้าแรก';
 
+?>
+<div class="site-home">
  <div id="page-wrapper">
 			<br /><br /><br />
 			<h1 class="text-center">ระบบสารสนเทศเพื่องานพยาบาล มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</h1><br />
@@ -51,5 +53,6 @@ $this->registerJsFile(
         <!-- /#page-wrapper -->
 
     </div>
+
 
 

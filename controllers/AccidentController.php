@@ -55,10 +55,10 @@ class AccidentController extends Controller
      * @param integer $inlocattype_idinlocattype
      * @return mixed
      */
-    public function actionView($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype)
+    public function actionView($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid,  $inlocattype_idinlocattype)
     {
         return $this->render('view', [
-            'model' => $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype),
+            'model' => $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid,  $inlocattype_idinlocattype),
         ]);
     }
 
@@ -92,9 +92,9 @@ class AccidentController extends Controller
      * @param integer $inlocattype_idinlocattype
      * @return mixed
      */
-    public function actionUpdate($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype)
+    public function actionUpdate($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype)
     {
-        $model = $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype);
+        $model = $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype]);
@@ -117,9 +117,9 @@ class AccidentController extends Controller
      * @param integer $inlocattype_idinlocattype
      * @return mixed
      */
-    public function actionDelete($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype)
+    public function actionDelete($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype)
     {
-        $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype)->delete();
+        $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype)->delete();
 
         return $this->redirect(['index']);
     }
@@ -137,9 +137,9 @@ class AccidentController extends Controller
      * @return Accident the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $nurse_id, $inlocattype_idinlocattype)
+    protected function findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid,  $inlocattype_idinlocattype)
     {
-        if (($model = Accident::findOne(['idaccident' => $idaccident, 'accidenttype_idaccidenttype' => $accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $medicaltreatment_idmedicaltreatment, 'p_pid' => $p_pid, 'p_sid' => $p_sid, 'nurse_id' => $nurse_id, 'inlocattype_idinlocattype' => $inlocattype_idinlocattype])) !== null) {
+        if (($model = Accident::findOne(['idaccident' => $idaccident, 'accidenttype_idaccidenttype' => $accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $medicaltreatment_idmedicaltreatment, 'p_pid' => $p_pid, 'p_sid' => $p_sid,  'inlocattype_idinlocattype' => $inlocattype_idinlocattype])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

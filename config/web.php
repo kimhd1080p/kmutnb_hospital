@@ -7,14 +7,21 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'aliases' => [
-        '@mdm/admin' => '@app/vendor/mdmsoft/yii2-admin',
-        // for example: '@mdm/admin' => '@app/extensions/mdm/yii2-admin-2.0.0',
+   'aliases' => [
+       '@mdm/admin' => '@app/vendor/mdmsoft/yii2-admin',
+       // for example: '@mdm/admin' => '@app/extensions/mdm/yii2-admin-2.0.0',
     ],
-    'layout'=>'column2',
-    'layoutPath'=>'@app/themes/adminLTE/layouts',
+//   'layout'=>'left',
+   'layoutPath'=>'@app/themes/adminLTE/layouts',
     
     'components' => [
+        'assetManager' => [
+        'bundles' => [
+            'dmstr\web\AdminLteAsset' => [
+                'skin' => 'skin-blue',
+            ],
+        ],
+    ],
          'kvgrid' => [
                 'class' => 'yii\i18n\PhpMessageSource',
                 'basePath' => '@app/messages',
@@ -36,8 +43,10 @@ $config = [
 
          'view' => [
             'theme' => [
-                'pathMap' => ['@app/views' => '@app/themes/adminLTE'],
-                'baseUrl' => '@web/../themes/adminLTE',
+                 'pathMap' => [
+                '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+             ],
+                //'baseUrl' => '@web/../themes/adminLTE',
             ],
         ],
 

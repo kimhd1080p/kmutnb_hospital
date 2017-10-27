@@ -18,9 +18,16 @@ use Yii;
  * @property string $p_allegy
  * @property string $p_disease
  * @property string $documentindex
- * @property string $department_id
- * @property integer $studentclass_id
  * @property integer $status_id
+ * @property integer $department_id
+ * @property integer $studentclass_id
+ *
+ * @property Accident[] $accidents
+ * @property Appointment[] $appointments
+ * @property Casepatient[] $casepatients
+ * @property Studentclass $studentclass
+ * @property Department $department
+ * @property Status $status
  */
 class Patient extends \yii\db\ActiveRecord
 {
@@ -39,14 +46,17 @@ class Patient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['p_pid', 'p_sid'], 'required'],
-            [['p_pid', 'p_sid', 'studentclass_id', 'status_id'], 'integer'],
-            [['p_birthday','ps'], 'safe'],
+            [['p_pid', 'p_sid', 'status_id', 'department_id','ps'], 'required'],
+            [['p_pid', 'p_sid', 'status_id', 'studentclass_id'], 'integer'],
+            [['p_birthday'], 'safe'],
+            [['department_id'], 'string', 'max' => 10],
             [['p_name', 'p_surname', 'documentindex'], 'string', 'max' => 45],
             [['sex'], 'string', 'max' => 10],
             [['p_address', 'p_allegy', 'p_disease'], 'string', 'max' => 100],
             [['p_tel'], 'string', 'max' => 15],
-            [['department_id'], 'string', 'max' => 11],
+            [['studentclass_id'], 'exist', 'skipOnError' => true, 'targetClass' => Studentclass::className(), 'targetAttribute' => ['studentclass_id' => 'studentclass_id']],
+            [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'iddepartment']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'status_id']],
         ];
     }
 
@@ -67,13 +77,17 @@ class Patient extends \yii\db\ActiveRecord
             'p_allegy' => 'ประวัติแพ้ยา',
             'p_disease' => 'โรคประจำตัว',
             'documentindex' => 'ที่เก็บเอกสาร',
+            'status_id' => 'สถานภาพ',
             'department_id' => 'ภาควิชา/ส่วนงาน',
             'studentclass_id' => 'ระดับชั้น',
-            'status_id' => 'สถานภาพ',
+            'ps'=>'ค้นหา'
         ];
     }
-    
-        public function getAccidents()
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccidents()
     {
         return $this->hasMany(Accident::className(), ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']);
     }

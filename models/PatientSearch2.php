@@ -149,9 +149,11 @@ Yii::$app->getSession()->setFlash('alert', [
 }
 if($code==2){
     $sex='';
+    $status='';
       if($data['pre_name_th']=='นาย')$sex='ชาย';
       if($data['pre_name_th']=='นาง')$sex='หญิง';
       if($data['pre_name_th']=='นางสาว')$sex='หญิง';
+       if($data['position_duty_id']==5)$status=2;else{$status=3;}
 Yii::$app->db->createCommand()->insert('patient', [
     'p_pid' => $data['pid'],
     'p_sid' => $data['pid'],
@@ -160,7 +162,7 @@ Yii::$app->db->createCommand()->insert('patient', [
     'sex' => $sex,
     'p_birthday' => $data['birthday'],
     'department_id' => $data['agencies_part_id'],
-    'status_id' => 2,
+    'status_id' => $status,
 
 ])->execute();      
 
@@ -199,7 +201,7 @@ Yii::$app->getSession()->setFlash('alert', [
    'duration' => 5000,
     'icon' => 'fa fa-users',
      'message' => 'ชื่อ คุณ'.$data['name'].' '.$data['surname'],
-     'title' => 'รายงานการเพิ่มข้อมูลเข้ามาในระบบจาก นักศึกษาแลกเปลี่ยน',
+     'title' => 'รายงานการเพิ่มข้อมูลเข้ามาในระบบจาก ฐานข้อมูลนักศึกษาแลกเปลี่ยน',
  'positonY' => 'top',
   'positonX' => 'right'
     ]);

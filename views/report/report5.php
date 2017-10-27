@@ -30,20 +30,44 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"สถานภาพ ".$dates." - ".$datee],
+        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"สถานภาพ ",'footer'=>false,'after'=>false,'before'=>false],
+      'responsive'=>true,
+             'hover'=>true,
+//             'exportConfig' => [
+//                   GridView::CSV => ['label' => 'Export as CSV', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+//                   GridView::HTML => ['label' => 'Export as HTML', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+//                   GridView::PDF => ['label' => 'Export as PDF', 'filename' => "สถานภาพ ".$dates." - ".$datee, 'config' =>[ 'methods' => [
+//                       'SetHeader' => [['odd' => $pdfHeader, 'even' => $pdfHeader]],
+//          'SetFooter' => [['odd' => $pdfHeader, 'even' => $pdfHeader]]
+//         ],],],
+//                   GridView::EXCEL=> ['label' => 'Export as EXCEL', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+//                   GridView::TEXT=> ['label' => 'Export as TEXT', 'filename' => "สถานภาพ ".$dates." - ".$datee],
+//                ],
+//                'export' => [
+//                   'fontAwesome' => true
+//                ],  
+    
+       
+    ]); ?>
+               <?= GridView::widget([
+        'dataProvider' => $dataProvider4,
+        //'filterModel' => $searchModel,
+                    'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"คณะ ",'footer'=>false,'after'=>false,'before'=>false],
+    
        
     ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider2,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"ลักษณะการบาดเจ็บ ".$dates." - ".$datee],
+        'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"ลักษณะการบาดเจ็บ ",'footer'=>false,'after'=>false,'before'=>false],
+        
        
     ]); ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider3,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"การรักษาพยาบาล ".$dates." - ".$datee],
-       
+        
+       'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"การรักษาพยาบาล ",'footer'=>false,'after'=>false,'before'=>false],
     ]); ?>
      <?php endif; ?>
 </div>

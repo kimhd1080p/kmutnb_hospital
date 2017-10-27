@@ -25,7 +25,7 @@ class ReportController extends \yii\web\Controller
             ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
             , count(sex) as รวม
             
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid 
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid 
 and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
                 
         try {
@@ -56,7 +56,7 @@ and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEE
 ,count(case when `casetype_idcasetype` like '%M%' then 1 else null end) as ปวดหู
 ,count(case when `casetype_idcasetype` like '%N%' then 1 else null end) as stress
 ,count(case when `casetype_idcasetype` like '%O%' then 1 else null end) as อื่นๆ
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
             
@@ -82,7 +82,7 @@ count(case when `idservices` like '%A%' then 1 else null end) as เบิกย
 ,count(case when `idservices` like '%I%' then 1 else null end) as พบแพทย์
 ,count(case when `idservices` like '%J%' then 1 else null end) as เศษเหล็ก
 ,count(case when `idservices` like '%K%' then 1 else null end) as อื่นๆ
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
             
@@ -114,7 +114,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
 ,count(case when `casetype_idcasetype` like '%ถ%' then 1 else null end) as โรคเลือดต่างๆ
 ,count(case when `casetype_idcasetype` like '%ท%' then 1 else null end) as ไส้ติ่งอักเสษ
 ,count(case when `casetype_idcasetype` like '%ธ%' then 1 else null end) as เริม
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
         try {
             $rawData4= \yii::$app->db->createCommand($sql4)->queryAll();
             
@@ -154,7 +154,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
             ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
             , count(sex) as รวม
             
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid 
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid  and p.p_sid=c.p_sid 
 and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
                 
         try {
@@ -185,7 +185,7 @@ and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam)
 ,count(case when `casetype_idcasetype` like '%M%' then 1 else null end) as ปวดหู
 ,count(case when `casetype_idcasetype` like '%N%' then 1 else null end) as stress
 ,count(case when `casetype_idcasetype` like '%O%' then 1 else null end) as อื่นๆ
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend' AND ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend' AND ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
             
@@ -211,7 +211,7 @@ count(case when `idservices` like '%A%' then 1 else null end) as เบิกย
 ,count(case when `idservices` like '%I%' then 1 else null end) as พบแพทย์
 ,count(case when `idservices` like '%J%' then 1 else null end) as เศษเหล็ก
 ,count(case when `idservices` like '%K%' then 1 else null end) as อื่นๆ
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
             
@@ -244,7 +244,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN 
 ,count(case when `casetype_idcasetype` like '%ถ%' then 1 else null end) as โรคเลือดต่างๆ
 ,count(case when `casetype_idcasetype` like '%ท%' then 1 else null end) as ไส้ติ่งอักเสษ
 ,count(case when `casetype_idcasetype` like '%ธ%' then 1 else null end) as เริม
-FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DATE(timestam) BETWEEN '$datestart' AND '$dateend'and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData4= \yii::$app->db->createCommand($sql4)->queryAll();
             
@@ -398,7 +398,7 @@ FROM casepatient c, nurse n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$
             ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
             , count(sex) as รวม
             
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type
 and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
                 
         try {
@@ -424,7 +424,7 @@ and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEE
             ,count(case when `accidenttype_idaccidenttype` like '%8%' then 1 else null end) as 'ถูกไฟฟ้าช๊อต'
              ,count(case when `accidenttype_idaccidenttype` like '%9%' then 1 else null end) as 'อื่นๆ'
 
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
             
@@ -442,7 +442,7 @@ FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattyp
             ,count(case when `medicaltreatment_idmedicaltreatment` like '%2%' then 1 else null end) as 'พบแพทย์ / ส่งโรงพยาบาล'
        
 
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
             
@@ -453,7 +453,23 @@ FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattyp
             'allModels' => $rawData3,
             'pagination'=>FALSE
         ]);   
-           return $this->render('report5',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dates'=>$datestart,'datee'=>$dateend]);  
+        
+          //report 4 คณะ
+              $sql4="SELECT  
+          f.faculty as 'คณะ',COUNT(`idaccident`) as 'รวม'
+FROM accident a, patient p, faculty f,department d WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid AND f.idfaculty=d.idfaculty AND p.department_id=d.iddepartment and 
+a.inlocattype_idinlocattype=$type  and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4 GROUP BY f.idfaculty";
+        try {
+            $rawData4= \yii::$app->db->createCommand($sql4)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider4= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData4,
+            'pagination'=>FALSE
+        ]);   
+           return $this->render('report5',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dataProvider4'=>$dataProvider4, 'dates'=>$datestart,'datee'=>$dateend]);  
         }else { return $this->render('report5');}
     }
 
@@ -474,7 +490,7 @@ FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattyp
             ,count(case when `status_id` = 4 then 1 else null end) as อื่นๆ
             , count(sex) as รวม
             
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type
 and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
                 
         try {
@@ -500,7 +516,7 @@ and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam)
             ,count(case when `accidenttype_idaccidenttype` like '%8%' then 1 else null end) as 'ถูกไฟฟ้าช๊อต'
              ,count(case when `accidenttype_idaccidenttype` like '%9%' then 1 else null end) as 'อื่นๆ'
 
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData2= \yii::$app->db->createCommand($sql2)->queryAll();
             
@@ -518,7 +534,7 @@ FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattyp
             ,count(case when `medicaltreatment_idmedicaltreatment` like '%2%' then 1 else null end) as 'พบแพทย์ / ส่งโรงพยาบาล'
        
 
-FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
+FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid and a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4))";
         try {
             $rawData3= \yii::$app->db->createCommand($sql3)->queryAll();
             
@@ -529,8 +545,87 @@ FROM `accident` a,patient p WHERE p.p_pid=a.p_pid and a.inlocattype_idinlocattyp
             'allModels' => $rawData3,
             'pagination'=>FALSE
         ]);   
-           return $this->render('report6',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dates'=>$datestart,'datee'=>$dateend]);  
+        
+        //report 4 คณะ
+              $sql4="SELECT  
+          f.faculty as 'คณะ',COUNT(`idaccident`) as 'รวม'
+FROM accident a, patient p, faculty f,department d WHERE p.p_pid=a.p_pid and p.p_sid=a.p_sid AND f.idfaculty=d.idfaculty AND p.department_id=d.iddepartment and 
+a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY f.idfaculty";
+        try {
+            $rawData4= \yii::$app->db->createCommand($sql4)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider4= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData4,
+            'pagination'=>FALSE
+        ]);   
+           return $this->render('report6',['dataProvider1'=>$dataProvider1,'dataProvider2'=>$dataProvider2,'dataProvider3'=>$dataProvider3,'dataProvider4'=>$dataProvider4,'dates'=>$datestart,'datee'=>$dateend]);  
         }else { return $this->render('report6');}
     }
+    
+    public function actionReport7() //รายงานการจ่ายยาในเวลา
+    {
+  
+        $request = Yii::$app->request;
+        if($request->post('startdate')&&$request->post('enddate')&&$request->post('type')){
+            $datestart=$request->post('startdate');
+            $dateend=$request->post('enddate');
+            $type=$request->post('type');
+                  $sql1="SELECT medicine as 'ชื่อยา' , sum(qty) as 'รวม' , package as 'บรรจุภัณฑ์' FROM medicine m, medicinetype mt, casemedicine cm, medicinepackage mp, casepatient cp  WHERE 
+                          m.idmedicinetype=mt.idmedicinetype and m.idmedicine=cm.idmedicine and cm.medicinepackage_id=mp.id and m.idmedicinetype=$type and cp.idcase=cm.idcase
+                         and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY m.idmedicine ,cm.medicinepackage_id";
+                
+        try {
+            $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider1= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData1,
+            'pagination'=>FALSE
+        ]);
+        
+
+     
+        
+      
+           return $this->render('report7',['dataProvider1'=>$dataProvider1,'type'=>$type,'dates'=>$datestart,'datee'=>$dateend]);  
+        }else { return $this->render('report7');}
+    }
+    
+    public function actionReport8() //รายงานการจ่ายยานอกเวลา
+    {
+  
+        $request = Yii::$app->request;
+        if($request->post('startdate')&&$request->post('enddate')&&$request->post('type')){
+            $datestart=$request->post('startdate');
+            $dateend=$request->post('enddate');
+            $type=$request->post('type');
+                  $sql1="SELECT medicine as 'ชื่อยา' , sum(qty) as 'รวม' , package as 'บรรจุภัณฑ์' FROM medicine m, medicinetype mt, casemedicine cm, medicinepackage mp, casepatient cp  WHERE 
+                          m.idmedicinetype=mt.idmedicinetype and m.idmedicine=cm.idmedicine and cm.medicinepackage_id=mp.id and m.idmedicinetype=$type and cp.idcase=cm.idcase
+                          and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(cp.timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(cp.timestam) BETWEEN 0 AND 4 GROUP BY m.idmedicine ,cm.medicinepackage_id";
+                
+        try {
+            $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider1= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData1,
+            'pagination'=>FALSE
+        ]);
+        
+
+     
+        
+      
+           return $this->render('report8',['dataProvider1'=>$dataProvider1,'type'=>$type,'dates'=>$datestart,'datee'=>$dateend]);  
+        }else { return $this->render('report8');}
+    }
+
 
 }
