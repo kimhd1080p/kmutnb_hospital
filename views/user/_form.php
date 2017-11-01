@@ -21,9 +21,9 @@ use app\models\Nursetype;
 <?= $form->field($model, 'id')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    
+   
 
-    <?= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_hash')->passwordInput(['maxlength' => true]) ?>
 
      <?= $form->field($model, 'u_name')->textInput(['maxlength' => true]) ?>
 

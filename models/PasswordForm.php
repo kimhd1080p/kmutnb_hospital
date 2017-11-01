@@ -22,7 +22,8 @@
             $user = User::find()->where([
                 'username'=>Yii::$app->user->identity->username
             ])->one();
-            $password = $user->password_hash;
+          
+          $password = Yii::$app->getSecurity()->validatePassword($this->oldpass, $user->password_hash);
             if($password!=$this->oldpass)
                 $this->addError($attribute,'Old password is incorrect');
         }

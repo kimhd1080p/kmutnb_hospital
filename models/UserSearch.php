@@ -58,14 +58,14 @@ class UserSearch extends User
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        $query->andWhere(['type' => 1,])->orWhere(['type' => 2,])->orWhere(['type' => 3,])->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'type' => $this->type,
+           
+       
+            
         ]);
 
+        if(Yii::$app->user->identity->type==4){$query->orWhere(['type' => 4,]);}
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])

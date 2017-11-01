@@ -57,8 +57,8 @@ $this->params['breadcrumbs'][''] = $this->title;
           </div>
         </div>
               
-              <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
+<!--              <div class="col-lg-3 col-xs-6">
+           small box 
           <div class="small-box bg-green">
             <div class="inner">
               <h3>กำหนดสิทธิ์</h3>
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
-        </div>
+        </div>-->
           
            <div class="col-lg-3 col-xs-6">
           <!-- small box -->

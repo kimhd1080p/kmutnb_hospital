@@ -118,6 +118,7 @@ class HomeController extends Controller
             if($model->validate()){
                 try{
                     $modeluser->password_hash = $_POST['PasswordForm']['newpass'];
+                    $modeluser->password_hash=Yii::$app->security->generatePasswordHash($modeluser->password_hash);
                     if($modeluser->save()){
                       Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',

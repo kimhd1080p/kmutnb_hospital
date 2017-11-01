@@ -8,7 +8,7 @@ use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\db\Exception;
+
 /**
  * UserController implements the CRUD actions for User model.
  */
@@ -65,8 +65,9 @@ class UserController extends Controller
     {
         $model = new User();
        
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password_hash=Yii::$app->security->generatePasswordHash($model->password_hash);
+            if($model->save()){
             Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
@@ -92,7 +93,7 @@ class UserController extends Controller
             ->execute();
    }
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            } } else {
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -109,12 +110,23 @@ class UserController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            
+            $user = User::find()->where([
+                'id'=>$id
+            ])->one();
+            if($user->password_hash==$model->password_hash){
+                $model->password_hash=$user->password_hash;
+            }else{
+                $model->password_hash=Yii::$app->security->generatePasswordHash($model->password_hash);
+            }
+                
+            if($model->save()){
             
             $id=$model->id;
-              $time=Yii::$app->formatter->asTimestamp(date('Y-d-m h:i:s'));
+              
             if($model->type==1){
-   $auth_assignment = Yii::$app->db->createCommand("UPDATE `auth_assignment` SET `item_name`='Boos' WHERE `user_id`='$id'")
+   $auth_assignment = Yii::$app->db->createCommand("UPDATE `auth_assignment` SET `item_name`='Boss' WHERE `user_id`='$id'")
             ->execute();
    }
    if($model->type==2){
@@ -127,7 +139,7 @@ $auth_assignment = Yii::$app->db->createCommand("UPDATE `auth_assignment` SET `i
    }
    
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            }  } else {
             return $this->render('update', [
                 'model' => $model,
             ]);

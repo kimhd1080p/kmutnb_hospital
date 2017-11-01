@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-
+use Yii;
 use yii\db\ActiveRecord;
 /**
  * This is the model class for table "user".
@@ -23,6 +23,7 @@ use yii\db\ActiveRecord;
  */
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
+     
     /**
      * @inheritdoc
      */
@@ -48,6 +49,7 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 256],
             [['u_name'], 'string', 'max' => 70],
             [['mobilephone'], 'string', 'max' => 13],
+            
         ];
     }
 public function is13NumbersOnly($attribute)
@@ -177,6 +179,6 @@ public function validateAuthKey($authKey) {
  * @return boolean if password provided is valid for current user
  */
 public function validatePassword($password) {
-    return $this->password_hash === $password;
+     return Yii::$app->getSecurity()->validatePassword($password, $this->password_hash);
 }
 }
