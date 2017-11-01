@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Casetype;
 use app\models\Services;
 use app\models\Doctor;
-use app\models\Nurse;
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\CasePatient */
 /* @var $form yii\widgets\ActiveForm */
@@ -42,15 +42,14 @@ use app\models\Nurse;
             ) ?>
 
  <?= $form->field($model, 'iddoctor')->dropDownList(
-            ArrayHelper::map(Doctor::find()->where(['d_status' => 1])->asArray()->all(), 'iddoctor', 'doctor')
+            ArrayHelper::map(Doctor::find()->where(['d_status' => 1])->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
             ) ?>
 <br />
     <?php //$model->dispense = 0; ?>
 <?php //$form->field($model, 'dispense')->checkbox(); ?>
 
-
-    <?= $form->field($model, 'nurse_id')->dropDownList(
-            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 1,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+   <?= $form->field($model, 'nurse_id')->dropDownList(
+            ArrayHelper::map(User::find()->where(['type' => 2,'status' => 10])->asArray()->all(), 'id', 'u_name'),['prompt'=>'เลือก']
             ) ?>
 <br />
     <div class="form-group">

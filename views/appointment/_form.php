@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Casedoctortype;
 use app\models\Doctor;
-use app\models\Nurse;
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
 /* @var $form yii\widgets\ActiveForm */
@@ -60,8 +60,8 @@ $this->registerJsFile(
     <?= $form->field($model, 'doctor_iddoctor')->textInput()  ->dropDownList(
             ArrayHelper::map(Doctor::find()->where(['d_status' => 1])->asArray()->all(), 'iddoctor', 'doctor'),['prompt'=>'เลือก']
             ) ?>
-    <?= $form->field($model, 'nurse_id')->dropDownList(
-            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 1,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+     <?= $form->field($model, 'nurse_id')->dropDownList(
+            ArrayHelper::map(User::find()->where(['type' => 2,'status' => 10])->asArray()->all(), 'id', 'u_name'),['prompt'=>'เลือก']
             ) ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

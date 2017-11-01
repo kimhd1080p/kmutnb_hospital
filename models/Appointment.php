@@ -48,8 +48,8 @@ class Appointment extends \yii\db\ActiveRecord
             [['nurse_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'required'],
             [['doctor_iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['doctor_iddoctor' => 'iddoctor']],
             [['patient_p_pid', 'patient_p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['patient_p_pid' => 'p_pid', 'patient_p_sid' => 'p_sid']],
-            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
-            [['nurse_id2'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
+            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
+            [['nurse_id2'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
         ];
     }
 
@@ -123,12 +123,12 @@ class Appointment extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNurse()
+    public function getUser()
     {
-        return $this->hasOne(Nurse::className(), ['id' => 'nurse_id']);
+        return $this->hasOne(User::className(), ['id' => 'nurse_id']);
     }
-     public function getNurse1()
+     public function getUser1()
     {
-        return $this->hasOne(Nurse::className(), ['id' => 'nurse_id2']);
+        return $this->hasOne(User::className(), ['id' => 'nurse_id2']);
     }
 }

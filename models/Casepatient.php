@@ -46,12 +46,12 @@ class Casepatient extends \yii\db\ActiveRecord
         return [
             [['timestam','idservices', 'casetype_idcasetype',], 'safe'],
             [['dispense',  'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'integer'],
-            [['idservices', 'casetype_idcasetype', 'iddoctor', 'p_pid', 'p_sid', 'nurse_id'], 'required'],
+            [['idservices', 'casetype_idcasetype', 'p_pid', 'p_sid', 'nurse_id'], 'required'],
             [['case_detail'], 'string',],
            
-            [['iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['iddoctor' => 'iddoctor']],
+          
             [['p_pid', 'p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']],
-            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => Nurse::className(), 'targetAttribute' => ['nurse_id' => 'id']],
+            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
             
               
         ];
@@ -164,10 +164,9 @@ public function servicesToArray()
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNurse()
+     public function getUser()
     {
-      
-        return $this->hasOne(Nurse::className(), ['id' => 'nurse_id']);;
+        return $this->hasOne(User::className(), ['id' => 'nurse_id']);
     }
 
     /**

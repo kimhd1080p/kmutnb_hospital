@@ -29,7 +29,7 @@ use yii\helpers\Html;
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 <!--                        <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>-->
                         <i class="fa fa-user-circle-o text-white"></i>
-                        <span class="hidden-xs"><?=Yii::$app->user->identity->u_name . "  " . Yii::$app->user->identity->u_surname?></span>
+                        <span class="hidden-xs"><?=Yii::$app->user->identity->u_name ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -39,7 +39,7 @@ use yii\helpers\Html;
 
                             <p>
                                 
-                               <?=Yii::$app->user->identity->u_name . "  " . Yii::$app->user->identity->u_surname?>
+                               <?=Yii::$app->user->identity->u_name ?>
                             </p>
                         </li>
                         <!-- Menu Body -->

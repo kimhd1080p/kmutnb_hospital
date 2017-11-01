@@ -48,8 +48,9 @@ class Nursetype extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getNurses()
+ 
+     public function getUser()
     {
-        return $this->hasMany(Nurse::className(), ['usertype_ut_id' => 'ut_id']);
+        return $this->hasMany(User::className(), ['id' => 'ut_id']);
     }
 }

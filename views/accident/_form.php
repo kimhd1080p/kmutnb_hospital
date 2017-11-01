@@ -6,7 +6,7 @@ use yii\helpers\ArrayHelper;
 use app\models\Accidenttype;
 use app\models\Inlocattype;
 use app\models\Medicaltreatment;
-use app\models\Nurse;
+use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Accident */
 /* @var $form yii\widgets\ActiveForm */
@@ -58,7 +58,7 @@ $this->registerJsFile(
     <?= $form->field($model, 'p_sid')->hiddenInput(['maxlength' => true,'value' => $session['sid'],])->label(false);  ?>
 
    <?= $form->field($model, 'nurse_id')->dropDownList(
-            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 1,'n_status' => 1])->asArray()->all(), 'id', 'name'),['prompt'=>'เลือก']
+            ArrayHelper::map(User::find()->where(['type' => 2,'status' => 10])->asArray()->all(), 'id', 'u_name'),['prompt'=>'เลือก']
             ) ?>
 
         <?= $form->field($model, 'note')->textInput(['maxlength' => true]) ?>

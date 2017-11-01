@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'timestam',
    [  
         'label' => 'ผู้บันทึก',
-        'value' => $model->nurse->name." สายงาน".$model->nurse->nursetype->type ,
+                'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
         ],
     ]) ?>

@@ -25,20 +25,40 @@ $this->params['breadcrumbs'][] = $this->title;
             'casetypevalue',
             'detial:ntext',
             'appointment_time',
-            'medical_certificate',
-            
-            'todoctor',
+                 'patient.documentindex',
+[
+    'label' => 'ขอใบรับรองแพทย์',
+    'format' => 'raw',
+    'value' => function ($model) {
+        if ($model->medical_certificate === 1) {
+            return 'ใช่'; // "x" icon in red color
+        } else {
+            return 'ไม่ใช่'; // check icon 
+        }
+    },
+],
+            [
+    'label' => 'พบแพทย์แล้ว',
+    'format' => 'raw',
+    'value' => function ($model) {
+        if ($model->todoctor === 1) {
+            return '<i class="fa fa-check-square"></i>'; // "x" icon in red color
+        } else {
+            return '<i class="fa fa-times"></i>'; // check icon 
+        }
+    },
+],
              
            [  
-        'label' => 'ผู้ให้บริการ',
-        'value' => $model->nurse->name." ".$model->nurse->nursetype->type ,
+      'label' => 'ผู้ให้บริการ',
+        'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
             [  
         'label' => 'ผู้ยืนยันนัด',
-        'value' => @$model->nurse1->name." ".@$model->nurse1->nursetype->type ,
+        'value' => @$model->user1->u_name." ".@$model->user1->nursetype->type ,
     ],
             
-              'patient.documentindex',
+          
             'doctor.doctor',
             'timestam',
         ],

@@ -72,12 +72,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ],
              
             [  
-        'label' => 'ผู้ให้บริการ',
-        'value' => $model->nurse->name." ".$model->nurse->nursetype->type ,
+       'label' => 'ผู้ให้บริการ',
+        'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
             [  
         'label' => 'ผู้ยืนยันนัด',
-        'value' => @$model->nurse1->name." ".@$model->nurse1->nursetype->type ,
+        'value' => @$model->user1->u_name." ".@$model->user1->nursetype->type ,
     ],
             
              

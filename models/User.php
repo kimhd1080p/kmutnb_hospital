@@ -1,16 +1,15 @@
 <?php
 
 namespace app\models;
-use Yii;
-use yii\db\ActiveRecord;
 
+
+use yii\db\ActiveRecord;
 /**
  * This is the model class for table "user".
  *
  * @property integer $id
  * @property string $username
  * @property string $auth_key
- * @property string $accessToken
  * @property string $password_hash
  * @property string $password_reset_token
  * @property string $email
@@ -19,13 +18,9 @@ use yii\db\ActiveRecord;
  * @property integer $updated_at
  * @property string $u_name
  * @property string $u_surname
- *
- * @property Appointment[] $appointments
- * @property CasePatient[] $casePatients
+ * @property string $mobilephone
+ * @property integer $type
  */
-
-
-
 class User extends ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
@@ -42,41 +37,57 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'password_hash', 'email', 'u_name', 'u_surname'], 'required'],
-            [['status', 'created_at', 'updated_at',], 'integer'],
+            [['username', 'password_hash', 'u_name', 'type', 'id'], 'required'],
+            [['username','id'], 'unique'],
+            [['status', 'created_at', 'updated_at', 'type'], 'integer'],
+            //[['id'], 'integer', 'min' => 13],
+             //[['id'], 'integer', 'max' => 14],
+           ['id', 'is13NumbersOnly'],
+            ['email', 'email'],
             [['username', 'auth_key'], 'string', 'max' => 32],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 256],
-            [['u_name', 'u_surname'], 'string', 'max' => 45],
-            
+            [['u_name'], 'string', 'max' => 70],
+            [['mobilephone'], 'string', 'max' => 13],
         ];
     }
-
+public function is13NumbersOnly($attribute)
+{
+    if (!preg_match('/^[0-9]{13}$/', $this->$attribute)) {
+        $this->addError($attribute, 'กรุณาใส่ตัวเลข 13 หลัก');
+    }
+}
     /**
      * @inheritdoc
      */
-   public function attributeLabels()
+    public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => 'รหัสบัตรประชาชน',
             'username' => 'บัญชีผู้ใช้',
             'auth_key' => 'Auth Key',
             'password_hash' => 'รหัสผ่าน',
             'password_reset_token' => 'Password Reset Token',
             'email' => 'อีเมล',
-            'status' => 'Status',
+            'status' => 'ใช้งาน',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
-            'u_name' => 'ชื่อ',
-            'u_surname' => 'นามสุล',
-            
+            'u_name' => 'ชื่อ-นามสกุล',
+            'mobilephone' => 'เบอร์โทร',
+            'type' => 'ตำแหน่ง',
         ];
     }
+    
+    public function getAccidents()
+    {
+        return $this->hasMany(Accident::className(), ['nurse_id' => 'id']);
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getAppointments()
     {
-        return $this->hasMany(Appointment::className(), ['user_id' => 'id']);
+        return $this->hasMany(Appointment::className(), ['nurse_id' => 'id']);
     }
 
     /**
@@ -84,12 +95,16 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public function getCasepatients()
     {
-        return $this->hasMany(Casepatient::className(), ['user_id' => 'id']);
+        return $this->hasMany(Casepatient::className(), ['nurse_id' => 'id']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
+       public function getNursetype()
+    {
+        return $this->hasOne(Nursetype::className(), ['ut_id' => 'type']);
+    }
     
 
     public static function findIdentity($id) {

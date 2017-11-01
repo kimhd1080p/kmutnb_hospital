@@ -4,7 +4,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\Nurse;
+use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
@@ -19,7 +19,7 @@ use app\models\Nurse;
     
 
    <?= $form->field($model, 'nurse_id2')->dropDownList(
-            ArrayHelper::map(Nurse::find()->where(['usertype_ut_id' => 2,'n_status' => 1])->asArray()->all(), 'id', 'name'),[
+            ArrayHelper::map(User::find()->where(['type' => 3,'status' => 10])->asArray()->all(), 'id', 'u_name'),[
                 
                 ]
             ) ?>

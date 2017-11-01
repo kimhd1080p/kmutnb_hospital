@@ -277,7 +277,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DA
         if($request->post('startdate')&&$request->post('enddate')){
             $datestart=$request->post('startdate');
             $dateend=$request->post('enddate');
-                  $sql1="SELECT  s.name as 'ชื่อ-สกุล',s.A as เบิกยา ,s.B as ทำแผล,
+                  $sql1="SELECT  s.u_name as 'ชื่อ-สกุล',s.A as เบิกยา ,s.B as ทำแผล,
 s.C as แนะนำ,
 s.D as ส่งโรงพยาบาล,
 s.E as หยอดตาล้างตา,
@@ -288,7 +288,7 @@ s.I as พบแพทย์,
 s.J as เศษเหล็ก,
 s.K as อื่นๆ,
 sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
- FROM(SELECT nurse_id,name,timestam
+ FROM(SELECT nurse_id,u_name,timestam
 ,count(case when `idservices` like '%A%' then 1 else null end) as A
 ,count(case when `idservices` like '%B%' then 1 else null end) as B
 ,count(case when `idservices` like '%C%' then 1 else null end) as C
@@ -300,7 +300,7 @@ sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
 ,count(case when `idservices` like '%I%' then 1 else null end) as I
 ,count(case when `idservices` like '%J%' then 1 else null end) as J
 ,count(case when `idservices` like '%K%' then 1 else null end) as K
-FROM casepatient c, nurse n WHERE c.nurse_id=n.id and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4 GROUP BY c.nurse_id ) s  
+FROM casepatient c, user n WHERE c.nurse_id=n.id and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(timestam) BETWEEN 0 AND 4 GROUP BY c.nurse_id ) s  
   GROUP BY s.nurse_id";
                 
         try {
@@ -333,7 +333,7 @@ FROM casepatient c, nurse n WHERE c.nurse_id=n.id and DATE(timestam) BETWEEN '$d
         if($request->post('startdate')&&$request->post('enddate')){
             $datestart=$request->post('startdate');
             $dateend=$request->post('enddate');
-                  $sql1="SELECT  s.name as 'ชื่อ-สกุล',s.A as เบิกยา ,s.B as ทำแผล,
+                  $sql1="SELECT  s.u_name as 'ชื่อ-สกุล',s.A as เบิกยา ,s.B as ทำแผล,
 s.C as แนะนำ,
 s.D as ส่งโรงพยาบาล,
 s.E as หยอดตาล้างตา,
@@ -344,7 +344,7 @@ s.I as พบแพทย์,
 s.J as เศษเหล็ก,
 s.K as อื่นๆ,
 sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
- FROM(SELECT nurse_id,name,timestam
+ FROM(SELECT nurse_id,u_name,timestam
 ,count(case when `idservices` like '%A%' then 1 else null end) as A
 ,count(case when `idservices` like '%B%' then 1 else null end) as B
 ,count(case when `idservices` like '%C%' then 1 else null end) as C
@@ -356,7 +356,7 @@ sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
 ,count(case when `idservices` like '%I%' then 1 else null end) as I
 ,count(case when `idservices` like '%J%' then 1 else null end) as J
 ,count(case when `idservices` like '%K%' then 1 else null end) as K
-FROM casepatient c, nurse n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY c.nurse_id) s  
+FROM casepatient c, user n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY c.nurse_id) s  
   GROUP BY s.nurse_id";
                 
         try {

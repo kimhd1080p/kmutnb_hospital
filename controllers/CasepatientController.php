@@ -67,10 +67,10 @@ protected function Patient(){
      * @param integer $user_id
      * @return mixed
      */
-    public function actionView($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id)
+    public function actionView($idcase, $p_pid, $p_sid, $nurse_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id),
+            'model' => $this->findModel($idcase, $p_pid, $p_sid, $nurse_id),
         ]);
     }
 
@@ -119,9 +119,9 @@ $model->idservices = implode(",", $model->idservices);
      * @param integer $user_id
      * @return mixed
      */
-    public function actionUpdate($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id)
+    public function actionUpdate($idcase,  $p_pid, $p_sid, $nurse_id)
     {
-        $model = $this->findModel($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id);
+        $model = $this->findModel($idcase,  $p_pid, $p_sid, $nurse_id);
                 $model->casetypeToArray();
                  $model->servicesToArray();
                 
@@ -159,9 +159,9 @@ if($model->save()){
      * @param integer $user_id
      * @return mixed
      */
-    public function actionDelete($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id)
+    public function actionDelete($idcase,  $p_pid, $p_sid, $nurse_id)
     {
-        $this->findModel($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id)->delete();
+        $this->findModel($idcase, $p_pid, $p_sid, $nurse_id)->delete();
 Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
@@ -187,9 +187,9 @@ Yii::$app->getSession()->setFlash('alert', [
      * @return Casepatient the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($idcase, $iddoctor, $p_pid, $p_sid, $nurse_id)
+    protected function findModel($idcase,  $p_pid, $p_sid, $nurse_id)
     {
-        if (($model = Casepatient::findOne(['idcase' => $idcase,  'iddoctor' => $iddoctor, 'p_pid' => $p_pid, 'p_sid' => $p_sid, 'nurse_id' => $nurse_id])) !== null) {
+        if (($model = Casepatient::findOne(['idcase' => $idcase,  'p_pid' => $p_pid, 'p_sid' => $p_sid, 'nurse_id' => $nurse_id])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
