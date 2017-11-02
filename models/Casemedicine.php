@@ -25,6 +25,7 @@ class Casemedicine extends \yii\db\ActiveRecord
 {
      public $medicinesearch;
      public $medicinename;
+     public $qtyprint; //จำนวนซองที่จะพิมพ์
     /**
      * @inheritdoc
      */
@@ -40,7 +41,7 @@ class Casemedicine extends \yii\db\ActiveRecord
     {
         return [
             [['idcase', 'idmedicine', 'medicinepackage_id', 'qty'], 'required'],
-            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty','medicinesearch'], 'integer'],
+            [['idcase', 'idmedicine', 'medicinepackage_id', 'qty','medicinesearch','qtyprint'], 'integer'],
             [['expired_date','medicinesearch','medicinename'], 'safe'],
             [['properties'], 'string', 'max' => 70],
             [['howto', 'note'], 'string', 'max' => 45],
@@ -67,6 +68,7 @@ class Casemedicine extends \yii\db\ActiveRecord
             'note' => 'หมายเหตุ',
             'medicinesearch' => 'รหัสยา',
             'medicinename' => 'ชื่อยา',
+            'qtyprint' => 'จำนวนสติ๊กเกอร์ ',
         ];
     }
 

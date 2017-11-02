@@ -48,7 +48,6 @@ class Accident extends \yii\db\ActiveRecord
             [['inlocattype_idinlocattype'], 'exist', 'skipOnError' => true, 'targetClass' => Inlocattype::className(), 'targetAttribute' => ['inlocattype_idinlocattype' => 'idinlocattype']],
             [['medicaltreatment_idmedicaltreatment'], 'exist', 'skipOnError' => true, 'targetClass' => Medicaltreatment::className(), 'targetAttribute' => ['medicaltreatment_idmedicaltreatment' => 'idmedicaltreatment']],
             [['p_pid', 'p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['p_pid' => 'p_pid', 'p_sid' => 'p_sid']],
-            [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
         ];
     }
 

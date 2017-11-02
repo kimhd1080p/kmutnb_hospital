@@ -127,7 +127,7 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
 //            'home/*',
-         'home/*',
+ //        'home/*',
  //           'admin/*',
 //            'debug/*',
 //            'gii/*',

@@ -156,5 +156,22 @@ class CasemedicineController extends Controller
         ]);
         //return $this->redirect('printmedicine');
     }
+    //พิมพ์ซองยา
+    public function actionPrintsonga()
+    {
+       
+      $model = new Casemedicine();
+      if ($model->load(Yii::$app->request->post())) {
+            return $this->renderAjax('printsonga2', [
+                'model' => $model,
+            ]);
+      }else{
+       return $this->render('printsonga', [
+                'model' => $model,
+            ]);
+    }
+    }
+    
+    
     
 }

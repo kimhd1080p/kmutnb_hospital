@@ -1,8 +1,13 @@
 <?php
-$this->registerCss("body { width: 70mm; height: 90mm; } table{text-align:center;} } ");
+$this->registerCss("body { width: 70mm; line-height: 150%; } table{text-align:center;} } ");
 $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-height:normal; sans-serif; font-size: 12pt}");
  $session = Yii::$app->session;
+ for($i=0;$i<$model->qtyprint;$i++){
+     if($i>0){
 ?>
+<div style="color:#FFF;">.</div><div style="page-break-after: always;"></div>
+ <?php } ?>
+<hr />
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
       <td width="30%" ><span style=" text-align: right;"><img src="<?php echo Yii::getAlias('@web').'/images/kmutnb_logo.png';?>" style="width:55pt;"></span></td>
@@ -38,7 +43,7 @@ $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-heig
    
   </tr>
   <tr>
-      <td colspan="2" style=" text-align: center;"><br/><div id="barcode" ><?= $model->medicine->idmedicine ?></div> <hr /></td>
+      <td colspan="2" style=" text-align: center;"><br/><div id="barcode<?= $i?>" ><?= $model->medicine->idmedicine ?></div> </td>
    
   </tr>
    
@@ -47,11 +52,27 @@ $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-heig
 
 
 <?php
+ 
+
 $this->registerJs( <<< EOT_JS
      
      // using GET method
         
-function get_object(id) {
+
+get_object("barcode$i").innerHTML=DrawHTMLBarcode_UPCA(get_object("barcode$i").innerHTML,"yes","in",0,2,0.4,"bottom","center","","black","white");       
+
+EOT_JS
+);
+
+ } // for loop
+ 
+$this->registerJsFile(
+    '@web/js/connectcode-javascript-upca.js'
+);
+ 
+$this->registerJs( <<< EOT_JS
+ 
+   function get_object(id) {
    var object = null;
    if (document.layers) {
     object = document.layers[id];
@@ -61,16 +82,11 @@ function get_object(id) {
     object = document.getElementById(id);
    }
    return object;
-  }
-get_object("barcode").innerHTML=DrawHTMLBarcode_UPCA(get_object("barcode").innerHTML,"yes","in",0,2,0.4,"bottom","center","","black","white");       
-
-setInterval(function(){ window.history.go(-2); }, 2000);
+  }    
+setInterval(function(){ window.history.go(-1); }, 2000);
 window.print();
  
    
 EOT_JS
-);
-$this->registerJsFile(
-    '@web/js/connectcode-javascript-upca.js'
 );
 ?>

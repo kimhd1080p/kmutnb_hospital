@@ -57,6 +57,40 @@ $this->params['breadcrumbs'][''] = $this->title;
           </div>
         </div>
               
+              <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>ภาควิชา</h3>
+
+              <p>เพิ่ม ลบ แก้ไข ภาควิชา/ส่วนงาน</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <a href="<?=Url::to(['//department/index'])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+              
+              <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>คณะ</h3>
+
+              <p>เพิ่ม ลบ แก้ไข คณะ</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <a href="<?=Url::to(['//faculty/index'])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+              
 <!--              <div class="col-lg-3 col-xs-6">
            small box 
           <div class="small-box bg-green">
@@ -90,7 +124,25 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
+
           
+<div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>พิมพ์สติ๊กเกอร์ยา</h3>
+
+              <p>พิมพ์สติ๊กเกอร์ยา หลายจำนวน</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-medkit"></i>
+            </div>
+            <a href="<?=Url::to(['//casemedicine/printsonga'])?>" class="small-box-footer">
+              ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+              
           <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">

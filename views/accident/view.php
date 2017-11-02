@@ -55,6 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'medicaltreatment.medicaltreatment',
             'note',
             'timestam',
+            // 'user:u_name',
    [  
         'label' => 'ผู้บันทึก',
                 'value' => $model->user->u_name." ".$model->user->nursetype->type ,

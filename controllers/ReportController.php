@@ -575,7 +575,7 @@ a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '
             $type=$request->post('type');
                   $sql1="SELECT medicine as 'ชื่อยา' , sum(qty) as 'รวม' , package as 'บรรจุภัณฑ์' FROM medicine m, medicinetype mt, casemedicine cm, medicinepackage mp, casepatient cp  WHERE 
                           m.idmedicinetype=mt.idmedicinetype and m.idmedicine=cm.idmedicine and cm.medicinepackage_id=mp.id and m.idmedicinetype=$type and cp.idcase=cm.idcase
-                         and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY m.idmedicine ,cm.medicinepackage_id";
+                         and  DATE(cp.timestam) BETWEEN '$datestart' AND '$dateend' and TIME(cp.timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(cp.timestam) BETWEEN 0 AND 4 GROUP BY m.idmedicine ,cm.medicinepackage_id";
                 
         try {
             $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
@@ -606,7 +606,7 @@ a.inlocattype_idinlocattype=$type and (DATE(timestam) BETWEEN '$datestart' AND '
             $type=$request->post('type');
                   $sql1="SELECT medicine as 'ชื่อยา' , sum(qty) as 'รวม' , package as 'บรรจุภัณฑ์' FROM medicine m, medicinetype mt, casemedicine cm, medicinepackage mp, casepatient cp  WHERE 
                           m.idmedicinetype=mt.idmedicinetype and m.idmedicine=cm.idmedicine and cm.medicinepackage_id=mp.id and m.idmedicinetype=$type and cp.idcase=cm.idcase
-                          and DATE(timestam) BETWEEN '$datestart' AND '$dateend' and TIME(cp.timestam) BETWEEN '00:00' AND '16:00' and WEEKDAY(cp.timestam) BETWEEN 0 AND 4 GROUP BY m.idmedicine ,cm.medicinepackage_id";
+                           and (DATE(cp.timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(cp.timestam) BETWEEN 5 AND 6 and TIME(cp.timestam) BETWEEN '00:00' AND '23:59') or (TIME(cp.timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(cp.timestam) BETWEEN 0 AND 4)) GROUP BY m.idmedicine ,cm.medicinepackage_id";
                 
         try {
             $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
