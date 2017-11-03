@@ -1,7 +1,7 @@
 <?php
 $this->registerCss("body { width: 70mm; line-height: 150%; } table{text-align:center;} } ");
 $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-height:normal; sans-serif; font-size: 12pt}");
- $session = Yii::$app->session;
+ //$session = Yii::$app->session;
  for($i=0;$i<$model->qtyprint;$i++){
      if($i>0){
 ?>
@@ -18,7 +18,7 @@ $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-heig
    
   </tr>
   <tr>
-      <td colspan="2">คุณ<?= $session['pname']." ".$session['psurname'] ?></td>
+      <td colspan="2"><br />ชื่อ...............................................................</td>
    
   </tr>
    <tr>
