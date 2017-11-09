@@ -50,7 +50,7 @@ $this->registerJsFile(
     <?php // echo $form->field($model, 'doctor_iddoctor') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
         <?php // echo Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 

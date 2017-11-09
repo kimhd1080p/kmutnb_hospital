@@ -115,7 +115,7 @@ public function servicesToArray()
             'dispense' => 'จ่ายยา',
             'idservices' => 'บริการที่ได้รับ',
             'casetype_idcasetype' => 'ประเภทอาการเจ็บป่วย',
-            'iddoctor' => 'แพทย์ผู้จรวจ',
+            'iddoctor' => 'แพทย์ผู้ตรวจ',
             'p_pid' => 'รหัสบัตรประชาชน',
             'p_sid' => 'รหัสนักศึกษา',
             'nurse_id' => 'ผู้ให้บริการ',

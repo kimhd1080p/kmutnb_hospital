@@ -13,7 +13,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="patient-index">
 
-
+  <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-wheelchair"></i>เพิ่มผู้ป่วย</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -46,3 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+</div>
+</div>
+</div>
+

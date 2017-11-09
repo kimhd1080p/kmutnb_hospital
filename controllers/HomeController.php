@@ -100,10 +100,30 @@ class HomeController extends Controller
 
     public function actionIndex()
     {
+        $sql1="SELECT 
+            count(case when `status_id` = 1 then 1 else null end) as 'นักศึกษา'
+            ,count(case when `status_id` = 2 then 1 else null end) as 'อาจารย์'
+            ,count(case when `status_id` = 3 then 1 else null end) as 'เจ้าหน้าที่'
+            ,count(case when `status_id` = 4 then 1 else null end) as 'อื่นๆ'
+          
+            
+FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid 
+and  MONTH(timestam) = '".date("m")."' AND YEAR(timestam) = '".date("Y")."'";
+                
+        try {
+            $rawData1= \yii::$app->db->createCommand($sql1)->queryAll();
+            
+        } catch (\yii\db\Exception $exc) {
+            throw new \yii\web\ConflictHttpException("sql error");
+        }
+        $dataProvider1= new \yii\data\ArrayDataProvider([
+            'allModels' => $rawData1,
+            'pagination'=>FALSE
+        ]);
      // $session = Yii::$app->session;
 //$session->open();
   
-  return $this->render('index');
+  return $this->render('index',['dataProvider1'=>$dataProvider1]);
 
         
     }
@@ -170,7 +190,10 @@ class HomeController extends Controller
     }
      
 
-     
+     public function actionReport1()
+    {
+                      
+    }
     
     
  

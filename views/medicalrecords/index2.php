@@ -22,7 +22,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="appointment-index">
 
-
+ <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-th-list"></i>รายการนัด</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -33,7 +42,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
          'rowOptions'=>function ($model, $key, $index, $grid){if($model->todoctor === 0){ return ['class' => 'danger'];}else{return ['class' => 'success'];}},
-        'panel'=>['before'=>"รายการนัดพบแพทย์"],
+        //'panel'=>['before'=>"รายการนัดพบแพทย์"],
+ 'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายการนัดพบแพทย์",'footer'=>false,'after'=>false,'before'=>false],
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'patient_p_pid',
@@ -64,15 +75,15 @@ $this->params['breadcrumbs'][] = $this->title;
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->todoctor === 1) {
-            return '<i class="fa fa-check-square"></i>'; // "x" icon in red color
+            return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return '<i class="fa fa-times"></i>'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],
             //'doctor.doctor',
             
-            
+             
             
             //'timestam',
             // 'detial:ntext',
@@ -89,3 +100,8 @@ $this->params['breadcrumbs'][] = $this->title;
       
     <?php Pjax::end() ?>
 </div>
+         </div>
+
+ </div>
+
+    </div>

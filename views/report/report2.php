@@ -5,7 +5,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\CasepatientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายงานการให้บริการ-นอกเวลาราชการ จ-ศ 16.01-21.00 ส-อา 8.00-16.30';
+$this->title = 'รายงานการให้บริการ-นอกเวลาราชการ';
 //$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
 //$this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
 //$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice']];
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน</li>
+             <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน  <?=@$dates." - ".@$datee?></li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">
@@ -30,25 +30,29 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานผู้ป่วย ".$dates." - ".$datee],
+        //'panel'=>['before'=>"รายงานผู้ป่วย ".$dates." - ".$datee],
+     'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายงานผู้ป่วย",'footer'=>false,'after'=>false,'before'=>false],
        
     ]); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider2,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานอาการเจ็บป่วย ".$dates." - ".$datee],
+        //'panel'=>['before'=>"รายงานอาการเจ็บป่วย ".$dates." - ".$datee],
+             'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายงานอาการเจ็บป่วย",'footer'=>false,'after'=>false,'before'=>false],
        
     ]); ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider4,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานอาการเจ็บป่วยพบแพทย์ ".$dates." - ".$datee],
+        //'panel'=>['before'=>"รายงานอาการเจ็บป่วยพบแพทย์ ".$dates." - ".$datee],
+           'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายงานอาการเจ็บป่วยพบแพทย์",'footer'=>false,'after'=>false,'before'=>false],
        
     ]); ?>
      <?= GridView::widget([
         'dataProvider' => $dataProvider3,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานบริการที่ได้รับ ".$dates." - ".$datee],
+        //'panel'=>['before'=>"รายงานบริการที่ได้รับ ".$dates." - ".$datee],
+           'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายงานบริการที่ได้รับ",'footer'=>false,'after'=>false,'before'=>false],
        
     ]); ?>
     

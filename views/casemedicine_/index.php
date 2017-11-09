@@ -15,8 +15,15 @@ $this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่�
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="casemedicine-index">
+   <div class="site-contact">
 
-   
+    <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-calendar-plus-o"></i>เพิ่มการนัดพบแพทย์</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -40,3 +47,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+</div>
+</div>
+    </div>

@@ -21,6 +21,7 @@ use app\models\Faculty;
           <!-- เนื้อหา -->
           <div class="box-body">
     <?php $form = ActiveForm::begin(); ?>
+              <?= $form->field($model, 'iddepartment')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'department_name')->textInput(['maxlength' => true]) ?>
 
@@ -32,7 +33,7 @@ use app\models\Faculty;
             ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'บันทึก' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

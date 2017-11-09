@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p>เพิ่ม ลบ แก้ไข พยาบาล เวชระเบียน</p>
             </div>
             <div class="icon">
-              <i class="fa fa-users"></i>
+              <i class="fa  fa-user"></i>
             </div>
             <a href="<?=Url::to(['//user/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p>เพิ่ม ลบ แก้ไข คณะ</p>
             </div>
             <div class="icon">
-              <i class="fa fa-users"></i>
+              <i class="fa  fa-gears"></i>
             </div>
             <a href="<?=Url::to(['//faculty/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -135,7 +135,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p>พิมพ์สติ๊กเกอร์ยา หลายจำนวน</p>
             </div>
             <div class="icon">
-              <i class="fa fa-medkit"></i>
+              <i class="fa  fa-print"></i>
             </div>
             <a href="<?=Url::to(['//casemedicine/printsonga'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>
@@ -169,7 +169,7 @@ $this->params['breadcrumbs'][''] = $this->title;
               <p>เพิ่ม ลบ แก้ไข</p>
             </div>
             <div class="icon">
-              <i class="fa fa-cart-plus"></i>
+                  <i class="fa fa-cart-plus"></i>
             </div>
             <a href="<?=Url::to(['//medicinetype/index'])?>" class="small-box-footer">
               ดำเนินการ <i class="fa fa-arrow-circle-right"></i>

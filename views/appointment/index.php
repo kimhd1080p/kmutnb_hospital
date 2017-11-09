@@ -15,7 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-index">
 
-
+   <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-calendar-plus-o"></i>เพิ่มการนัดพบแพทย์</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -24,7 +33,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"การนัดพบแพทย์ คุณ".$session['pname']." ".$session['psurname']],
+         'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"การนัดพบแพทย์ คุณ".$session['pname']." ".$session['psurname'],'footer'=>false,'after'=>false,'before'=>false],
+       // 'panel'=>['before'=>"การนัดพบแพทย์ คุณ".$session['pname']." ".$session['psurname']],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -47,9 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->todoctor === 1) {
-            return '<i class="fa fa-check-square"></i>'; // "x" icon in red color
+            return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return '<i class="fa fa-times"></i>'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
+        
         }
     },
 ],
@@ -66,3 +77,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+</div>
+</div>
+    </div>

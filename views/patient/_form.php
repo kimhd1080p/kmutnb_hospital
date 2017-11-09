@@ -66,7 +66,7 @@ $this->registerJsFile(
             ) ?>
 
     <?= $form->field($model, 'department_id')->dropDownList(
-            ArrayHelper::map(Department::find()->asArray()->all(), 'iddepartment', 'department_name2'),['prompt'=>'เลือก']
+            ArrayHelper::map(Department::find()->asArray()->all(), 'iddepartment', 'department_name'),['prompt'=>'เลือก']
             ) ?>
 
     <?= $form->field($model, 'studentclass_id')->dropDownList(

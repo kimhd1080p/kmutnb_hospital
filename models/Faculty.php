@@ -26,7 +26,9 @@ class Faculty extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['faculty'], 'string', 'max' => 50],
+            
+            [['idfaculty'], 'integer'],
+            [['faculty'], 'string', 'max' => 70],
         ];
     }
 
@@ -36,7 +38,7 @@ class Faculty extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idfaculty' => 'ID',
+            'idfaculty' => 'รหัส',
             'faculty' => 'คณะ',
         ];
     }

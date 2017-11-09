@@ -31,8 +31,8 @@ class Department extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['department_name', 'idfaculty'], 'required'],
-            [['idfaculty'], 'integer'],
+            [['department_name', 'idfaculty','iddepartment'], 'required'],
+            [['idfaculty','iddepartment'], 'integer'],
             [['department_name'], 'string', 'max' => 45],
             [['department_name2'], 'string', 'max' => 10],
             [['idfaculty'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['idfaculty' => 'idfaculty']],
@@ -45,7 +45,7 @@ class Department extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'iddepartment' => 'ID',
+            'iddepartment' => 'รหัส',
             'department_name' => 'ภาควิชา',
             'department_name2' => 'ภาควิชา(ชื่อย่อ)',
             'idfaculty' => 'คณะ',

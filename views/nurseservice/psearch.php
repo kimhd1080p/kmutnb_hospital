@@ -17,6 +17,17 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- เรียก view _search.php -->
 <div class="patient-search">
 
+    <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ค้นหา</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+              
    <?php $form = ActiveForm::begin([
         'action' => ['psearch'],
         'method' => 'get',
@@ -33,11 +44,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php ActiveForm::end(); ?>
 
-<?php if(isset($dataProvider)): ?>
+
+</div>
+</div>
+</div>
+    
+    <?php if(isset($dataProvider)): ?>
  <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $searchModel,
-                'panel'=>['before'=>'ค้นหาพบ'],
+               // 'panel'=>['before'=>'ค้นหาพบ'],
+             'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"ค้นหาพบ",'footer'=>false,'after'=>false,'before'=>false],
+
      'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
          
@@ -64,3 +82,4 @@ $this->params['breadcrumbs'][] = $this->title;
                  ]);
                 ?>
  <?php endif; ?>
+</div>

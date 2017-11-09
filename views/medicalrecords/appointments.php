@@ -15,6 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-index">
 
+    <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-download"></i>ค้นหารายการนัด</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
 
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -26,6 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
         'panel'=>['before'=>"รายการนัดพบแพทย์"],
+        
+ 'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายการนัดพบแพทย์",'footer'=>false,'after'=>false,'before'=>false],
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             //'patient_p_pid',
@@ -79,3 +92,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     <?php Pjax::end() ?>
 </div>
+         </div>
+
+ </div>
+
+    </div>

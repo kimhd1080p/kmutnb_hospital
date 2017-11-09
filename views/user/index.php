@@ -12,7 +12,16 @@ $this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', '
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
-
+ <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-user-plus"></i>เพิ่มพนักงาน</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <p>
         <?= Html::a('เพิ่ม', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -49,4 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+</div>
+</div>
+</div>
 </div>

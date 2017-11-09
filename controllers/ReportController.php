@@ -97,7 +97,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DA
           //report 4 พบแพทย์
               $sql4="SELECT  
             count(case when `casetype_idcasetype` like '%ก%' then 1 else null end) as URL
-            ,count(case when `casetype_idcasetype` like '%ข%' then 1 else null end) as กระเพราะ
+            ,count(case when `casetype_idcasetype` like '%ข%' then 1 else null end) as กระเพาะ
             ,count(case when `casetype_idcasetype` like '%ค%' then 1 else null end) as ท้องเสีย
             ,count(case when `casetype_idcasetype` like '%ง%' then 1 else null end) as ปวดประจำเดือน
             ,count(case when `casetype_idcasetype` like '%จ%' then 1 else null end) as กล้ามเนื้อกระดูก
@@ -227,7 +227,7 @@ FROM `casepatient` c,patient p WHERE p.p_pid=c.p_pid and p.p_sid=c.p_sid  and DA
       //report 4 พบแพทย์
               $sql4="SELECT  
             count(case when `casetype_idcasetype` like '%ก%' then 1 else null end) as URL
-            ,count(case when `casetype_idcasetype` like '%ข%' then 1 else null end) as กระเพราะ
+            ,count(case when `casetype_idcasetype` like '%ข%' then 1 else null end) as กระเพาะ
             ,count(case when `casetype_idcasetype` like '%ค%' then 1 else null end) as ท้องเสีย
             ,count(case when `casetype_idcasetype` like '%ง%' then 1 else null end) as ปวดประจำเดือน
             ,count(case when `casetype_idcasetype` like '%จ%' then 1 else null end) as กล้ามเนื้อกระดูก
@@ -356,7 +356,7 @@ sum(A+B+C+D+E+F+G+H+I+J+K) as รวม
 ,count(case when `idservices` like '%I%' then 1 else null end) as I
 ,count(case when `idservices` like '%J%' then 1 else null end) as J
 ,count(case when `idservices` like '%K%' then 1 else null end) as K
-FROM casepatient c, user n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY c.nurse_id) s  
+FROM casepatient c, user n WHERE c.nurse_id=n.id and (DATE(timestam) BETWEEN '$datestart' AND '$dateend') and ((WEEKDAY(timestam) BETWEEN 5 AND 6 and TIME(timestam) BETWEEN '00:00' AND '23:59') or (TIME(timestam) BETWEEN '16:01' AND '23:59' and WEEKDAY(timestam) BETWEEN 0 AND 4)) GROUP BY c.nurse_id ) s  
   GROUP BY s.nurse_id";
                 
         try {

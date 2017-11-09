@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน</li>
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายงาน  <?=@$dates." - ".@$datee?></li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">
@@ -30,7 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
  <?= GridView::widget([
         'dataProvider' => $dataProvider1,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"รายงานการปฏิบัติงานของเจ้าหน้า นอกเวลาราชการ  ".$dates." - ".$datee],
+        
+     'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"รายงานการปฏิบัติงานของเจ้าหน้า นอกเวลาราชการ ",'footer'=>false,'after'=>false,'before'=>false],
        
     ]); ?>
    

@@ -15,17 +15,29 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="casepatient-index">
 
+    <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-download"></i>บันทึกประวัติ</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
  
     <p>
-        <?= Html::a('บักทึกประวัติ', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('บันทึกประวัติ', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
-        'panel'=>['before'=>"ประวัติ คุณ".$session['pname']." ".$session['psurname']],
+        //'panel'=>['before'=>"ประวัติ คุณ".$session['pname']." ".$session['psurname']],
+              'panel'=>['type' => GridView::TYPE_PRIMARY,'heading'=>"ประวัติการรักษา คุณ".$session['pname']." ".$session['psurname'],'footer'=>false,'after'=>false,'before'=>false],
+
         'columns' => [
             ['class' => 'yii\grid\Column'],
             'idcase',
@@ -44,3 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
+</div>
+</div>
+    </div>
