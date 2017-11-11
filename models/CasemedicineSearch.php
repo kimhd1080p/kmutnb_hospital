@@ -67,10 +67,13 @@ class CasemedicineSearch extends Casemedicine
             //'user_id' => $this->user_id,
             //'user_id2' => $this->user_id2,
             'p_pid' => $session['pid'],
+            // 'p_sid' => $session['sid'],
+            //'idcase' => 'casepatient.idcase',
             //'patient_p_sid' => $this->patient_p_sid,
             //'casetype_idcasetype' => $this->casetype_idcasetype,
             //'doctor_iddoctor' => $this->doctor_iddoctor,
-        ]);
+        ])
+->andWhere(['p_sid' => $session['sid']]);
         
 //        andFilterWhere([
 //            'ID' => $this->ID,

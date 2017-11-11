@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Department */
 $this->title = 'ดูภาควิชา/ส่วนงาน';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ภาควิชา/ส่วนงาน', 'url' => ['department/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายละเอียด</li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">

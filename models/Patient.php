@@ -58,10 +58,12 @@ class Patient extends \yii\db\ActiveRecord
         return [
             'p_pid' => 'รหัสบัตรประชาชน',
             'p_sid' => 'รหัสนักศึกษา',
+             'student' => 'รหัสนักศึกษา',
             'p_name' => 'ชื่อ',
             'p_surname' => 'นามสกุล',
             'sex' => 'เพศ',
             'p_birthday' => 'วันเกิด',
+             'age' => 'อายุ',
             'p_address' => 'ที่อยู่',
             'p_tel' => 'เบอร์โทร',
             'p_allegy' => 'ประวัติแพ้ยา',
@@ -69,9 +71,42 @@ class Patient extends \yii\db\ActiveRecord
             'documentindex' => 'ที่เก็บเอกสาร',
             'department_id' => 'ภาควิชา/ส่วนงาน',
             'studentclass_id' => 'ระดับชั้น',
+            'class' => 'ระดับชั้น',
             'status_id' => 'สถานภาพ',
         ];
     }
+    
+    public function getStudent()
+                {
+                 if($this->p_pid == $this->p_sid)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                         return $this->p_sid; 
+                    }
+                  }
+                  public function getClass()
+                {
+                 if($this->studentclass_id == null)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                         return $this->studentclass->studentclass; 
+                    }
+                  }
+                  public function getAge()
+                {
+                       $dob=$this->p_birthday;
+    $diff = (date('Y') - date('Y',strtotime($dob)));
+                  
+                   
+                         return $diff; 
+                    
+                  }
     
         public function getAccidents()
     {

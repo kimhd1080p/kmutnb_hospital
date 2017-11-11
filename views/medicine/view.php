@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Medicine */
 $this->registerCss("#barcode {font-weight: normal; font-style: normal; line-height:normal; sans-serif; font-size: 12pt}");
 $this->title = 'ดูยา';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ยา', 'url' => ['medicine/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

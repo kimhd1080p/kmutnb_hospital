@@ -65,10 +65,10 @@ $this->params['breadcrumbs'][] = $this->title;
          ['attribute'=>'p_name',
          'format'=>'raw',
          'value'=> function ($model){
-     
+     $sid=$model['p_sid'];
      $pid=$model['p_pid'];
      $pname=$model['p_name'];
-     return Html::a(Html::encode($pname),['pservice','pid'=>$pid]);
+     return Html::a(Html::encode($pname),['pservice','pid'=>$pid,'sid'=>$sid]);
          }
        ,],
          

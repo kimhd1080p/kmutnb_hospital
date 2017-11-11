@@ -70,7 +70,7 @@ class AppointmentSearch extends Appointment
             //'patient_p_sid' => $this->patient_p_sid,
             //'casetype_idcasetype' => $this->casetype_idcasetype,
             //'doctor_iddoctor' => $this->doctor_iddoctor,
-        ]);
+        ])->andWhere(['patient_p_sid' => $session['sid']]);
 
         $query->andFilterWhere(['like', 'detial', $this->detial]);
 

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\User */
 
 $this->title = 'แก้ไขพนักงาน';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = ['label' => 'พนักงาน', 'url' => ['user/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

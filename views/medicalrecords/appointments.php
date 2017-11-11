@@ -57,20 +57,20 @@ $this->params['breadcrumbs'][] = $this->title;
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->medical_certificate === 1) {
-            return 'ใช่'; // "x" icon in red color
+           return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return 'ไม่ใช่'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],
             [
-    //'label' => 'พบแพทย์แล้ว',
+    'label' => 'พบแพทย์แล้ว',
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->todoctor === 1) {
-            return '<i class="fa fa-check-square"></i>'; // "x" icon in red color
+            return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return '<i class="fa fa-times"></i>'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],

@@ -35,10 +35,10 @@ return $this->render('psearch',['model' => $model,'dataProvider' =>$dataProvider
    
     }
     
-      public function actionPservice($pid)
+      public function actionPservice($pid,$sid)
     {
         $modelpat = new Patient();
-        $patient1=$modelpat::findOne(["p_pid"=>$pid]);
+        $patient1=$modelpat::findOne(["p_pid"=>$pid,"p_sid"=>$sid]);
         $session = Yii::$app->session;
         $session['pid']=$patient1->p_pid;
         $session['sid']=$patient1->p_sid;

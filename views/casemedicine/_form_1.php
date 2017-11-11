@@ -42,7 +42,7 @@ $this->registerJsFile(
     <?php $form = ActiveForm::begin(); ?>
 
     <?php //$sql = 'SELECT * FROM casepatient WHERE DATE(timestam) = CURDATE() and p_pid='.$session['pid'];
-$sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'].' and DATE(timestam) = "'.date("Y-m-d").'"  order by time(timestam) desc';
+$sql = 'SELECT * FROM casepatient WHERE p_pid='.$session['pid'].' and p_sid='.$session['sid'].'  and DATE(timestam) = "'.date("Y-m-d").'"  order by time(timestam) desc';
 ?>
     <?= $form->field($model, 'idcase') ->dropDownList(
             ArrayHelper::map(Casepatient::findBySql($sql)->all(), 'idcase', 'casetypevalue','timestam')

@@ -6,7 +6,7 @@ use yii\helpers\Url;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\ContactForm */
 
-$this->title = 'เครื่องมือ';
+$this->title = 'จัดการ';
 $this->params['breadcrumbs'][''] = $this->title;
 
 ?>

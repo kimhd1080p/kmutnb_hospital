@@ -21,7 +21,7 @@ $this->registerJsFile(
     '@web/js/jsdtp.js'
 );
 $this->title = 'พิมพ์สติ๊กเกอร์ยา';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>

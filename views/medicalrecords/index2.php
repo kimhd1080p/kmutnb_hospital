@@ -4,6 +4,7 @@
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use kartik\growl\Growl;
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -49,14 +50,39 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
             //'patient_p_pid',
            
-  'patient.p_name',
+  //'patient.p_name',
+            ['attribute'=>'patient.p_name',
+         'format'=>'raw',
+         'value'=> function ($model){
+     $id=$model['ID'];
+     $pid=$model['patient_p_pid'];
+     $pname=$model['patient']['p_name'];
+     $nurse=$model['nurse_id'];
+     $sid=$model['patient_p_sid'];
+     $doctor=$model['doctor_iddoctor'];
+     return Html::a(Html::encode($pname),['update','ID'=>$id,'nurse_id'=>$nurse,'patient_p_pid'=>$pid,'patient_p_sid'=>$sid,'doctor_iddoctor'=>$doctor]);
+         }
+       ,],
   'patient.p_surname',
             
           'casetypevalue',
            //'detial:ntext',
             'appointment_time',
             //'medical_certificate',
-            'patient.documentindex',
+            //'patient.documentindex',
+            ['attribute'=>'patient.documentindex',
+         'format'=>'raw',
+         'value'=> function ($model){
+     $pid=$model['patient_p_pid'];
+     $sid=$model['patient_p_sid'];
+        if($model->patient->documentindex == null){
+            return Html::a(Html::encode('เพิ่มที่อยู่เอกสาร'),['//patient/update','p_pid'=>$pid,'p_sid'=>$sid]);
+        }else{
+            return $model->patient->documentindex; 
+        }
+  
+         }
+       ,],
             //'todoctor',
             'doctor.doctortype.doctortype',
             [
@@ -64,14 +90,14 @@ $this->params['breadcrumbs'][] = $this->title;
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->medical_certificate === 1) {
-            return 'ใช่'; // "x" icon in red color
+           return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return 'ไม่ใช่'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],
             [
-    //'label' => 'พบแพทย์แล้ว',
+    'label' => 'พบแพทย์แล้ว',
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->todoctor === 1) {
@@ -94,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'casetype_idcasetype',
             // 'doctor_iddoctor',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
       

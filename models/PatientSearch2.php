@@ -153,7 +153,7 @@ if($code==2){
       if($data['pre_name_th']=='นาย')$sex='ชาย';
       if($data['pre_name_th']=='นาง')$sex='หญิง';
       if($data['pre_name_th']=='นางสาว')$sex='หญิง';
-       if($data['position_duty_id']==5)$status=2;else{$status=3;}
+       if($data['position_duty_id']==1||$data['position_duty_id']==2||$data['position_duty_id']==3||$data['position_duty_id']==4||$data['position_duty_id']==5)$status=2;else{$status=3;}
 Yii::$app->db->createCommand()->insert('patient', [
     'p_pid' => $data['pid'],
     'p_sid' => $data['pid'],

@@ -68,7 +68,7 @@ class CasepatientSearch extends Casepatient
             'p_pid' =>$session['pid'],
            // 'p_sid' => $this->p_sid,
             //'user_id' => $this->user_id,
-        ]);
+        ])->andWhere(['p_sid' => $session['sid']]);
 
         //$query->andFilterWhere(['like', 'case_detail', $this->case_detail]);
 

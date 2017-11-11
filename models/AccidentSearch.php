@@ -67,7 +67,7 @@ $session = Yii::$app->session;
 //            'p_sid' => $this->p_sid,
 //            'user_id' => $this->user_id,
 //            'inlocattype_idinlocattype' => $this->inlocattype_idinlocattype,
-        ]);
+        ])->andWhere(['p_sid' => $session['sid']]);
 
 //        $query->andFilterWhere(['like', 'location', $this->location])
 //            ->andFilterWhere(['like', 'note', $this->note]);

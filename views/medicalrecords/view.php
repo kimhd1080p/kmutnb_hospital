@@ -13,32 +13,108 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="appointment-view">
 
-    <p>
-       
-    </p>
-
+  <div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-th-list"></i>ข้อมูลผู้ป่วย</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-           // 'ID',
-         'patient_p_pid',
-            'patient_p_sid',
+            //'ID',
+            'patient_p_pid',
+            //'patient_p_sid',
+            [
+    'label' => 'รหัสนักศึกษา',
+    'format' => 'raw',
+    'value' => $model->patient->student,
+    'visible' => (!empty($model->patient->student)),           
+],
+            
               [  
         'label' => 'ชื่อ-นามสกุล',
         'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
     ],
+            'patient.status.status',
+            'patient.p_birthday',
+            'patient.age',
+            'patient.p_allegy',
+            'patient.p_disease',
+          
+            //'patient.class',
+             [
+    'label' => 'ระดับชั้น',
+    'format' => 'raw',
+    'value' => $model->patient->class,
+    'visible' => (!empty($model->patient->class)),           
+],
+            'patient.status.status',
+              'patient.department.department_name',
+            'patient.department.faculty.faculty',
+           // 'casetypevalue',
+            //'detial:ntext',
+            //'appointment_time',
+                // 'patient.documentindex',
+            ['attribute'=>'patient.documentindex',
+         'format'=>'raw',
+         'value'=> function ($model){
+     $pid=$model['patient_p_pid'];
+     $sid=$model['patient_p_sid'];
+        if($model->patient->documentindex == null){
+            return Html::a(Html::encode('เพิ่มที่อยู่เอกสาร'),['//patient/update','p_pid'=>$pid,'p_sid'=>$sid]);
+        }else{
+            return $model->patient->documentindex; 
+        }
+  
+         }
+       ,],
+
+            
+             
+           
+            
+          
+            //'doctor.doctor',
+            //'timestam',
+        ],
+    ]) ?>
+
+   
+
+</div>
+         </div>
+ 
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-th-list"></i>รายละเอียดการนัด</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            //'ID',
+          
+            //'patient.status.status',
             'casetypevalue',
             'detial:ntext',
             'appointment_time',
-                 'patient.documentindex',
-          [
+                // 'patient.documentindex',
+            
+[
     'label' => 'ขอใบรับรองแพทย์',
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->medical_certificate === 1) {
-            return 'ใช่'; // "x" icon in red color
+           return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return 'ไม่ใช่'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],
@@ -55,7 +131,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ],
              
            [  
-        'label' => 'ผู้ให้บริการ',
+      'label' => 'ผู้ให้บริการ',
         'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
             [  
@@ -63,13 +139,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'value' => @$model->user1->u_name." ".@$model->user1->nursetype->type ,
     ],
             
-         
+          
             'doctor.doctor',
             'timestam',
-   
-            
-         
         ],
     ]) ?>
+
+   
+
+</div>
+         </div>
+
+ </div>
 
 </div>

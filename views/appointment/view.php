@@ -9,7 +9,7 @@ $session = Yii::$app->session;
 $this->title = 'ข้อมูลนัดพบแพทย์ คุณ'.$session['pname']." ".$session['psurname'];
 $this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
-$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid']]];
+$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid'],'sid'=>$session['sid']]];
 $this->params['breadcrumbs'][] = ['label' => 'นัดพบแพทย์', 'url' => ['appointment/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ข้อมูลผู้ป่วย</li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">
@@ -39,23 +39,68 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'ID',
-            'patient_p_pid',
+ 'patient_p_pid',
+            //'patient_p_sid',
+            [
+    'label' => 'รหัสนักศึกษา',
+    'format' => 'raw',
+    'value' => $model->patient->student,
+    'visible' => (!empty($model->patient->student)),           
+],
+            
               [  
         'label' => 'ชื่อ-นามสกุล',
         'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
     ],
-           'casetypevalue',
+            'patient.status.status',
+            'patient.p_birthday',
+            'patient.age',
+            'patient.p_allegy',
+            'patient.p_disease',
+          
+            //'patient.class',
+             [
+    'label' => 'ระดับชั้น',
+    'format' => 'raw',
+    'value' => $model->patient->class,
+    'visible' => (!empty($model->patient->class)),           
+],
+            'patient.status.status',
+              'patient.department.department_name',
+            'patient.department.faculty.faculty',
+            
+          
+        ],
+    ]) ?>
+
+</div>
+</div>
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-th-list"></i>รายละเอียดการนัด</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            //'ID',
+          
+            //'patient.status.status',
+            'casetypevalue',
             'detial:ntext',
             'appointment_time',
-            [
+                // 'patient.documentindex',
+            
+[
     'label' => 'ขอใบรับรองแพทย์',
     'format' => 'raw',
     'value' => function ($model) {
         if ($model->medical_certificate === 1) {
-            return 'ใช่'; // "x" icon in red color
+           return '<i class="fa fa-check-square text-green"></i>'; // "x" icon in red color
         } else {
-            return 'ไม่ใช่'; // check icon 
+            return '<i class="fa fa-times text-red"></i>'; // check icon 
         }
     },
 ],
@@ -71,8 +116,8 @@ $this->params['breadcrumbs'][] = $this->title;
     },
 ],
              
-            [  
-       'label' => 'ผู้ให้บริการ',
+           [  
+      'label' => 'ผู้ให้บริการ',
         'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
             [  
@@ -80,13 +125,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'value' => @$model->user1->u_name." ".@$model->user1->nursetype->type ,
     ],
             
-             
+          
             'doctor.doctor',
             'timestam',
         ],
     ]) ?>
 
+   
+
 </div>
-</div>
+         </div>
  </div>
 </div>

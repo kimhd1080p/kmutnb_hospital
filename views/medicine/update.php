@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Medicine */
 
 $this->title = 'แก้ไขยา';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ยา', 'url' => ['medicine/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

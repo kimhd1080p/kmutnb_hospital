@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 $this->title = 'ดูบันทึกอุบัติเหตุ คุณ'.$session['pname']." ".$session['psurname'];
 $this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ค้นหาผู้ป่วย', 'url' => ['nurseservice/psearch']];
-$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid']]];
+$this->params['breadcrumbs'][] = ['label' => 'บริการผู้ป่วย', 'url' => ['nurseservice/pservice','pid'=>$session['pid'],'sid'=>$session['sid']]];
 $this->params['breadcrumbs'][] = ['label' => 'บันทึกอุบัติเหตุ', 'url' => ['accident/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
-              <li class="pull-left header"><i class="fa  fa-file-text"></i>ฟอร์ม</li>
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>ข้อมูลผู้ป่วย</li>
             </ul>
           <!-- เนื้อหา -->
           <div class="box-body">
@@ -41,13 +41,56 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'p_pid',
-            'p_sid',
-                 [  
+            
+                     'p_pid',
+            //'patient_p_sid',
+            [
+    'label' => 'รหัสนักศึกษา',
+    'format' => 'raw',
+    'value' => $model->patient->student,
+    'visible' => (!empty($model->patient->student)),           
+],
+            
+              [  
         'label' => 'ชื่อ-นามสกุล',
         'value' => $model->patient->p_name.' '.$model->patient->p_surname ,
     ],
-            'inlocattype.inlocattype',
+            'patient.status.status',
+            'patient.p_birthday',
+            'patient.age',
+            'patient.p_allegy',
+            'patient.p_disease',
+          
+            //'patient.class',
+             [
+    'label' => 'ระดับชั้น',
+    'format' => 'raw',
+    'value' => $model->patient->class,
+    'visible' => (!empty($model->patient->class)),           
+],
+            'patient.status.status',
+              'patient.department.department_name',
+            'patient.department.faculty.faculty',
+            
+            
+
+        ],
+    ]) ?>
+
+</div>
+</div>
+ 
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa   fa-th-list"></i>รายละเอียดอุบัติเหตุ</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+                        'inlocattype.inlocattype',
             
             'location',
             
@@ -60,10 +103,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'label' => 'ผู้บันทึก',
                 'value' => $model->user->u_name." ".$model->user->nursetype->type ,
     ],
+            //'ID',
+        
         ],
     ]) ?>
 
+   
+
 </div>
-</div>
+         </div>
 </div>
     </div>

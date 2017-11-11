@@ -53,7 +53,7 @@ use app\models\User;
             ) ?>
 <br />
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'บักทึกข้อมูล' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'บันทึกข้อมูล' : 'แก้ไข', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -105,19 +105,32 @@ class MedicalrecordsController extends \yii\web\Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //ย้ายข้อมูลไปบันทึกประวัติ
              Yii::$app->db->createCommand('REPLACE INTO casepatient (idservices,case_detail, timestam,casetype_idcasetype,p_pid, p_sid,iddoctor,nurse_id) SELECT "I",detial, timestam, casetype_idcasetype,patient_p_pid,patient_p_sid,doctor_iddoctor,nurse_id FROM appointment WHERE id='.$model->ID)->execute();
-            
+            if($model->todoctor==1){
              Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
      'icon' => 'fa fa-users',
-     'message' => 'สำเร็จ',
-     'title' => 'แก้ไขข้อมูล',
+     'message' => 'คุณได้ยืนยันการนัดพบแพทย์ของ คุณ'.$model->patient->p_name.' '.$model->patient->p_surname,
+     'title' => 'บันทึกข้อมูลสำเร็จ',
      'positonY' => 'top',
      'positonX' => 'right'
  ]);
+            }
+            if($model->todoctor==0){
+             Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'ไม่สำเร็จยังไม่ได้ยืนยันการพบแพทย์ของ คุณ'.$model->patient->p_name.' '.$model->patient->p_surname,
+     'title' => 'ไม่ได้บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+            }
             
-            
-            return $this->redirect(['view', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid,  'doctor_iddoctor' => $model->doctor_iddoctor]);
+           return $this->redirect(['index2']);
+             
+//return $this->redirect(['view', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid,  'doctor_iddoctor' => $model->doctor_iddoctor]);
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -7,12 +7,21 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Patient */
 
 $this->title = 'ดูผู้ป่วย';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = ['label' => 'ผู้ป่วย', 'url' => ['patient/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="patient-view">
-
+<div class="site-contact">
+ <!-- Small boxes (Stat box) -->
+   
+ <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right"> 
+              <li class="pull-left header"><i class="fa  fa-file-text"></i>รายละเอียด</li>
+            </ul>
+          <!-- เนื้อหา -->
+          <div class="box-body">
    
 
     <p>
@@ -30,7 +39,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'p_pid',
-            'p_sid',
+            //'student',
+            [
+    'label' => 'รหัสนักศึกษา',
+    'format' => 'raw',
+    'value' => $model->student,
+    'visible' => (!empty($model->student)),           
+],
+            
+   
             'p_name',
             'p_surname',
             'sex',

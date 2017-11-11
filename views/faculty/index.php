@@ -7,7 +7,7 @@ use kartik\grid\GridView;
 /* @var $searchModel app\models\FacultySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 $this->title = 'คณะ';
-$this->params['breadcrumbs'][] = ['label' => 'เครื่องมือ', 'url' => ['//tool/index']];
+$this->params['breadcrumbs'][] = ['label' => 'จัดการ', 'url' => ['//tool/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="faculty-index">

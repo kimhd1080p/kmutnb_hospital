@@ -28,7 +28,7 @@ class Faculty extends \yii\db\ActiveRecord
         return [
             
             [['idfaculty'], 'integer'],
-            [['faculty'], 'string', 'max' => 70],
+            [['faculty'], 'string', 'max' => 100],
         ];
     }
 

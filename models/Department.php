@@ -33,7 +33,7 @@ class Department extends \yii\db\ActiveRecord
         return [
             [['department_name', 'idfaculty','iddepartment'], 'required'],
             [['idfaculty','iddepartment'], 'integer'],
-            [['department_name'], 'string', 'max' => 45],
+            [['department_name'], 'string', 'max' => 100],
             [['department_name2'], 'string', 'max' => 10],
             [['idfaculty'], 'exist', 'skipOnError' => true, 'targetClass' => Faculty::className(), 'targetAttribute' => ['idfaculty' => 'idfaculty']],
         ];
@@ -46,7 +46,7 @@ class Department extends \yii\db\ActiveRecord
     {
         return [
             'iddepartment' => 'รหัส',
-            'department_name' => 'ภาควิชา',
+            'department_name' => 'ภาควิชา/ส่วนงาน',
             'department_name2' => 'ภาควิชา(ชื่อย่อ)',
             'idfaculty' => 'คณะ',
         ];
