@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 use yii\widgets\DetailView;
 $session = Yii::$app->session;
-
+use mdm\admin\components\Helper;
 /* @var $this yii\web\View */
 /* @var $model app\models\Casemedicine */
 
@@ -30,14 +30,25 @@ $this->params['breadcrumbs'][] = $this->title;
           <!-- เนื้อหา -->
           <div class="box-body">
     <p>
-        <?= Html::a('แก้ไข', ['update', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('ลบ', ['delete', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?',
-                'method' => 'post',
-            ],
-        ]) ?>
+       
+        
+         <?php
+        if(Helper::checkRoute('update')){
+    echo Html::a(Yii::t('rbac-admin', 'แก้ไข'), ['update', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id], [
+        'class' => 'btn btn-primary',
+        //'data-method' => 'post',
+    ]);
+}
+        ?>
+ <?php
+        if(Helper::checkRoute('delete')){
+    echo Html::a(Yii::t('rbac-admin', 'ลบ'), ['delete', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id], [
+        'class' => 'btn btn-danger',
+        'data-confirm' => Yii::t('rbac-admin', 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?'),
+        'data-method' => 'post',
+    ]);
+}
+        ?>
     </p>
 
     <?= DetailView::widget([

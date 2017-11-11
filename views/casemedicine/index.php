@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
  $session = Yii::$app->session;
-
+ use mdm\admin\components\Helper;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\CasemedicineSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             );
                 },
             ],
-            'template' => '{update} {view} {delete} {print}'
+            'template' => Helper::filterActionColumn('{view} {update} {delete} {print}')
 
 
         ],

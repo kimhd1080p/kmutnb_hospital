@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use kartik\grid\GridView;
-
+ use mdm\admin\components\Helper;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PatientSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -51,7 +51,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'department_id',
             // 'studentclass_id',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+        'class' => 'yii\grid\ActionColumn',
+        'template' => Helper::filterActionColumn('{view}{update}{delete}'),
+    ]
         ],
     ]); ?>
 </div>

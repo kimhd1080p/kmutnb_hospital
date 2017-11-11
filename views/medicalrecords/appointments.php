@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
+  use mdm\admin\components\Helper;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -87,7 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'casetype_idcasetype',
             // 'doctor_iddoctor',
 
-            ['class' => 'yii\grid\ActionColumn'],
+           [
+        'class' => 'yii\grid\ActionColumn',
+        'template' => Helper::filterActionColumn('{view}{update}{delete}'),
+    ]
         ],
     ]); ?>
     <?php Pjax::end() ?>

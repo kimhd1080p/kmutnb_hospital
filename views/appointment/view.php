@@ -1,5 +1,5 @@
 <?php
-
+use mdm\admin\components\Helper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 $session = Yii::$app->session;
@@ -26,14 +26,25 @@ $this->params['breadcrumbs'][] = $this->title;
           <!-- เนื้อหา -->
           <div class="box-body">
     <p>
-        <?= Html::a('แก้ไข', ['update', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('ลบ', ['delete', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' => $model->doctor_iddoctor], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?',
-                'method' => 'post',
-            ],
-        ]) ?>
+      
+        
+          <?php
+        if(Helper::checkRoute('update')){
+    echo Html::a(Yii::t('rbac-admin', 'แก้ไข'), ['update','ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' =>  $model->doctor_iddoctor], [
+        'class' => 'btn btn-primary',
+        'data-method' => 'post',
+    ]);
+}
+        ?>
+ <?php
+        if(Helper::checkRoute('delete')){
+    echo Html::a(Yii::t('rbac-admin', 'ลบ'), ['delete', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid, 'casetype_idcasetype' => $model->casetype_idcasetype, 'doctor_iddoctor' =>  $model->doctor_iddoctor], [
+        'class' => 'btn btn-danger',
+        'data-confirm' => Yii::t('rbac-admin', 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?'),
+        'data-method' => 'post',
+    ]);
+}
+        ?>
     </p>
 
     <?= DetailView::widget([

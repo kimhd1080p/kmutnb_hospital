@@ -2,6 +2,7 @@
 $session = Yii::$app->session;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use mdm\admin\components\Helper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Accident */
@@ -28,14 +29,24 @@ $this->params['breadcrumbs'][] = $this->title;
           <div class="box-body">
 
     <p>
-        <?= Html::a('แก้ไข', ['update', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('ลบ', ['delete', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?',
-                'method' => 'post',
-            ],
-        ]) ?>
+      
+          <?php
+        if(Helper::checkRoute('update')){
+    echo Html::a(Yii::t('rbac-admin', 'แก้ไข'), ['update', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
+        'class' => 'btn btn-primary',
+        //'data-method' => 'post',
+    ]);
+}
+        ?>
+ <?php
+        if(Helper::checkRoute('delete')){
+    echo Html::a(Yii::t('rbac-admin', 'ลบ'), ['delete', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype], [
+        'class' => 'btn btn-danger',
+        'data-confirm' => Yii::t('rbac-admin', 'คุณต้องการจะลบรายการนี้ ใช่หรือไม่?'),
+        'data-method' => 'post',
+    ]);
+}
+        ?>
     </p>
 
     <?= DetailView::widget([

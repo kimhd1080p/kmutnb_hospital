@@ -98,7 +98,7 @@ class MedicalrecordsController extends \yii\web\Controller
      * @param integer $doctor_iddoctor
      * @return mixed
      */
-    public function actionUpdate($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
+    public function actionUpdate2($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
         $model = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor);
 
@@ -132,6 +132,33 @@ class MedicalrecordsController extends \yii\web\Controller
              
 //return $this->redirect(['view', 'ID' => $model->ID, 'nurse_id' => $model->nurse_id, 'patient_p_pid' => $model->patient_p_pid, 'patient_p_sid' => $model->patient_p_sid,  'doctor_iddoctor' => $model->doctor_iddoctor]);
         } else {
+            return $this->render('update2', [
+                'model' => $model,
+            ]);
+        }
+    }
+    public function actionUpdate($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
+    {
+        
+        $model = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor);
+$model->casetypeToArray();
+         if ($model->load(Yii::$app->request->post())) {
+             $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
+            if($model->save()){
+            
+             Yii::$app->getSession()->setFlash('alert', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+            
+            
+            return $this->actionAppointments();
+            }} else {
             return $this->render('update', [
                 'model' => $model,
             ]);

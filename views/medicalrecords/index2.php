@@ -3,8 +3,9 @@
 
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
-use kartik\growl\Growl;
+
 use yii\helpers\Html;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AppointmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
      $nurse=$model['nurse_id'];
      $sid=$model['patient_p_sid'];
      $doctor=$model['doctor_iddoctor'];
-     return Html::a(Html::encode($pname),['update','ID'=>$id,'nurse_id'=>$nurse,'patient_p_pid'=>$pid,'patient_p_sid'=>$sid,'doctor_iddoctor'=>$doctor]);
+     return Html::a(Html::encode($pname),['update2','ID'=>$id,'nurse_id'=>$nurse,'patient_p_pid'=>$pid,'patient_p_sid'=>$sid,'doctor_iddoctor'=>$doctor]);
          }
        ,],
   'patient.p_surname',

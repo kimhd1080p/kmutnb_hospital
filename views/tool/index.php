@@ -1,7 +1,7 @@
 
 <?php
 use yii\helpers\Url;
-
+use mdm\admin\components\Helper;
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\models\ContactForm */
@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][''] = $this->title;
 
 <div class="site-contact">
  <!-- Small boxes (Stat box) -->
-   
  <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right"> 
@@ -22,6 +21,9 @@ $this->params['breadcrumbs'][''] = $this->title;
           <!-- เนื้อหา -->
           <div class="box-body">
           <div class="row">
+    <?php
+        if(Helper::checkRoute('patient/index')){ ?>
+  
           
             <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -39,8 +41,12 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
-          
-           <div class="col-lg-3 col-xs-6">
+
+       <?php }?>
+ 
+          <?php
+        if(Helper::checkRoute('user/index')){ ?>
+  <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -56,8 +62,12 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
-              
-              <div class="col-lg-3 col-xs-6">
+
+       <?php }?>
+           
+               <?php
+        if(Helper::checkRoute('department/index')){ ?>
+  <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -73,8 +83,12 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
+
+       <?php }?>
               
-              <div class="col-lg-3 col-xs-6">
+               <?php
+        if(Helper::checkRoute('faculty/index')){ ?>
+  <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -90,6 +104,9 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
+
+       <?php }?>
+              
               
 <!--              <div class="col-lg-3 col-xs-6">
            small box 
@@ -107,8 +124,9 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>-->
-          
-           <div class="col-lg-3 col-xs-6">
+           <?php
+        if(Helper::checkRoute('doctor/index')){ ?>
+   <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -125,8 +143,14 @@ $this->params['breadcrumbs'][''] = $this->title;
           </div>
         </div>
 
+       <?php }?>
           
-<div class="col-lg-3 col-xs-6">
+
+         
+
+<?php
+        if(Helper::checkRoute('casemedicine/printsonga')){ ?>
+   <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -142,8 +166,12 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
-              
-          <div class="col-lg-3 col-xs-6">
+
+       <?php }?>
+
+ <?php
+        if(Helper::checkRoute('medicine/index')){ ?>
+  <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -159,8 +187,13 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
+
+       <?php }?>
+              
           
-           <div class="col-lg-3 col-xs-6">
+          <?php
+        if(Helper::checkRoute('medicinetype/index')){ ?>
+  <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
@@ -176,6 +209,9 @@ $this->params['breadcrumbs'][''] = $this->title;
             </a>
           </div>
         </div>
+
+       <?php }?>
+           
           
         
         <!-- ./col -->

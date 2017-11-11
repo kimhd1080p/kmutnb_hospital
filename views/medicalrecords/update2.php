@@ -2,18 +2,16 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-//$session = Yii::$app->session;
 /* @var $this yii\web\View */
 /* @var $model app\models\Appointment */
 
-$this->title = 'รายละเอียดการนัดพบแพทย์';
-$this->params['breadcrumbs'][] = ['label' => 'งานพยาบาล', 'url' => ['nurseservice/index']];
-$this->params['breadcrumbs'][] = ['label' => 'รายการนัดพบแพทย์', 'url' => ['medicalrecords/appointments']];
+$this->title = 'ยืนยันการมาพบแพทย์';
+$this->params['breadcrumbs'][] = ['label' => 'งานเวชระเบียน', 'url' => ['medicalrecords/index']];
+$this->params['breadcrumbs'][] = ['label' => 'รายการนัดพบแพทย์', 'url' => ['medicalrecords/index2']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="appointment-view">
-
-  <div class="site-contact">
+<div class="appointment-update">
+ <div class="site-contact">
  <!-- Small boxes (Stat box) -->
    
  <div class="nav-tabs-custom">
@@ -145,11 +143,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-   
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
 
 </div>
          </div>
 
  </div>
 
-</div>
+    </div>

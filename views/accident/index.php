@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use kartik\grid\GridView;
  $session = Yii::$app->session;
+ use mdm\admin\components\Helper;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AccidentSearch */
@@ -45,7 +46,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'accidenttype.accidenttype',
             'medicaltreatment.medicaltreatment',
             'note',
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+        'class' => 'yii\grid\ActionColumn',
+        'template' => Helper::filterActionColumn('{view}{update}{delete}'),
+    ]
         ],
     ]); ?>
 </div>
