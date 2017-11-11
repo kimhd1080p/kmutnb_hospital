@@ -86,7 +86,7 @@ $('#medicinesearch').change(function(){
     
     var medicine=$(this).val();
    
-    var url1=window.location.host+'/project/web';
+    var url1=window.location.host+'/hospitalservice/web';
     var url2='http://'+url1+'/casemedicine/getmedicine';
       
          //alert(url2);
