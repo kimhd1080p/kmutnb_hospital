@@ -66,6 +66,16 @@ class DepartmentController extends Controller
         $model = new Department();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+             Yii::$app->getSession()->setFlash('create', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'id' => $model->iddepartment]);
         } else {
             return $this->render('create', [
@@ -85,6 +95,17 @@ class DepartmentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+             Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+             
             return $this->redirect(['view', 'id' => $model->iddepartment]);
         } else {
             return $this->render('update', [
@@ -102,6 +123,16 @@ class DepartmentController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        
+         Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
 
         return $this->redirect(['index']);
     }

@@ -73,14 +73,23 @@ $('#datetimepicker1').datetimepicker({
 	format:'H:i',
 	step:5
 });
+var dt = new Date();
 $('#datetimepicker2').datetimepicker({
-	yearOffset:222,
-	lang:'ch',
-	timepicker:false,
-	format:'d/m/Y',
-	formatDate:'Y/m/d',
-	minDate:'-1970/01/02', // yesterday is minimum date
-	maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+	//yearOffset:222,
+	//lang:'ch',
+	//timepicker:false,
+	//format:'d/m/Y',
+	//formatDate:'Y/m/d',
+       // allowTimes:now,
+	minDate:0,
+        minDateTime: dt,
+       
+	//maxDate:'+1970/01/02' // and tommorow is maximum date calendar
+        allowTimes:['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00'],
+        beforeShowDay: function(date) {
+        var day = date.getDay();
+        return [(day != 0), ''];
+    }
 });
 $('#datetimepicker3').datetimepicker({
 	inline:true

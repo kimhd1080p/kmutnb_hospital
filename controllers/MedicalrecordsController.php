@@ -104,8 +104,9 @@ class MedicalrecordsController extends \yii\web\Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //ย้ายข้อมูลไปบันทึกประวัติ
-             Yii::$app->db->createCommand('REPLACE INTO casepatient (idservices,case_detail, timestam,casetype_idcasetype,p_pid, p_sid,iddoctor,nurse_id) SELECT "I",detial, timestam, casetype_idcasetype,patient_p_pid,patient_p_sid,doctor_iddoctor,nurse_id FROM appointment WHERE id='.$model->ID)->execute();
+             
             if($model->todoctor==1){
+                Yii::$app->db->createCommand('REPLACE INTO casepatient (idservices,case_detail, timestam,casetype_idcasetype,p_pid, p_sid,iddoctor,nurse_id) SELECT "I",detial, timestam, casetype_idcasetype,patient_p_pid,patient_p_sid,doctor_iddoctor,nurse_id FROM appointment WHERE id='.$model->ID)->execute();
              Yii::$app->getSession()->setFlash('alert', [
      'type' => 'success',
      'duration' => 5000,
@@ -117,6 +118,7 @@ class MedicalrecordsController extends \yii\web\Controller
  ]);
             }
             if($model->todoctor==0){
+                Yii::$app->db->createCommand("DELETE FROM `casepatient` WHERE timestam='$model->timestam'")->execute();
              Yii::$app->getSession()->setFlash('alert', [
      'type' => 'error',
      'duration' => 5000,
@@ -147,7 +149,7 @@ $model->casetypeToArray();
             if($model->save()){
             
              Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+     'type' => 'warning',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',
@@ -178,11 +180,14 @@ $model->casetypeToArray();
      */
     public function actionDelete($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)
     {
+        
+        $timestam = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor);
+        Yii::$app->db->createCommand("DELETE FROM `casepatient` WHERE timestam='$timestam[timestam]'")->execute();
         $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)->delete();
 
         
         Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+     'type' => 'danger',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',

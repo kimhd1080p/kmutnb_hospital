@@ -90,7 +90,7 @@ $model->idservices = implode(",", $model->idservices);
             if($model->save()){
            
              
- Yii::$app->getSession()->setFlash('alert', [
+ Yii::$app->getSession()->setFlash('create', [
      'type' => 'success',
      'duration' => 5000,
      'icon' => 'fa fa-users',
@@ -129,8 +129,8 @@ $model->idservices = implode(",", $model->idservices);
  $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
 $model->idservices = implode(",", $model->idservices);
 if($model->save()){
-            Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+            Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',
@@ -162,8 +162,9 @@ if($model->save()){
     public function actionDelete($idcase,  $p_pid, $p_sid, $nurse_id)
     {
         $this->findModel($idcase, $p_pid, $p_sid, $nurse_id)->delete();
-Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+
+         Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',

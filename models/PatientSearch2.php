@@ -57,7 +57,17 @@ curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, array('id' => $id));
 
 if(($response = curl_exec($ch)) === false){
-	echo 'Curl error: ' . curl_errno($ch) . ' - ' . curl_error($ch);
+    Yii::$app->getSession()->setFlash('alert', [
+                                    'type' => 'danger',
+                                     'duration' => 5000,
+                                      'icon' => 'fa fa-users',
+                                        'message' => 'ไม่สามารถติดต่อฐานข้อมูลได้ '. curl_errno($ch) . ' - ' . curl_error($ch),
+                                       'title' => 'ข้อผิดพลาด',
+                                       'positonY' => 'top',
+                                       'positonX' => 'right'
+                                                                ]);
+    
+	//echo 'Curl error: ' . curl_errno($ch) . ' - ' . curl_error($ch);
 }else{
 	$json_data = json_decode($response, true);
 	if(empty($json_data)){

@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Appointment;
+
 use app\models\AppointmentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -71,6 +72,7 @@ Yii::$app->getSession()->setFlash('alert', [
      */
     public function actionView($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
     {
+          
         return $this->render('view', [
             'model' => $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor),
         ]);
@@ -90,17 +92,17 @@ Yii::$app->getSession()->setFlash('alert', [
              $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
             if($model->save()){
             
-                
                
-            Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
-     'duration' => 5000,
-     'icon' => 'fa fa-users',
-     'message' => 'สำเร็จ',
-     'title' => 'บันทึกข้อมูล',
-     'positonY' => 'top',
-     'positonX' => 'right'
- ]);
+               
+//            Yii::$app->getSession()->setFlash('create', [
+//     'type' => 'success',
+//     'duration' => 5000,
+//     'icon' => 'fa fa-users',
+//     'message' => 'สำเร็จ',
+//     'title' => 'บันทึกข้อมูล',
+//     'positonY' => 'top',
+//     'positonX' => 'right'
+// ]);
             Yii::$app->getSession()->setFlash('appointments', [
      'type' => 'success',
      'duration' => 5000,
@@ -110,6 +112,8 @@ Yii::$app->getSession()->setFlash('alert', [
      'positonY' => 'top',
      'positonX' => 'right'
  ]);
+            //$model->trigger(Appointment::EVENT_NEW_APPOINTMENT);
+            
             return $this->redirect(['index']);
             }} else {
             return $this->render('create', [
@@ -137,9 +141,11 @@ $model->casetypeToArray();
          if ($model->load(Yii::$app->request->post())) {
              $model->casetype_idcasetype = implode(",", $model->casetype_idcasetype);
             if($model->save()){
-            
-             Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+           
+                //$model->trigger(Event::ACTION_UPDATE);
+                
+             Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',
@@ -170,11 +176,14 @@ $model->casetypeToArray();
      */
     public function actionDelete($ID, $nurse_id, $patient_p_pid, $patient_p_sid,  $doctor_iddoctor)
     {
+       // $this->trigger(Event::ACTION_DELETE);
+         $timestam = $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor);
+        Yii::$app->db->createCommand("DELETE FROM `casepatient` WHERE timestam='$timestam[timestam]'")->execute();
         $this->findModel($ID, $nurse_id, $patient_p_pid, $patient_p_sid, $doctor_iddoctor)->delete();
 
         
-        Yii::$app->getSession()->setFlash('alert', [
-     'type' => 'success',
+        Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
      'duration' => 5000,
      'icon' => 'fa fa-users',
      'message' => 'สำเร็จ',

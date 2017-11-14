@@ -70,6 +70,17 @@ class PatientController extends Controller
         $model = new Patient();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+            
+                     Yii::$app->getSession()->setFlash('create', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid]);
         } else {
             return $this->render('create', [
@@ -93,6 +104,16 @@ class PatientController extends Controller
         $model = $this->findModel($p_pid, $p_sid);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+             Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid]);
         } else {
             return $this->render('update', [
@@ -114,6 +135,16 @@ class PatientController extends Controller
     public function actionDelete($p_pid, $p_sid)
     {
         $this->findModel($p_pid, $p_sid)->delete();
+        
+          Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
 
         return $this->redirect(['index']);
     }

@@ -74,6 +74,15 @@ class CasemedicineController extends Controller
              $dispense = Casepatient::findOne($model->idcase); //อัพเดปสถานะการจ่ายยา
             $dispense->dispense = 1;
             $dispense->update();
+            Yii::$app->getSession()->setFlash('create', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             //return $this->redirect(['printmedicine', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
             return $this->redirect(['index']);
         } else {
@@ -98,6 +107,15 @@ class CasemedicineController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
            
+            Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             
             return $this->redirect(['view', 'ID' => $model->ID, 'idcase' => $model->idcase, 'idmedicine' => $model->idmedicine, 'medicinepackage_id' => $model->medicinepackage_id]);
         } else {
@@ -119,6 +137,16 @@ class CasemedicineController extends Controller
     public function actionDelete($ID, $idcase, $idmedicine, $medicinepackage_id)
     {
         $this->findModel($ID, $idcase, $idmedicine, $medicinepackage_id)->delete();
+        
+         Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
 
         return $this->redirect(['index']);
     }

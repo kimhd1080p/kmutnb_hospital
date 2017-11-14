@@ -66,6 +66,17 @@ class MedicinetypeController extends Controller
         $model = new Medicinetype();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+                     Yii::$app->getSession()->setFlash('create', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+                     
             return $this->redirect(['view', 'id' => $model->idmedicinetype]);
         } else {
             return $this->render('create', [
@@ -85,6 +96,16 @@ class MedicinetypeController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+               Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'id' => $model->idmedicinetype]);
         } else {
             return $this->render('update', [
@@ -103,6 +124,16 @@ class MedicinetypeController extends Controller
     {
         $this->findModel($id)->delete();
 
+        
+        Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
         return $this->redirect(['index']);
     }
 

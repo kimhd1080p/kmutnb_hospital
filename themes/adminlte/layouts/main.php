@@ -40,8 +40,8 @@ if (Yii::$app->controller->action->id === 'login') {
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
-       <?php //foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
-                <?php if( $message = Yii::$app->session->getFlash('alert') ):?>
+       <?php foreach (Yii::$app->session->getAllFlashes() as $message):; ?>
+                <?php //if( $message = Yii::$app->session->getFlash('alert') ):?>
                 <?php
                 echo Growl::widget([
                     'type' => (!empty($message['type'])) ? $message['type'] : 'danger',
@@ -59,8 +59,8 @@ if (Yii::$app->controller->action->id === 'login') {
                     ]
                 ]);
                 ?>
-                <?php endif; ?>
-            <?php //endforeach; ?>
+                <?php //endif; ?>
+            <?php endforeach; ?>
  
         
         <?= $this->render(

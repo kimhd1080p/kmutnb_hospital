@@ -59,7 +59,8 @@ $this->registerJsFile(
 
     <?= $form->field($model, 'p_disease')->textArea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'documentindex')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'documentindex' ,['inputOptions' => 
+    ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']])->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status_id')->dropDownList(
             ArrayHelper::map(Status::find()->asArray()->all(), 'status_id', 'status'),['prompt'=>'เลือก']

@@ -72,6 +72,15 @@ class AccidentController extends Controller
         $model = new Accident();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                        Yii::$app->getSession()->setFlash('create', [
+     'type' => 'success',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'บันทึกข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype]);
         } else {
             return $this->render('create', [
@@ -97,6 +106,16 @@ class AccidentController extends Controller
         $model = $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            
+            Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
             return $this->redirect(['view', 'idaccident' => $model->idaccident, 'accidenttype_idaccidenttype' => $model->accidenttype_idaccidenttype, 'medicaltreatment_idmedicaltreatment' => $model->medicaltreatment_idmedicaltreatment, 'p_pid' => $model->p_pid, 'p_sid' => $model->p_sid, 'nurse_id' => $model->nurse_id, 'inlocattype_idinlocattype' => $model->inlocattype_idinlocattype]);
         } else {
             return $this->render('update', [
@@ -120,6 +139,16 @@ class AccidentController extends Controller
     public function actionDelete($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype)
     {
         $this->findModel($idaccident, $accidenttype_idaccidenttype, $medicaltreatment_idmedicaltreatment, $p_pid, $p_sid, $inlocattype_idinlocattype)->delete();
+        
+         Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
 
         return $this->redirect(['index']);
     }

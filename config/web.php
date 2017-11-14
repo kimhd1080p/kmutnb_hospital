@@ -70,7 +70,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            //'identityClass' => 'app\models\User',
+            //'identityClass' => 'app\models\UserIdentity',
             //'enableAutoLogin' => true,
             'identityClass' => 'mdm\admin\models\User',
             'loginUrl' => ['home/login'],
@@ -138,7 +138,7 @@ $config = [
      'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-//            'home/*',
+          'home/logout',
  //        'home/*',
  //           'admin/*',
 //            'debug/*',

@@ -42,7 +42,7 @@ $this->registerJsFile(
         <?= $form->field($model, 'detial')->textarea(['rows' => 6]) ?>
     
 
-    <?= $form->field($model, 'appointment_time')->textInput(['id' => 'default_datetimepicker'])
+    <?= $form->field($model, 'appointment_time')->textInput(['id' => 'datetimepicker2'])
 
  ?>
 

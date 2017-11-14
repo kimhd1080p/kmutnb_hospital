@@ -19,7 +19,9 @@ class AppointmentSearch2 extends Appointment
     {
         return [
             [['ID', 'medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor','todoctor'], 'integer'],
+              //[['todoctor'], 'required' ],
             [['appointment_time', 'timestam', 'detial', 'casetype_idcasetype'], 'safe'],
+            
         ];
     }
 

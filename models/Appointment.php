@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Casedoctortype;
 use yii\helpers\ArrayHelper;
+//use app\models\Event;
 /**
  * This is the model class for table "appointment".
  *
@@ -45,13 +46,52 @@ class Appointment extends \yii\db\ActiveRecord
             [['appointment_time', 'timestam'], 'safe'],
             [['medical_certificate', 'todoctor', 'nurse_id', 'nurse_id2', 'patient_p_pid', 'patient_p_sid', 'doctor_iddoctor'], 'integer'],
             [['detial','casetype_idcasetype'], 'string'],
-            [['nurse_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor'], 'required'],
+            [['nurse_id', 'patient_p_pid', 'patient_p_sid', 'casetype_idcasetype', 'doctor_iddoctor',], 'required'],
+            // [['todoctor'], $this->Checkn() ],
             [['doctor_iddoctor'], 'exist', 'skipOnError' => true, 'targetClass' => Doctor::className(), 'targetAttribute' => ['doctor_iddoctor' => 'iddoctor']],
             [['patient_p_pid', 'patient_p_sid'], 'exist', 'skipOnError' => true, 'targetClass' => Patient::className(), 'targetAttribute' => ['patient_p_pid' => 'p_pid', 'patient_p_sid' => 'p_sid']],
             [['nurse_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
             [['nurse_id2'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['nurse_id' => 'id']],
         ];
     }
+    
+    
+    // in User.php i've declared constant that stores event name
+//const EVENT_NEW_APPOINTMENT = 'new-appointment';
+//
+//// say, whenever new user registers, below method will send an email.
+//
+//
+//// one more hanlder.
+//
+//public function notification_app($event){
+//  Yii::$app->getSession()->setFlash('appointments', [
+//     'type' => 'success',
+//     'duration' => 5000,
+//     'icon' => 'fa fa-users',
+//     'message' => "ของคุณ".$this->patient->p_name." ".$this->patient->p_surname,
+//     'title' => 'มีรายการนัดใหม่',
+//     'positonY' => 'top',
+//     'positonX' => 'right'
+// ]);
+//}
+//public function init(){
+//
+//  $this->on(self::EVENT_NEW_APPOINTMENT, [$this, 'notification_app']);
+// 
+//
+//  // first parameter is the name of the event and second is the handler. 
+//  // For handlers I use methods sendMail and notification
+//  // from $this class.
+//}
+
+//public function init()
+//    {
+//        $this->on(Event::ACTION_ADD, ['app\models\Event', 'sendInLog']);
+//     
+//        $this->on(Event::ACTION_UPDATE, ['app\models\Event', 'sendInLog']);
+//      
+//    }
 
     /**
      * @inheritdoc
@@ -80,8 +120,13 @@ class Appointment extends \yii\db\ActiveRecord
 {
   return $this->casetype_idcasetype = explode(',', $this->casetype_idcasetype);
 }
-   
-    /**
+//public function Checkn(){
+//    if($this->todoctor ==0){return 'required';}
+//    else{return 'safe';}
+//}
+
+
+/**
      * @inheritdoc
      */
     public function getCasetypevalue(){

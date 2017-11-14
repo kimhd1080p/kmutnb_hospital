@@ -138,6 +138,16 @@ $auth_assignment = Yii::$app->db->createCommand("UPDATE `auth_assignment` SET `i
             ->execute();
    }
    
+        Yii::$app->getSession()->setFlash('update', [
+     'type' => 'warning',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'แก้ไขข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
+   
             return $this->redirect(['view', 'id' => $model->id]);
             }  } else {
             return $this->render('update', [
@@ -156,7 +166,18 @@ $auth_assignment = Yii::$app->db->createCommand("UPDATE `auth_assignment` SET `i
     {
        $auth_assignment = Yii::$app->db->createCommand("DELETE FROM `auth_assignment` WHERE `user_id`='$id'")
             ->execute(); 
+       
         $this->findModel($id)->delete();
+        
+          Yii::$app->getSession()->setFlash('delete', [
+     'type' => 'error',
+     'duration' => 5000,
+     'icon' => 'fa fa-users',
+     'message' => 'สำเร็จ',
+     'title' => 'ลบข้อมูล',
+     'positonY' => 'top',
+     'positonX' => 'right'
+ ]);
 
         return $this->redirect(['index']);
     }
